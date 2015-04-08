@@ -74,15 +74,6 @@ angular.module('starter', ['ionic'])
 			}
 		}
 	})
-	.state('tab.main', {
-		url: '/main',
-		views: {
-			'tab-main': {
-				templateUrl: 'components/main/tab-main.html',
-				controller: 'MainCtrl'
-			}
-		}
-	})
 	.state('tab.commande', {
 		url: '/commande',
 		views: {
@@ -101,19 +92,10 @@ angular.module('starter', ['ionic'])
 			}
 		}
 	})
-	.state('tab.mesure', {
-		url: '/mesure',
-		views: {
-			'tab-mesure': {
-				templateUrl: 'components/mesure/tab-mesure.html',
-				controller: 'MesureCtrl'
-			}
-		}
-	})
 	.state('tab.mesure-detail', {
 		url: '/mesure/:mesureId',
 		views: {
-			'tab-mesure': {
+			'tab-commande': {
 				templateUrl: 'components/mesure/mesure-detail.html',
 				controller: 'MesureDetailCtrl'
 			}
