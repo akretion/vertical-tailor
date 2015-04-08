@@ -92,8 +92,8 @@ angular.module('starter', ['ionic'])
 			}
 		}
 	})
-	.state('tab.mesure-detail', {
-		url: '/mesure/:mesureId',
+	.state('tab.mesure', {
+		url: '/commande/:commandeId/mesure/:mesureId',
 		views: {
 			'tab-commande': {
 				templateUrl: 'components/mesure/mesure-detail.html',
@@ -103,6 +103,6 @@ angular.module('starter', ['ionic'])
 	});
 
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/tab/main');
+	$urlRouterProvider.otherwise('/tab/commande');
 
 });
