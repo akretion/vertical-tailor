@@ -6,10 +6,12 @@ angular.module('starter')
 	$scope.commande = Commande.get($stateParams.commandeId);
 	if (!$scope.commande) {
 		$state.go('tab.commande');
-		console.log('no commande id');
 	}
 
-	$scope.mesures = $scope.commande.mesures.map(function (m) {
-		return Mesure.get(m);
+	$scope.mesures = [];
+	$scope.commande.mesures.map(function (m) {
+		Mesure.get(m).then(function (mesure) {
+			$scope.mesures.push(mesure);
+		});
 	});
 });

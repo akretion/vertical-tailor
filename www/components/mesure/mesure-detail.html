@@ -1,11 +1,11 @@
 <ion-view view-title="{{mesure.name}}">
   <ion-content class="padding">
-
-    <p>
+  	<p>
       {{mesure.description}}
     </p>
 
-	<div class="list" ng-repeat="categorie in categories">
+	<div ng-show="formulaire.length == 0">Pas de formulaire</div>
+    <div class="list" ng-repeat="categorie in formulaire">
 			<div class="item-divider">{{ categorie.categorie }}</div>
 		<div class="item" ng-repeat="c in categorie.questions" ng-class="{'active': mesure.data[c.label]}">
 			<div ng-switch="c.type">
@@ -25,7 +25,7 @@
 
 	<div class="list">
 		<div class="item item-button-right">
-			<button class="button button-positive">Valider</button>
+			<button class="button button-positive" ng-click="validate()">Valider</button>
 	  	</div>
 	  </div>
   </ion-content>

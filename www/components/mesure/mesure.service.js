@@ -1,9 +1,10 @@
 angular.module('starter')
 
-.factory('Mesure', function() {
-	var mesures = [{
+.factory('Mesure', ['storage', '$q', function(storage, $q) {
+	//just for testing//
+	var defaultMesures = [{
 		id: 1,
-		profile: 'VesteH',
+		formulaire: 'vareuse',
 		name: 'Veste Homme',
 		data: {
 			'hauteur': '',
@@ -12,7 +13,7 @@ angular.module('starter')
 		commande: 1
 	}, {
 		id: 2,
-		profile: 'VesteF',
+		formulaire: 'VesteF',
 		name: 'Veste Femme',
 		data: {
 			'hauteur': '',
@@ -21,7 +22,7 @@ angular.module('starter')
 		commande: 2
 	}, {
 		id: 3,
-		profile: 'PentalonF',
+		formulaire: 'PentalonF',
 		name: 'Pentalon Femme',
 		data: {
 			'hauteur': '',
@@ -31,7 +32,7 @@ angular.module('starter')
 		commande: 2
 	}, {
 		id: 4,
-		profile: 'PentalonH',
+		formulaire: 'vareuse',
 		name: 'Pentalon Homme',
 		data: {
 			'hauteur': '40',
@@ -40,21 +41,48 @@ angular.module('starter')
 		},
 		commande: 1
 	}];
+	
+	storage.get('mesures').then(null, function (result){
+		console.log('populate mesures in session');
+		storage.set('mesures', defaultMesures);
+	});
+	//just for testing//
 
-  return {
-	all: function() {
-	  return mesures;
-	},
-	remove: function(mesure) {
-	  mesures.splice(mesures.indexOf(mesure), 1);
-	},
-	get: function(mesureId) {
-	  for (var i = 0; i < mesures.length; i++) {
-		if (mesures[i].id === parseInt(mesureId)) {
-		  return mesures[i];
+
+
+	var mesures = null;
+
+
+	return {
+		all: function() {
+			return storage.get('mesures').then(function (data) {
+				mesures = data;
+			});
+		},
+		remove: function(mesure) {
+			mesures.splice(mesures.indexOf(mesure), 1);
+			return storage.set('mesures', mesures);
+		},
+		get: function(mesureId) {
+			function search(mesureId) {
+				return mesures.filter(function (m) {
+					return m.id == mesureId; //with == cause we want type coercion
+				}).pop();
+			}
+
+			return $q(function (resolve, reject) { 
+				if (!mesures) {
+					storage.get('mesures').then(function (data) {
+						mesures = data;
+						resolve(search(mesureId));
+					});
+				} else {
+					resolve(search(mesureId));
+				}
+			});
+		},
+		save: function(mesure) {
+			return storage.set('mesures', mesures);
 		}
-	  }
-	  return null;
-	}
-  };
-});
+	};
+}]);
