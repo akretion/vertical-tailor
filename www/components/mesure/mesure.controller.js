@@ -18,6 +18,7 @@ angular.module('starter')
 			$scope.formulaire = formulaire;
 		}, function (reason) {
 			console.log('formulaire introuvable');
+			$scope.formulaire = [];
 		});
 	}
 

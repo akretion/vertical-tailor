@@ -83,6 +83,20 @@ angular.module('starter')
 		},
 		save: function(mesure) {
 			return storage.set('mesures', mesures);
+		},
+		create: function(commande) {
+			var mesure = {
+				id: Math.ceil(Math.random()*1000000), //very bad
+				formulaire: null,
+				produit: null,
+				data: [],
+				commande: commande.id
+			};
+			return mesure;
+		},
+		add: function (mesure) {
+			mesures.push(mesure);
+			return storage.set('mesures',mesures);
 		}
 	};
 }]);

@@ -1,4 +1,9 @@
 <ion-view view-title="{{commande.name}}">
+	<ion-nav-buttons side="secondary">
+		<button class="button" ng-click="newMesure()">
+			+
+		</button>
+	</ion-nav-buttons>
 	<ion-content class="padding">
 		<p>
 			{{commande.description}}
@@ -6,7 +11,7 @@
 		<div ng-bind-html="commande.descriptionLong"></div>
 		<h2>Mesures</h2>
 		<ul>
-			<li ng-repeat="mesure in mesures"><a ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})">{{ mesure.name }}</a></li>
+			<li ng-repeat="mesure in mesures"><a ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})">{{ mesure.name }} {{ mesure.produit }} </a></li>
 		</uL>
 	</ion-content>
 </ion-view>
