@@ -27,6 +27,7 @@ angular.module('starter')
 		all: function() {
 			return storage.get('commandes').then(function (data) {
 				commandes = data;
+				return commandes;
 			});
 		},
 		remove: function(commande) {

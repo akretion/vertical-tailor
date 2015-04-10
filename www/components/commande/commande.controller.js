@@ -1,7 +1,9 @@
 angular.module('starter')
 .controller('CommandeCtrl', function($scope, Commande, Mesure) {
 	console.log('command ctrl');
-	$scope.commandes = Commande.all();
+	Commande.all().then(function (commandes) {
+		$scope.commandes =  commandes;
+	});
 }).controller('CommandeDetailCtrl', function($scope, $stateParams, $state, $ionicModal, Commande, Mesure) {
 	
 	$scope.commande = null;	
