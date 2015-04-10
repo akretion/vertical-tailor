@@ -30,13 +30,10 @@ angular.module('starter')
 		var val = e.target.textContent.trim();
 		if (e.target.nodeName != 'BUTTON')
 			return;
-		console.log('clicked !', label, val);
 		$scope.mesure.data[label] = ($scope.mesure.data[label] == val) ? null : val;
-		console.log($scope.mesure.data);
 	};
 
 	$scope.validate = function() {
-		console.log('va persister', $scope.mesure.data);
 		$scope.mesure.state = 'done';
 		Commande.save($scope.commande);
 		$state.go('tab.commande', {commandeId: $stateParams.commandeId});
