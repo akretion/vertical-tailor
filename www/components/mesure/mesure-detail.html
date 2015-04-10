@@ -1,8 +1,6 @@
-<ion-view view-title="{{mesure.name}}">
+<ion-view view-title="{{commande.mesure.produit }}">
   <ion-content class="padding">
-  	<p>
-      {{mesure.description}}
-    </p>
+  	<p>{{ commande.notes}}</p>
 
 	<div ng-show="formulaire.length == 0">Pas de formulaire</div>
 

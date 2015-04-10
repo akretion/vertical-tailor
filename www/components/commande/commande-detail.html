@@ -1,8 +1,8 @@
-<ion-view view-title="{{commande.name}}">
+<ion-view view-title="{{commande.name}} | {{ commande.matricule }}">
 	<ion-content>
 		<div class="card">
 			<p>
-				{{commande.description}}
+				{{commande.notes}}
 			</p>
 			<div ng-bind-html="commande.descriptionLong"></div>
 		</div>
