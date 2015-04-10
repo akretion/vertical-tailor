@@ -1,9 +1,39 @@
 angular.module('starter')
-.controller('CommandeCtrl', function($scope, Commande, Mesure) {
+.controller('CommandeCtrl', function($scope, Commande, Mesure, $ionicModal) {
 	console.log('command ctrl');
 	Commande.all().then(function (commandes) {
 		$scope.commandes =  commandes;
 	});
+
+	$scope.newCommande = function () {
+		$scope.openModal();
+	};
+
+
+	$ionicModal.fromTemplateUrl('components/commande/commande-modal.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal;
+		//Cleanup the modal when we're done with it!
+		$scope.$on('$destroy', function() {
+			$scope.modal.remove();
+		});
+		// Execute action on hide modal
+		$scope.$on('modal.hidden', function() {
+		// Execute action
+		});
+		// Execute action on remove modal
+		$scope.$on('modal.removed', function() {
+		// Execute action
+		});
+	});
+	$scope.openModal = function() {
+		$scope.modal.show();
+	};
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
 }).controller('CommandeDetailCtrl', function($scope, $stateParams, $state, $ionicModal, Commande, Mesure) {
 	
 	$scope.commande = null;	
