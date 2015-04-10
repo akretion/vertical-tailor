@@ -11,7 +11,8 @@ angular.module('starter')
 	$scope.saveCommande = function () {
 		$scope.commandes.push($scope.commandeDraft);
 		Commande.save($scope.commande);
-	}
+		$scope.commandeDraft = null;
+	};
 
 }]).controller('CommandeDetailCtrl', ['$scope', '$stateParams', '$state', 'Commande', function($scope, $stateParams, $state, Commande) {
 	
@@ -21,7 +22,6 @@ angular.module('starter')
 
 	Commande.get($stateParams.commandeId).then(function (commande) {
 		$scope.commande = commande;
-
 	}, function (reason) {
 		$state.go('tab.commande');
 		console.log('no commande id');
