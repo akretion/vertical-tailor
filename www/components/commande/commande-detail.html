@@ -15,6 +15,7 @@
 		<ion-list>
 			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="mesure in mesures" ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})" >{{ mesure.name }} {{ mesure.produit }}
 			{{ mesure.state }}
+			<div resume-mesures mesure="mesure"></div>
 			</ion-item>
 		</ion-list>
 	</ion-content>
