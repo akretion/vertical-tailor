@@ -5,13 +5,16 @@
     </p>
 
 	<div ng-show="formulaire.length == 0">Pas de formulaire</div>
-    <div class="list" ng-repeat="categorie in formulaire">
-			<div class="item-divider">{{ categorie.categorie }}</div>
+
+	<div class="list" ng-repeat="categorie in formulaire">
+		<div class="item-divider">{{ categorie.categorie }}</div>
 		<div class="item" ng-repeat="c in categorie.questions" ng-class="{'active': mesure.data[c.label]}">
 			<div ng-switch="c.type">
-				<div ng-switch-when="array" class="button-bar" ng-click="click(c.label, $event)">
+				<div ng-switch-when="array"  ng-click="click(c.label, $event)">
 					<div>{{c.label}}</div>
-					<button class="button" ng-repeat="v in c.valeurs" ng-class="{'active': v == mesure.data[c.label]}">{{ v }}</button>
+					<div class="button-bar">
+						<button class="button" ng-repeat="v in c.valeurs" ng-class="{'active': v == mesure.data[c.label]}">{{ v }}</button>
+					</div>
 				</div>
 
 				<div ng-switch-when="numeric" class="button-bar">
