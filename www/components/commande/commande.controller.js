@@ -6,7 +6,12 @@ angular.module('starter')
 	});
 
 	$scope.newCommande = function () {
+		$scope.commandeDraft = Commande.create();
 	};
+	$scope.saveCommande = function () {
+		$scope.commandes.push($scope.commandeDraft);
+		Commande.save($scope.commande);
+	}
 
 }]).controller('CommandeDetailCtrl', ['$scope', '$stateParams', '$state', 'Commande', function($scope, $stateParams, $state, Commande) {
 	
