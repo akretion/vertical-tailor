@@ -56,12 +56,11 @@ angular.module('starter')
 			});
 		},
 		create: function() {
-			var commande = {
+			return {
 				id: Math.ceil(Math.random()*1000000), //very bad
 				mesures: [],
 				client: null,
 			};
-			return mesure;
 		},
 		createMesure: function() {
 			return {
