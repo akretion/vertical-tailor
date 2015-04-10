@@ -48,32 +48,28 @@ angular.module('starter')
 	});
 	//just for testing//
 
-
-
-	var mesures = null;
-
-
-	return {
+	var Mesure = {
+		data: null,
 		all: function() {
 			return storage.get('mesures').then(function (data) {
-				mesures = data;
+				Mesure.data = data;
 			});
 		},
 		remove: function(mesure) {
-			mesures.splice(mesures.indexOf(mesure), 1);
-			return storage.set('mesures', mesures);
+			Mesure.data.splice(Mesure.data.indexOf(mesure), 1);
+			return storage.set('mesures', Mesure.data);
 		},
 		get: function(mesureId) {
 			function search(mesureId) {
-				return mesures.filter(function (m) {
+				return Mesure.data.filter(function (m) {
 					return m.id == mesureId; //with == cause we want type coercion
 				}).pop();
 			}
 
 			return $q(function (resolve, reject) { 
-				if (!mesures) {
+				if (!Mesure.data) {
 					storage.get('mesures').then(function (data) {
-						mesures = data;
+						Mesure.data = data;
 						resolve(search(mesureId));
 					});
 				} else {
@@ -82,7 +78,7 @@ angular.module('starter')
 			});
 		},
 		save: function(mesure) {
-			return storage.set('mesures', mesures);
+			return storage.set('mesures', Mesure.data);
 		},
 		create: function(commande) {
 			var mesure = {
@@ -90,13 +86,15 @@ angular.module('starter')
 				formulaire: null,
 				produit: null,
 				data: [],
-				commande: commande.id
+				commande: commande.id,
+				isLocalOnly: true, //not persisted yet
 			};
 			return mesure;
 		},
 		add: function (mesure) {
-			mesures.push(mesure);
-			return storage.set('mesures',mesures);
+			Mesure.data.push(mesure);
+			return storage.set('mesures',Mesure.data);
 		}
 	};
+	return Mesure;
 }]);

@@ -1,9 +1,4 @@
 <ion-view view-title="{{commande.name}}">
-	<ion-nav-buttons side="secondary">
-		<button class="button" ng-click="newMesure()">
-			+
-		</button>
-	</ion-nav-buttons>
 	<ion-content>
 		<div class="card">
 			<p>
@@ -12,11 +7,27 @@
 			<div ng-bind-html="commande.descriptionLong"></div>
 		</div>
 		<h2>Mesures</h2>
+		{{ mesures }}
 		<ion-list>
-			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="mesure in mesures" ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})" >{{ mesure.name }} {{ mesure.produit }}
-			{{ mesure.state }}
+			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="mesure in mesures">
+				<div ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})">{{ mesure.name }} {{ mesure.produit }}
+				{{ mesure.state }}
+				</div>
 			<div resume-mesures mesure="mesure"></div>
 			</ion-item>
+
+			<ion-item ng-show="mesureDraft">
+				<label>
+					Produit
+					<select ng-model="produitFormulaire" ng-options="item.produit for item in produitsFormulaire">
+					</select>
+				</label>
+				<button class="button" ng-click="saveMesure(mesureDraft, produitFormulaire)">Enregistrer</button>
+
+			</ion-item>
+		</ion-list>
+			<button class="button" ng-click="newMesure()">+</button>
+			<button class="button">Terminer la commnande</button>
 		</ion-list>
 	</ion-content>
 </ion-view>

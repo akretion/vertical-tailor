@@ -52,6 +52,15 @@ angular.module('starter')
 				}
 			});
 		},
+		create: function() {
+			var commande = {
+				id: Math.ceil(Math.random()*1000000), //very bad
+				mesures: [],
+				client: null,
+				
+			};
+			return mesure;
+		},
 		save: function(commande) {
 			return storage.set('commandes', commandes);
 		},
