@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('CommandeCtrl', function($scope, Commande) {
+.controller('CommandeCtrl', ['$scope', 'Commande', function($scope, Commande) {
 	console.log('command ctrl');
 	Commande.all().then(function (commandes) {
 		$scope.commandes = commandes;
@@ -8,7 +8,7 @@ angular.module('starter')
 	$scope.newCommande = function () {
 	};
 
-}).controller('CommandeDetailCtrl', function($scope, $stateParams, $state, Commande) {
+}]).controller('CommandeDetailCtrl', ['$scope', '$stateParams', '$state', 'Commande', function($scope, $stateParams, $state, Commande) {
 	
 	$scope.commande = null;	
 	$scope.mesureDraft = null;
@@ -42,4 +42,4 @@ angular.module('starter')
 		];
 	};
 
-});
+}]);

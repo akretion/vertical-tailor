@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.factory('Commande', ['storage','$q', function(storage,$q) {
+.factory('Commande', ['storage','$q', function(storage, $q) {
 	var defaultCommandes = [{
 		id: 1,
 		matricule: '',
