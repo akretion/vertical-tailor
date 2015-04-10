@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('CommandeCtrl', function($scope, Commande, Mesure, $ionicModal) {
+.controller('CommandeCtrl', function($scope, Commande) {
 	console.log('command ctrl');
 	Commande.all().then(function (commandes) {
 		$scope.commandes = commandes;
@@ -8,51 +8,37 @@ angular.module('starter')
 	$scope.newCommande = function () {
 	};
 
-}).controller('CommandeDetailCtrl', function($scope, $stateParams, $state, $ionicModal, Commande, Mesure) {
+}).controller('CommandeDetailCtrl', function($scope, $stateParams, $state, Commande) {
 	
 	$scope.commande = null;	
-	$scope.mesures = [];
 	$scope.mesureDraft = null;
 
 
 	Commande.get($stateParams.commandeId).then(function (commande) {
 		$scope.commande = commande;
 
-		$scope.commande.mesures.forEach(function (m) {
-			Mesure.get(m).then(function (mesure) {
-				$scope.mesures.push(mesure);
-			}, function (){
-				console.log('mesure',m,'pas trouvé');
-			});
-		});
-
 	}, function (reason) {
 		$state.go('tab.commande');
 		console.log('no commande id');
 	});
-	
+
 	$scope.saveMesure = function (mesure, produitFormulaire) {
 		mesure.produit = produitFormulaire.produit;
 		mesure.formulaire = produitFormulaire.formulaire;
 
-		$scope.commande.mesures.push(mesure.id);
-		$scope.mesures.push(mesure);
-
-		Mesure.add(mesure);
-		Mesure.save(mesure);
-
+		$scope.commande.mesures.push(mesure);
 		Commande.save($scope.commande);
 	};
 
 
 	$scope.newMesure = function () {
-		$scope.mesureDraft = Mesure.create($scope.commande);
+		$scope.mesureDraft = Commande.createMesure();
 		$scope.produitsFormulaire = [
-		{  produit: 'Pentalon H camouflage', formulaire: 'pentalonH'},
-		{  produit: 'Pentalon H entrainement', formulaire: 'pentalonH'},
+		{  produit: 'Pentalon H camouflage', formulaire: 'vareuse'},
+		{  produit: 'Pentalon H entrainement', formulaire: 'pentalonF'},
 		{  produit: 'T-shirt IronMaiden', formulaire: 'tshrit'},
 		{  produit: 'Polo Lacoste', formulaire: 'tshirt'},
-		{  produit: 'Survêtement Tacchni', formulaire: 'pentalonH'},
+		{  produit: 'Survêtement Tacchni', formulaire: 'pentalonF'},
 		];
 	};
 

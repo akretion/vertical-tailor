@@ -1,11 +1,14 @@
 angular.module('starter')
-.controller('MesureDetailCtrl', ['$scope', '$stateParams', '$state', 'Mesure', 'Formulaire', function($scope, $stateParams, $state, Mesure, Formulaire) {
+.controller('MesureDetailCtrl', ['$scope', '$stateParams', '$state', 'Commande', 'Formulaire', function($scope, $stateParams, $state, Commande, Formulaire) {
 
+	$scope.commande = null;
 	$scope.mesure = null;
 	$scope.formulaire = null;
 
-	Mesure.get($stateParams.mesureId).then(function (mesure) {
-		$scope.mesure = mesure;
+	Commande.get($stateParams.commandeId).then(function (commande) {
+		$scope.commande = commande;
+		$scope.mesure = commande.mesures[$stateParams.mesureId];
+
 		loadFormulaire($scope.mesure.formulaire);
 
 	}, function (reason) {
@@ -27,15 +30,15 @@ angular.module('starter')
 		var val = e.target.textContent.trim();
 		if (e.target.nodeName != 'BUTTON')
 			return;
-
+		console.log('clicked !', label, val);
 		$scope.mesure.data[label] = ($scope.mesure.data[label] == val) ? null : val;
-
+		console.log($scope.mesure.data);
 	};
 
 	$scope.validate = function() {
 		console.log('va persister', $scope.mesure.data);
 		$scope.mesure.state = 'done';
-		Mesure.save($scope.mesure);
+		Commande.save($scope.commande);
 		$state.go('tab.commande', {commandeId: $stateParams.commandeId});
 	}
 }]);

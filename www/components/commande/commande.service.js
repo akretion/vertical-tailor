@@ -3,19 +3,22 @@ angular.module('starter')
 .factory('Commande', ['storage','$q', function(storage,$q) {
 	var defaultCommandes = [{
 		id: 1,
+		matricule: '',
 		name: 'Monsieur Smith',
-		description: 'What do you want Brad ?',
-		mesures: [1,4]
+		notes: 'What do you want Brad ?',
+		mesures: [{
+			formulaire: 'vareuse',
+			produit: 'Jeans 501',
+			data: {}
+		}]
 	}, {
 		id: 2,
 		name: 'Madame Smith',
-		description: 'Pentalon & Veste',
-		descriptionLong: '<ul><li>Il est au milieu de la table</li>'+
-		'<li>T\'appelle ça le milieu d\'la table?</li>'+
-		'<li>Entre nous deux oui absoluement</li></ul>',
-		mesures: [2,3]
+		matricule: 'Pentalon & Veste',
+		notes: 'R.A.S.',
+		mesures: []
 	}];
-	
+
 	storage.get('commandes').then(null, function (result){
 		console.log('populate commandes in session');
 		storage.set('commandes', defaultCommandes);
@@ -57,12 +60,19 @@ angular.module('starter')
 				id: Math.ceil(Math.random()*1000000), //very bad
 				mesures: [],
 				client: null,
-				
 			};
 			return mesure;
 		},
+		createMesure: function() {
+			return {
+				formulaire: null,
+				produit: null,
+				data: {},
+				isLocalOnly: true //not persisted yet
+			};
+		},
 		save: function(commande) {
 			return storage.set('commandes', commandes);
-		},
-  };
+		}
+	};
 }]);

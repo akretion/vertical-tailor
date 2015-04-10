@@ -7,10 +7,10 @@
 			<div ng-bind-html="commande.descriptionLong"></div>
 		</div>
 		<h2>Mesures</h2>
-		{{ mesures }}
+		{{ commande.mesures }}
 		<ion-list>
-			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="mesure in mesures">
-				<div ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})">{{ mesure.name }} {{ mesure.produit }}
+			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="(key, mesure) in commande.mesures track by key">
+				<div ui-sref="tab.mesure({commandeId: commande.id, mesureId: key})">{{ mesure.name }} {{ mesure.produit }}
 				{{ mesure.state }}
 				</div>
 			<div resume-mesures mesure="mesure"></div>
