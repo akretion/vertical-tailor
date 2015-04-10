@@ -4,14 +4,18 @@
 			+
 		</button>
 	</ion-nav-buttons>
-	<ion-content class="padding">
-		<p>
-			{{commande.description}}
-		</p>
-		<div ng-bind-html="commande.descriptionLong"></div>
+	<ion-content>
+		<div class="card">
+			<p>
+				{{commande.description}}
+			</p>
+			<div ng-bind-html="commande.descriptionLong"></div>
+		</div>
 		<h2>Mesures</h2>
-		<ul>
-			<li ng-repeat="mesure in mesures"><a ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})">{{ mesure.name }} {{ mesure.produit }} </a></li>
-		</uL>
+		<ion-list>
+			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="mesure in mesures" ui-sref="tab.mesure({commandeId: commande.id, mesureId: mesure.id})" >{{ mesure.name }} {{ mesure.produit }}
+			{{ mesure.state }}
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-view>
