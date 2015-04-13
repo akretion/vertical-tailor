@@ -34,7 +34,10 @@ angular.module('starter')
 			});
 		},
 		remove: function(commande) {
-			commandes.splice(commandes.indexOf(commande), 1);
+			var pos = commandes.indexOf(commande);
+			if (pos === -1)
+				return;
+			commandes.splice(pos, 1);
 			return storage.set('commandes', commandes);
 		},
 		get: function(commandeId) {
