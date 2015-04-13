@@ -6,7 +6,13 @@
 	</ion-nav-buttons>
 	 <ion-content>
 		<ion-list>
-			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="commande in commandes" type="item-text-wrap" href="#/tab/commande/{{commande.id}}">
+				<div class="list list-inset">
+					<label class="item item-input">
+						<i class="icon ion-search placeholder-icon"></i>
+					<input type="text" placeholder="Search" ng-model="commandeFilterTxt">
+					</label>
+				</div>
+			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="commande in commandes | commandeFilter:commandeFilterTxt" type="item-text-wrap" href="#/tab/commande/{{commande.id}}">
 				<h2>{{commande.name}}</h2>
 				<p>{{commande.description}}</p>
 				<i class="icon ion-chevron-right icon-accessory"></i>
