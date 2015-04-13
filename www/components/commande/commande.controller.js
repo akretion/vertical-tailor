@@ -69,4 +69,9 @@ angular.module('starter')
 		Commande.save($scope.commande);
 	};
 
+	$scope.terminateCommande = function () {
+		$scope.commande.state = 'done';
+		Commande.save($scope.commande);
+		$state.go('tab.commande');
+	}
 }]);
