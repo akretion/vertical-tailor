@@ -1,4 +1,10 @@
 <ion-view view-title="{{commande.name}} | {{ commande.matricule }}">
+	<ion-nav-buttons side="secondary">
+		<div ng-show="commande.isLocalOnly">
+			<button menu-toggle="left" class="button button-icon icon ion-navicon" ng-click="toggleMode()"></button>
+		</div>
+	</ion-nav-buttons>
+
 	<ion-content>
 		<div class="card">
 			<h3>{{ commande.name }} <small>{{commande.matricule}}</small></h3>
@@ -9,25 +15,29 @@
 		</div>
 		<h2>Mesures</h2>
 
-		<ion-list>
-			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right"  ng-repeat="(key, mesure) in commande.mesures track by key">
+		<ion-list show-delete="editMode">
+			<ion-item ng-show="editMode" class="enable-pointer-events">
+				<label>
+					Produit {{ produitFormulaire}}<br>
+					<select ng-model="produitFormulaire" ng-options="item.produit for item in produitsFormulaire">
+					</select>
+				</label>
+				<ion-delete-button class="ion-minus-circled" ng-click="toggleMode()"></ion-delete-button>
+				<button class="button" ng-click="saveMesure(mesureDraft, produitFormulaire);produitFormulaire=null">Enregistrer</button>
+
+			</ion-item>
+
+			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, mesure) in commande.mesures track by key">
 				<div ui-sref="tab.mesure({commandeId: commande.id, mesureId: key})">{{ mesure.name }} {{ mesure.produit }}
 				{{ mesure.state }}
 				</div>
 			<div resume-mesures mesure="mesure"></div>
+			<ion-delete-button class="ion-minus-circled" ng-click="removeMesure(mesure, $index)"></ion-delete-button>
+
 			</ion-item>
 
 			<ion-item type="" ng-show="commande.mesures.length == 0">Pas de mesures</ion-item>
 
-			<ion-item ng-show="mesureDraft">
-				<label>
-					Produit
-					<select ng-model="produitFormulaire" ng-options="item.produit for item in produitsFormulaire">
-					</select>
-				</label>
-				<button class="button" ng-click="saveMesure(mesureDraft, produitFormulaire)">Enregistrer</button>
-
-			</ion-item>
 		</ion-list>
 			<button class="button" ng-click="newMesure()">+</button>
 			<button class="button">Terminer la commnande</button>

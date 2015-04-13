@@ -22,7 +22,7 @@ angular.module('starter')
 	
 	$scope.commande = null;	
 	$scope.mesureDraft = null;
-
+	$scope.editMode = false;
 
 	Commande.get($stateParams.commandeId).then(function (commande) {
 		$scope.commande = commande;
@@ -31,17 +31,28 @@ angular.module('starter')
 		console.log('no commande id');
 	});
 
-	$scope.saveMesure = function (mesure, produitFormulaire) {
-		mesure.produit = produitFormulaire.produit;
-		mesure.formulaire = produitFormulaire.formulaire;
+	$scope.toggleMode = function () {
+		if ($scope.editMode) {
+			//save all? 
+		} else {
+			$scope.newMesure();
+		}
+		$scope.editMode = !$scope.editMode;
+	}
 
-		$scope.commande.mesures.push(mesure);
-		Commande.save($scope.commande);
+	$scope.saveMesure = function (mesure, produitFormulaire) {
+		if (produitFormulaire) {
+			mesure.produit = produitFormulaire.produit;
+			mesure.formulaire = produitFormulaire.formulaire;
+
+			$scope.commande.mesures.push(mesure);
+			Commande.save($scope.commande);
+		}
+		$scope.mesureDraft = Commande.createMesure();
 	};
 
 
 	$scope.newMesure = function () {
-		$scope.mesureDraft = Commande.createMesure();
 		$scope.produitsFormulaire = [
 		{  produit: 'Pentalon H camouflage', formulaire: 'vareuse'},
 		{  produit: 'Pentalon H entrainement', formulaire: 'pentalonF'},
@@ -49,6 +60,13 @@ angular.module('starter')
 		{  produit: 'Polo Lacoste', formulaire: 'tshirt'},
 		{  produit: 'Survêtement Tacchni', formulaire: 'pentalonF'},
 		];
+
+		$scope.mesureDraft = Commande.createMesure();
+	};
+
+	$scope.removeMesure = function(mesure, idx) {
+		$scope.commande.mesures.splice(idx, 1);
+		Commande.save($scope.commande);
 	};
 
 }]);
