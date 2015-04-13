@@ -62,6 +62,7 @@ angular.module('starter')
 			return {
 				id: Math.ceil(Math.random()*1000000), //very bad
 				mesures: [],
+				isLocalOnly: true,
 				client: null,
 			};
 		},
