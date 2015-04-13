@@ -12,18 +12,7 @@
 					<input type="text" placeholder="Search" ng-model="commandeFilterTxt">
 					</label>
 				</div>
-			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="commande in commandes | commandeFilter:commandeFilterTxt" type="item-text-wrap" href="#/tab/commande/{{commande.id}}">
-				<h2>{{commande.name}}</h2>
-				<p>{{commande.description}}</p>
-				<i class="icon ion-chevron-right icon-accessory"></i>
-
-				<ion-option-button class="button-assertive" ng-click="remove(commande)">
-					Delete
-				</ion-option-button>
-			</ion-item>
-			<ion-item ng-show="commandes.length == 0">
-				<h2>Aucune de commande</h2>
-			</ion-item>
+			
 			<ion-item ng-show="commandeDraft">
 				<label>
 					Nom
@@ -39,7 +28,23 @@
 					<textarea ng-model="commandeDraft.notes"></textarea>
 				</label>
 				<button class="button" ng-click="saveCommande(commandeDraft)">Enregistrer</button>
-		 </ion-item>
+			</ion-item>
+
+			<ion-item ng-show="commandes.length == 0">
+				<h2>Aucune de commande</h2>
+			</ion-item>
+
+			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="commande in commandes | commandeFilter:commandeFilterTxt | orderBy: 'state'" type="item-text-wrap" href="#/tab/commande/{{commande.id}}">
+				<h2>{{commande.name}} ({{ commande.matricule }})</h2>
+				<p>{{commande.notes}}</p>
+				<p>State : {{ commande.state }} </p>
+				<p><span ng-repeat="mesure in commande.mesures">{{ mesure.produit }} </span></p>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+
+				<ion-option-button class="button-assertive" ng-click="remove(commande)">
+					Delete
+				</ion-option-button>
+			</ion-item>
 		</ion-list>
 	</ion-content>
 </ion-view>

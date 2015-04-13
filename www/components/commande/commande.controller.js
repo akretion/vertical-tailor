@@ -1,16 +1,20 @@
 angular.module('starter')
-.controller('CommandeCtrl', ['$scope', 'Commande', function($scope, Commande) {
+.controller('CommandeCtrl', ['$scope', 'Commande','$state', function($scope, Commande, $state) {
 	console.log('command ctrl');
 	Commande.all().then(function (commandes) {
 		$scope.commandes = commandes;
 	});
 
 	$scope.newCommande = function () {
-		$scope.commandeDraft = Commande.create();
+		if (!$scope.commandeDraft)
+			$scope.commandeDraft = Commande.create();
+		else
+			$scope.commandeDraft = null;
 	};
 	$scope.saveCommande = function () {
 		$scope.commandes.push($scope.commandeDraft);
 		Commande.save($scope.commande);
+		$state.go('tab.commande-detail', { commandeId: $scope.commandeDraft.id});
 		$scope.commandeDraft = null;
 	};
 
