@@ -1,7 +1,8 @@
 {
   "name": "mesureuse",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.3"
+    "ionic": "driftyco/ionic-bower#1.0.0-rc.3",
+    "platform": "~1.3.0"
   },
   "version": "0.0.0",
   "homepage": "https://github.com/hparfr/mesureuse",
@@ -18,6 +19,6 @@
   ],
   "dependencies": {
     "buche": "FranzPoize/buche#~0.0.4",
-    "odoo": "akretion/angular-odoo"
+    "odoo": "hparfr/angular-odoo"
   }
 }
