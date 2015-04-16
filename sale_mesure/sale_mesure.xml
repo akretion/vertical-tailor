@@ -27,7 +27,7 @@
 		    <field name ="progress_before_AVD" string ="Avancement devant AVD"/> 
 		    <field name ="shoulder_behind_EPAB" string ="Epaule Arriére EPA "/> 
 		    <field name ="shoulder_forward_EPAF" string ="Epaule Avant EPA"/>
-		    <field name ="hollow_kidneys_CBR" string ="Reins Creux CBR"/> 
+		    <field name ="hollow_kidneys_CBR" string ="Reins Creux CBR"/>
 		    <field name ="forcing_chest_clip_FPP" string ="Forcer pince poitrine FPP" />
 		    <field name ="forcing_chest_obesity_FPV" string ="Forcer pince obésité FPV"/> 
 		    <field name ="short_neck_back_amount_TDD" string ="Montant dos cou court-cou long TDD"/> 
@@ -42,15 +42,13 @@
             <field name="model">measure.measure</field>
 	     <field name="type">form</field>
             <field name="arch" type="xml">
+	     <form string="Measure">
               <sheet>
+		 <field name="product_id" string = "Produit"/> 
+		 <field name="partner_id" string = "Pratner"/>
 		<h1><label string="Measure Page"/></h1>
-                <form string="Measure">
-		  <group col="4">
-		    <field name="product_id" string = "Produit"/> 
-		    <field name="partner_id" string = "Pratner"/>
-		  </group>
-		  <separator string="The measuring elements" />
-		   <group col="4">
+		
+		  <group  name ="elements" string="group1">
 		    <field name="qty" string = "Qantité"/> 
 		    <field name="tested_size" string = "Taille essayée"/>
 		    <field name= "vor_attitude_VOR" string =" Attitude VOR"/>
@@ -67,14 +65,16 @@
 		    <field name="armhole_Edge_CAM" string = "Carré d'emmanchure CAM"/>
 		    <field name ="belt_CEI" string ="1/2 Ceinture CEI"/> 
 		    <field name ="basin_LBA" string ="1/2 Bassin LBA" />
+		    <field name="sleeves_MAR" string = "Manches MAR"/>
 		    <field name ="clip_in_reverse_PSR" string ="Pince sous revers PSR"/>
+		    <field name = "forcing_chest_obesity_FPV" string = "Forcer pince obésité FPV " />
 		    <field name ="hollow_kidneys_CBR" string ="Reins Creux CBR"/>
 		    <field name="length_Dos_LON" string ="Longueur Dos LAN"/>
 		    <field name="sleeve_length_left_MANG" string ="Longueur manche Gauche"/>
 		    <field name="sleeve_length_right_MAND" string ="Longueur manche Droite" /> 
 		  </group>        
-	      </form>
             </sheet>
+	   </form>
             </field>
         </record>
 	  

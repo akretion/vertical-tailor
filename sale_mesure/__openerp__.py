@@ -40,7 +40,10 @@
     'category': 'sale',
     'version': '0.1',
     'depends': ['base','sale'],
-    'data': ['sale_mesure.xml'],
+    'data': [
+        'sale_mesure.xml',
+        'product.xml'
+    ],
     # only loaded in demonstration mode
     'demo': [],
 
