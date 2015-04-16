@@ -11,28 +11,6 @@
 		    <field name="product_id" string = "Produit"/> 
 		    <field name="partner_id" string = "Pratner"/> 
 		    <field name="qty" string = "Qantité"/> 
-		    <field name="tested_size" string = "Taille essayée"/>
-		    <field name="length_Dos_LON" string ="Longueur Dos LAN"/> 
-		    <field name="sleeve_length_left_MANG" string ="Longueur manche Gauche"/>
-		    <field name="sleeve_length_right_MAND" string ="Longueur manche Droite" /> 
-		    <field name= "vor_attitude_VOR" string =" Attitude VOR"/>
-		    <field name ="shoulders_CAR" string ="1/2 Carrure CAR"/>
-		    <field name ="belt_CEI" string ="1/2 Ceinture CEI"/> 
-		    <field name ="basin_LBA" string ="1/2 Bassin LBA" /> 
-		    <field name="shoulder_width_LEP" string ="Largeur épaule LEP"/>
-		    <field name="armhole_Edge_CAM" string = "Carré d'emmanchure CAM"/>
-		    <field name="sleeves_MAR" string = "Manches MAR"/>
-		    <field name="shoulder_height_left_HEPL" string ="Hauteur épaule Gauche HEPG" /> 
-		    <field name="shoulder_eight_right_HEPR" string ="Hauteur épaule Droite HEPD"/>
-		    <field name ="progress_before_AVD" string ="Avancement devant AVD"/> 
-		    <field name ="shoulder_behind_EPAB" string ="Epaule Arriére EPA "/> 
-		    <field name ="shoulder_forward_EPAF" string ="Epaule Avant EPA"/>
-		    <field name ="hollow_kidneys_CBR" string ="Reins Creux CBR"/>
-		    <field name ="forcing_chest_clip_FPP" string ="Forcer pince poitrine FPP" />
-		    <field name ="forcing_chest_obesity_FPV" string ="Forcer pince obésité FPV"/> 
-		    <field name ="short_neck_back_amount_TDD" string ="Montant dos cou court-cou long TDD"/> 
-		    <field name ="strong_chest_DED" string ="Poitrine forte (dvpmt devant) DED"/> 
-		    <field name ="clip_in_reverse_PSR" string ="Pince sous revers PSR"/> 
 		</tree>
             </field>
         </record>
@@ -51,27 +29,6 @@
 		  <group  name ="elements" string="group1">
 		    <field name="qty" string = "Qantité"/> 
 		    <field name="tested_size" string = "Taille essayée"/>
-		    <field name= "vor_attitude_VOR" string =" Attitude VOR"/>
-		    <field name ="short_neck_back_amount_TDD" string ="Montant dos cou court-cou long TDD"/> 
-		    <field name="shoulder_height_left_HEPL" string ="Hauteur épaule Gauche HEPG" /> 
-		    <field name="shoulder_eight_right_HEPR" string ="Hauteur épaule Droite HEPD"/>
-		    <field name ="progress_before_AVD" string ="Avancement devant AVD"/>
-		    <field name ="shoulder_behind_EPAB" string ="Epaule Arriére EPA "/> 
-		    <field name ="shoulder_forward_EPAF" string ="Epaule Avant EPA"/>
-		    <field name ="strong_chest_DED" string ="Poitrine forte (dvpmt devant) DED"/>
-		    <field name ="forcing_chest_clip_FPP" string ="Forcer pince poitrine FPP" />	
-		    <field name ="shoulders_CAR" string ="1/2 Carrure CAR"/>
-		    <field name="shoulder_width_LEP" string ="Largeur épaule LEP"/>
-		    <field name="armhole_Edge_CAM" string = "Carré d'emmanchure CAM"/>
-		    <field name ="belt_CEI" string ="1/2 Ceinture CEI"/> 
-		    <field name ="basin_LBA" string ="1/2 Bassin LBA" />
-		    <field name="sleeves_MAR" string = "Manches MAR"/>
-		    <field name ="clip_in_reverse_PSR" string ="Pince sous revers PSR"/>
-		    <field name = "forcing_chest_obesity_FPV" string = "Forcer pince obésité FPV " />
-		    <field name ="hollow_kidneys_CBR" string ="Reins Creux CBR"/>
-		    <field name="length_Dos_LON" string ="Longueur Dos LAN"/>
-		    <field name="sleeve_length_left_MANG" string ="Longueur manche Gauche"/>
-		    <field name="sleeve_length_right_MAND" string ="Longueur manche Droite" /> 
 		  </group>        
             </sheet>
 	   </form>
@@ -123,20 +80,15 @@
 	    <field name="model">res.partner</field>
 	    <field name="inherit_id" ref="base.view_partner_form"/>
 	    <field name="arch" type="xml">
-		<xpath expr="//form/sheet/div[@name='buttons']" position="inside">
-		   
-		 <button class="oe_inline oe_stat_button" name="%(act_partner_2_measure)d"
-				 type="action"
-				 string="Measure"
-				 icon="fa-star"
-			       
-				 />
+		<xpath expr="//form/sheet/div[@name='buttons']" position="inside">  
+		    <button class="oe_inline oe_stat_button" name="%(act_partner_2_measure)d"
+				    type="action"
+				    string="Measure"
+				    icon="fa-star"/>
 		</xpath>
 	    </field>
 	</record>
 	
-      
-<!--    domain="[('sale_id.partner_id','=',parent.partner_id)]"-->
       
 	  <record model="ir.actions.act_window" id="action_line_sale_order_measure_xml">
 		<field name="name">New Sale Order field Measure</field>
@@ -154,8 +106,5 @@
 	</record>   
          <menuitem id="base.menu_measure" name="Measure" parent="base.menu_base_partner" sequence="9"/>
 	<menuitem name="Measure" id="choix_measure" parent="base.menu_measure" action="action_measure_measure_xml"/>
-	<!--menuitem name="Sale" id="choix_sale_order" parent="base.menu_measure" action="action_line_sale_order_measure_xml"/-->
-	    
-    
     </data> 
 </openerp>
