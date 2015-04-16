@@ -8,5 +8,6 @@
 #
 ##############################################################################
 
-from . import sale_mesure
+from . import sale
+from . import mesure
 from . import product

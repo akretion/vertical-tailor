@@ -20,10 +20,5 @@ class Measure(models.Model):
             if not (attribute [value] in self.attribute ):
                raise exceptions.Warning('there are a problem with your numbers exactly in %c .' %attribute[name])
 
-class SaleLineOrder(models.Model):
-    _inherit ='sale.order.line'
-    _name = 'sale.order.line'
-    measure_id = fields.Many2one('measure.measure', string = "Measure" ,domain="[(('product_id','=',product_id))]")#je suis la
-    
-   
+  
     

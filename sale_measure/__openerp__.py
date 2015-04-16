@@ -42,6 +42,8 @@
     'depends': ['base','sale'],
     'data': [
         'measure.xml',
+        'partner.xml',
+        'sale.xml',
         'product.xml'
     ],
     # only loaded in demonstration mode
