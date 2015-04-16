@@ -17,6 +17,12 @@ angular.module('starter')
 		$scope.commandeDraft = null;
 	};
 
+	$scope.refresh = Commande.all().then(function (commandes) {
+		console.log('dans commande refresh');
+		$scope.commandes = commandes;
+		console.log('récup  : ', commandes.length);
+	});
+
 }]).controller('CommandeDetailCtrl', ['$scope', '$stateParams', '$state', 'Commande', function($scope, $stateParams, $state, Commande) {
 	
 	$scope.commande = null;	
