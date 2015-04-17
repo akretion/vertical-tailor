@@ -15,19 +15,31 @@ angular.module('starter')
 	};
 	$scope.saveCommande = function () {
 		$scope.commandes.push($scope.commandeDraft);
-		Commande.save($scope.commande);
+		Commande.save($scope.commandeDraft);
+
 		$state.go('tab.commande-detail', { commandeId: $scope.commandeDraft.id});
 		$scope.commandeDraft = null;
 	};
 
-	$scope.refresh = Commande.all().then(function (commandes) {
+	$scope.refresh = function () {
+		Commande.all().then(function (commandes) {
 		console.log('dans commande refresh');
 		$scope.commandes = commandes;
 		console.log('récup  : ', commandes.length);
-	});
+		});
+	};
+
+	$scope.add = function () {
+		console.log('add');
+		$scope.commandes.push({name:'ccccc'});
+		Commande.add();
+	}
+
 
 }]).controller('CommandeDetailCtrl', ['$scope', '$stateParams', '$state', 'Commande', function($scope, $stateParams, $state, Commande) {
-	
+	console.log('CommandeDetailCtrl');
+	console.log('connecté : ', $state.current.data);
+
 	$scope.commande = null;	
 	$scope.mesureDraft = null;
 	$scope.editMode = false;
@@ -79,7 +91,7 @@ angular.module('starter')
 
 	$scope.terminateCommande = function () {
 		$scope.commande.state = 'done';
-		Commande.save($scope.commande);
+		Commande.save($scope.commande);		
 		$state.go('tab.commande');
 	}
 }]);
