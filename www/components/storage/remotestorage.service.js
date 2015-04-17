@@ -7,10 +7,11 @@ angular.module('starter')
 		},
 		get: function(key) {
 			var object = "";
-			return jsonRpc.call('mrp.production.workcenter.line', 'get_sync_data', ['prodoo', null, [['workcenter_id', '=', 1]], 50], {}).then(function (data) {
+			console.log('par la');
+			return jsonRpc.call('measure.measure', 'get_form', [], {}).then(function (data) {
 				console.log('dans resovle', data);
 			}, function (reason) {
-				console.log('isLogged?', jsonRpc.isLoggedIn());
+				console.log('dans reason', reason);
 				if (reason.title === 'session_expired') {
 					console.log('session expire, go to loggin');
 					return $q.reject('session_expired');
