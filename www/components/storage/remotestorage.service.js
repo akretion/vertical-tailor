@@ -13,9 +13,9 @@ angular.module('starter')
 				console.log('isLogged?', jsonRpc.isLoggedIn());
 				if (reason.title === 'session_expired') {
 					console.log('session expire, go to loggin');
-					return $q.reject();
+					return $q.reject('session_expired');
 				}
-				return $q.reject();
+				return $q.reject(reason);
 			});
 		}
 	}
