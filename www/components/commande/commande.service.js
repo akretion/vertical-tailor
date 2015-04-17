@@ -25,8 +25,10 @@ angular.module('starter')
 	});
 
 	var commandes = null;
-
-	return {
+	var service = {
+		add: function() {
+			commandes.push({'coco':'ou'});
+		},
 		all: function() {
 			return storage.get('commandes').then(function (data) {
 				commandes = data;
@@ -37,30 +39,27 @@ angular.module('starter')
 			var pos = commandes.indexOf(commande);
 			if (pos === -1)
 				return;
+
 			commandes.splice(pos, 1);
-			return storage.set('commandes', commandes);
+			storage.set('commandes', commandes);
 		},
-		get: function(commandeId) {
-			function search(commandeId) {
-				return commandes.filter(function (m) {
-					return m.id == commandeId; //with == cause we want type coercion
+		get: function(commandeId) { //remove it ?			
+			function search() {
+				return commandes.filter(function (c) {
+					return c.id == commandeId; //with == cause we want type coercion
 				}).pop();
 			}
 
-			return $q(function (resolve, reject) { 
-				if (!commandes) {
-					storage.get('commandes').then(function (data) {
-						commandes = data;
-						resolve(search(commandeId));
-					});
-				} else {
-					resolve(search(commandeId));
-				}
+			return $q(function (resolve, reject) {
+				if (!commandes)
+					resolve(service.all().then(search));
+				else
+					resolve(search());
 			});
 		},
 		create: function() {
 			return {
-				id: Math.ceil(Math.random()*1000000), //very bad
+				id: 'local'+Math.ceil(Math.random()*1000000), //very bad
 				mesures: [],
 				isLocalOnly: true,
 				client: null,
@@ -70,12 +69,25 @@ angular.module('starter')
 			return {
 				formulaire: null,
 				produit: null,
-				data: {},
-				isLocalOnly: true //not persisted yet
+				data: {}
 			};
 		},
 		save: function(commande) {
+			//saveAll in fact!
 			return storage.set('commandes', commandes);
+		},
+		terminate: function (commande) {
+			commande.terminate = true;
+			return strorage.set('toSync', commande).then(
+			function (result) {
+				service.remove(commande);
+				return result;
+			}, function (reason) {
+				console.log('error !', reason);
+				storage.set('commandes', commandes); //save quand même (async)
+				return reason;
+			});
 		}
 	};
+	return service;
 }]);
