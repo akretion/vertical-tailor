@@ -1,5 +1,8 @@
 angular.module('starter')
 .controller('CommandeCtrl', ['$scope', 'Commande','$state', function($scope, Commande, $state) {
+
+	$scope.commandes = null;
+	
 	Commande.all().then(function (commandes) {
 		$scope.commandes = commandes;
 	});
