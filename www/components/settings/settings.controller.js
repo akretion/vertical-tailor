@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc', function($scope, $stateParams, $state, jsonRpc) {
+.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', function($scope, $stateParams, $state, jsonRpc, Formulaire) {
 
 	$scope.login = function () {
 		$scope.error = "";
@@ -15,4 +15,8 @@ angular.module('starter')
 		$state.go('login');
 	};
 	//$scope.logout();
+
+	$scope.loadForm = function () {
+		Formulaire.load();
+	};
 }]);

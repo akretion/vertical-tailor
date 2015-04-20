@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('starter')
-.directive('resumeMesures', [function () {
+.directive('resumeMeasures', [function () {
 	return { 
-		scope: { mesure:'=' },
+		scope: { measure:'=' },
 		template: '' +
 		'<div class="row responsive-sm" ng-repeat="m in dateResume">' +
 			'<div class="col" ng-repeat="(key, val) in m" style="border: 1px solid gray">'+
-				'{{ val }} - {{ mesure.data[val] }}'+
+				'{{ val }} - {{ measure.data[val] }}'+
 			'</div>'+
 		'</div>',
 		link: function ($scope, elem, attrs) {
 			$scope.dataResume = [];
-			$scope.$watchCollection('mesure.data', function (newVal, oldVal) {
+			$scope.$watchCollection('measure.data', function (newVal, oldVal) {
 			if (newVal)
 				$scope.dateResume = splitIn3(newVal);
 			});

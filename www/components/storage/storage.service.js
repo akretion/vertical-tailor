@@ -2,8 +2,32 @@ angular.module('starter')
 .factory('storage', ['remoteStorage', 'localStorage', '$q', function(remoteStorage, localStorage, $q) {
 
 		function merge(remote, local) {
+			if (Array.isArray(remote))
+				return mergeArrays(remote, local);
+			return mergeObjects(remote, local);
+		}
+
+		//merge two objects
+		function mergeObjects(remote, local) {
+			var out = {};
+			//copy all remote objects
+			for (key in remote) {
+				out[key] = remote[key];
+			}
+			//copy missing local objects only if isLocalOnly
+			//overwrite remote by local 
+			for (key in local) {
+				if (remote[key] || local[key].isLocalOnly)
+					out[key] = local[key]; //erase with local copy
+			}
+			return out;
+		}
+
+		// merge two arrays
+		function mergeArrays(remote, local) {
 			var remoteIds, localIds;
 			var toBeKept, toBeAdded;
+
 			remoteIds = remote.map(function (c) {
 				return c.id;
 			});
@@ -46,25 +70,21 @@ angular.module('starter')
 				var remote = [];
 				var local = [];
 				
-				var rpromise = $q(function (resolve, reject) {
-					remoteStorage.get(key).then(function (result) {
-						remote = result;
-						resolve();
-					}, function (reason) {
-						resolve();
-					});
+				var rpromise = remoteStorage.get(key).then(function (result) {
+					remote = result;
+				}, function (reason) {
+					return;
 				});
-
+				
 				var lpromise = localStorage.get(key).then(function (result) {
 					local = result;
+				}, function (reason) {
+					return;
 				});
 
 				return $q.all([lpromise, rpromise]).then(function (result) {
 					return merge(remote, local);
-				}, function (reason) {
-					return [];
 				});
-
 			}
 		}
 }]);

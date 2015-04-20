@@ -46,30 +46,30 @@ angular.module('starter', ['ionic','buche','odoo'])
 			}
 		}
 	})
-	.state('tab.commande', {
-		url: '/commande',
+	.state('tab.order', {
+		url: '/order',
 		views: {
-			'tab-commande': {
-				templateUrl: 'components/commande/tab-commande.html',
-				controller: 'CommandeCtrl'
+			'tab-order': {
+				templateUrl: 'components/order/order-list.html',
+				controller: 'OrderCtrl',
 			}
 		}
 	})
-	.state('tab.commande-detail', {
-		url: '/commande/:commandeId',
+	.state('tab.order-detail', {
+		url: '/order/:orderId',
 		views: {
-			'tab-commande': {
-				templateUrl: 'components/commande/commande-detail.html',
-				controller: 'CommandeDetailCtrl'
+			'tab-order': {
+				templateUrl: 'components/order/order-detail.html',
+				controller: 'OrderDetailCtrl'
 			}
 		}
 	})
-	.state('tab.mesure', {
-		url: '/commande/:commandeId/mesure/:mesureId',
+	.state('tab.measure', {
+		url: '/order/:orderId/measure/:measureId',
 		views: {
-			'tab-commande': {
-				templateUrl: 'components/mesure/mesure-detail.html',
-				controller: 'MesureDetailCtrl'
+			'tab-order': {
+				templateUrl: 'components/measure/measure-detail.html',
+				controller: 'MeasureDetailCtrl'
 			}
 		}
 	})
@@ -84,7 +84,7 @@ angular.module('starter', ['ionic','buche','odoo'])
 	});
 
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/tab/commande');
+	$urlRouterProvider.otherwise('/tab/order');
 
 
 
