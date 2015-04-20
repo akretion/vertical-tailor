@@ -9,5 +9,5 @@
 ##############################################################################
 
 from . import sale
-from . import mesure
+from . import measure
 from . import product

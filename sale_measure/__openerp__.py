@@ -24,7 +24,7 @@
 
 # -*- coding: utf-8 -*-
 {
-    'name': "Sale Generator",
+    'name': "Sale measure",
 
     'summary': """Manage trainings""",
 
@@ -39,7 +39,7 @@
 
     'category': 'sale',
     'version': '0.1',
-    'depends': ['base','sale'],
+    'depends': ['base','sale','product'],
     'data': [
         'measure.xml',
         'partner.xml',

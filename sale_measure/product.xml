@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+        <record id="product_measure_form_view" model="ir.ui.view">
+                    <field name="name">product.product.measure</field>
+                    <field name="model">product.product</field>
+                    <field name="inherit_id" ref="product.product_normal_form_view"/>
+                    <field name="arch" type="xml">
+                      <xpath expr="//form/sheet/div/div[@name='options']/div/field[@name='sale_ok']" position="before">
+                        <label string="Measure Form Type" />
+                        <field name = "measure_form_type" string ="Measure Form Type"/>
+                        </xpath>
+                    </field>
+                </record> 
+                <record model="ir.actions.act_window" id="action_product_measure_xml">
+                        <field name="name">Porduct</field>
+                        <field name="res_model">product.product</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+                </record>
+        
+	<menuitem name="Product" id="choix_measure_product_form" parent="base.menu_measure" action="action_product_measure_xml"/>
+     </data>
+</openerp>
