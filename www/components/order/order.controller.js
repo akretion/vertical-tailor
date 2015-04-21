@@ -33,6 +33,7 @@ angular.module('starter')
 	$scope.order = null;	
 	$scope.measureDraft = null;
 	$scope.editMode = false;
+	$scope.produitsFormulaire = null;
 
 	Order.get($stateParams.orderId).then(function (order) {
 		$scope.order = order;

@@ -16,6 +16,7 @@
 		<h2>Measures</h2>
 		<ion-list show-delete="editMode">
 			<ion-item ng-show="editMode" class="enable-pointer-events">
+				<p ng-show="produitsFormulaire.length == 0"><strong class="assertive">Pas de formulaire disponible.</strong></p>
 				<label>
 					Produit<br>
 					<select ng-model="produitFormulaire" ng-options="item.name for item in produitsFormulaire">
