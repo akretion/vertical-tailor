@@ -16,7 +16,7 @@ class MeasureMeasure(models.Model):
                         related='product_id.measure_form_type' ,readonly=True)
     sale_line_ids = fields.One2many('sale.order.line','measure_id',
                                     string="Measure Ligne")
-    qty = fields.Float('qantity',help="What needs to be done?")
+    qty = fields.Float('qantity')
     
     @classmethod
     def get_form(cls):
@@ -45,19 +45,20 @@ class MeasureMeasure(models.Model):
         return res
     
     def _prepare_attrs_value(self,listb):
-        valeur = "','".join(listb)
-        return"{'invisible': [('measure_form_type','in',['"+valeur+"'])]}"
+          return {
+                  'invisible': [('measure_form_type','not in',listb)]
+              }
     
     def _get_list_article(self):
         list = []
-        for key in self.get_form().keys():
+        for keys in self.get_form().keys():
             list.append(key) 
         return list
    
     def _all_fields(self):
         list=[]
-        for article in self.get_form().keys():
-            for field in self.get_form()[article].keys():
+        for form, values in self.get_form().items():
+            for field in values:
                 if field not in list:
                     list.append(field)
         return list
@@ -67,18 +68,17 @@ class MeasureMeasure(models.Model):
         for field in self._all_fields():
             dict[field] = self._get_list_article()
         return dict
-        
-    def _prepare_list_for_inivisble(self):
-        dict_fields_link_article = self._fields_link_article()
-        for article in self._get_list_article():
-            list_fields_of_article = []
-            for field in self.get_form()[article].keys():
-                    list_fields_of_article.append(field)
-            for key,value in dict_fields_link_article.items(): 
-               if key in list_fields_of_article :
-                    if article in value:
-                        value.remove(article)
-        return dict_fields_link_article
+
+    def _prepare_list_for_invisible(self):
+        dict_fields_link_form={}
+        for field in self._all_fields():
+            list_invisible_element =[]
+            for keys,value in self.get_form().items():
+                if field in value.keys() :
+                    if keys not in list_invisible_element:
+                        list_invisible_element.append(keys)   
+            dict_fields_link_form[field]=list_invisible_element
+        return dict_fields_link_form
  
     @api.model               
     def fields_view_get(self,view_id=None, view_type='form',
@@ -86,22 +86,16 @@ class MeasureMeasure(models.Model):
         
         res = super(MeasureMeasure, self).fields_view_get( view_id = view_id,
                         view_type=view_type,toolbar=toolbar, submenu=submenu)
-        list_component = self._prepare_list_for_inivisble()
         if view_type == 'form':
             root = etree.fromstring(res['arch'])
-            for field in root.findall(".//field"):             
-                for key,value in self._prepare_list_for_inivisble().items():
-                    if field.attrib['name'] == key:
-                        field.set('attrs',self._prepare_attrs_value(value))
-                        orm.setup_modifiers(field, root)
+            for field in root.findall(".//field"):
+                if field.attrib['name'] in self._prepare_list_for_invisible().keys():
+                    attrs = self._prepare_list_for_invisible()[field.attrib['name']]
+                    field.set('attrs',str(self._prepare_attrs_value(attrs)))
+                    orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
         return res
-            
-            
-    
-    
-    
-    
+ 
     
     
 
