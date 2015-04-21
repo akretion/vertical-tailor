@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','buche','odoo'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -19,24 +19,43 @@ angular.module('starter', ['ionic','buche','odoo'])
 			StatusBar.styleLightContent();
 		}
 	});
+
+	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams){
+		if (toState.url !== '/redirect' ) {
+			$state.go('redirect');
+		}
+	});
 })
-.config(function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
+.config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
 
 	// Ionic uses AngularUI Router which uses the concept of states
 	// Learn more here: https://github.com/angular-ui/ui-router
 	// Set up the various states which the app can be in.
 	// Each state's controller can be found in controllers.js
+
+	function shouldLogin($q, $state, jsonRpc) {
+		//redirect if not logged
+		//or if workOffline not set
+		if (!jsonRpc.isLoggedIn() && !$state.current.data.global.workOffline)
+		{
+			return $q.reject();
+		}
+		return true;
+	}
+
 	$stateProvider
 
 	// setup an abstract state for the tabs directive
-		.state('tab', {
+	.state('tab', {
 		url: "/tab",
 		abstract: true,
-		templateUrl: "app/tabs.html"
+		templateUrl: "app/tabs.html",
+		data: {
+			global: { workOffline: false}
+		}
 	})
 
 	// Each tab has its own nav history stack:
-
 	.state('tab.dash', {
 		url: '/dash',
 		views: {
@@ -53,6 +72,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 				templateUrl: 'components/order/order-list.html',
 				controller: 'OrderCtrl',
 			}
+		},
+		resolve : {
+			redirectIf: shouldLogin
 		}
 	})
 	.state('tab.order-detail', {
@@ -62,6 +84,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 				templateUrl: 'components/order/order-detail.html',
 				controller: 'OrderDetailCtrl'
 			}
+		},
+		resolve : {
+			redirectIf: shouldLogin
 		}
 	})
 	.state('tab.measure', {
@@ -71,6 +96,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 				templateUrl: 'components/measure/measure-detail.html',
 				controller: 'MeasureDetailCtrl'
 			}
+		},
+		resolve : {
+			redirectIf: shouldLogin
 		}
 	})
 	.state('tab.settings', {
@@ -81,11 +109,25 @@ angular.module('starter', ['ionic','buche','odoo'])
 				controller: 'SettingsCtrl'
 			}
 		}
-	});
+	}).state('redirect', { 
+	//because ionic can't redirect from to his previous state :
+	// state is settings
+	// click/go to orders 
+	//	-> rejected because not logged
+	//		-> state.go(settings) : blank page
+	//
+	// redirect state is only needed to reslove this issue
+	// more info :  https://github.com/angular-ui/ui-router/issues/178
+	//				https://github.com/angular-ui/ui-router/issues/1234
+		url: '/redirect',
+		controller: ['$scope', '$state', function ($scope, $state) {
+			$scope.$on('$ionicView.enter', function() {
+				$state.go('tab.settings');
+			});
+		}]
+	})
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/tab/order');
 
-
-
-});
+}]);
