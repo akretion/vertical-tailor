@@ -2,6 +2,7 @@ from openerp import fields, models , api
 from openerp import exceptions
 from openerp.osv import orm
 from lxml import etree
+   
     
 class MeasureMeasure(models.Model):
     _name = 'measure.measure'
