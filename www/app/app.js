@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','buche','odoo'])
 
-.run(function($ionicPlatform, $rootScope, $state) {
+.run(['$ionicPlatform', '$rootScope', '$state', 'jsonRpc', function($ionicPlatform, $rootScope, $state, jsonRpc) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -25,7 +25,13 @@ angular.module('starter', ['ionic','buche','odoo'])
 			$state.go('redirect');
 		}
 	});
-})
+
+	jsonRpc.interceptors.push(function (a) {
+		if (a.title === 'session_expired')
+			$state.go('redirect');
+	});
+
+}])
 .config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
 
 	// Ionic uses AngularUI Router which uses the concept of states
