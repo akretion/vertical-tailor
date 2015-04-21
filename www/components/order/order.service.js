@@ -7,6 +7,9 @@ angular.module('starter')
 		all: function() {
 			return storage.get('orders').then(function (data) {
 				orders = data;
+				orders.forEach(function (o) {
+					o.order_line.map(function (d) { if (!d.data) d.data = []; });
+				});
 				return orders;
 			});
 		},
