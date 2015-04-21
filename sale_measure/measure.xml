@@ -26,9 +26,9 @@
 		<h1><label string="Measure Page"/></h1>
 		  <group col="4">
 		    <field name="product_id" string = "Produit"/> 
-		    <field name="partner_id" string = "Pratner"/>
+		    <field name="partner_id" string = "Partenaire"/>
 		    <field name="measure_form_type" string ="Mesure"/>
-		    <field name="qty" string = "Qantité"/>
+		    <field name="qty" string = "Quantité"/>
 		  </group>        
             </sheet>
 	   </form>
