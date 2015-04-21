@@ -27,7 +27,7 @@ class MeasureMeasure(models.Model):
         values = self.get_form()[self.measure_form_type].values()
         for key,value  in zip(self.get_form()[self.measure_form_type].keys(),
                         self.get_form()[self.measure_form_type].values()):
-            if value in value.keys():
+            if 'value' in value.keys():
                 if self[key] not in value['value']:
                     raise exceptions.Warning('there are a problem '
                     'in {} the value isn`t in {}'
@@ -35,8 +35,7 @@ class MeasureMeasure(models.Model):
     @api.multi
     def write(self,vals):
         res = super(MeasureMeasure,self).write(vals)
-        print'write'
-        res._check_form()
+        self._check_form()
         return res
     
     @api.model
