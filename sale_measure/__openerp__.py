@@ -30,7 +30,7 @@
 
     'description': """
        
-            sale_mesure   
+            Sale measure   
     """,
 
     'author': "Akretion",
