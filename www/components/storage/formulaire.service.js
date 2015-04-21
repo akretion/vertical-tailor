@@ -15,7 +15,7 @@ angular.module('starter')
 			});
 		},
 		getFormsProducts: function () {
-			formsProducts = formsProducts || storage.get('formsProducts').then(function (fp) {
+			formsProductsPromise = formsProductsPromise || storage.get('formsProducts').then(function (formProducts) {
 				var formProd = formProducts.map(function (fp) {
 					return fp.pop();
 				});
@@ -23,7 +23,7 @@ angular.module('starter')
 				localStorage.set('formsProducts', formProd);
 				return formProd;
 			});
-			return formProducts;
+			return formsProductsPromise;
 		},
 		get: function (formName) {
 			formsPromise = formsPromise || storage.get('forms').then(function (forms) { 
