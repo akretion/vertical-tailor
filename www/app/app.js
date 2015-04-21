@@ -1,10 +1,5 @@
 // Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','buche','odoo'])
 
 .run(['$ionicPlatform', '$rootScope', '$state', 'jsonRpc', function($ionicPlatform, $rootScope, $state, jsonRpc) {
@@ -33,11 +28,6 @@ angular.module('starter', ['ionic','buche','odoo'])
 
 }])
 .config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
-
-	// Ionic uses AngularUI Router which uses the concept of states
-	// Learn more here: https://github.com/angular-ui/ui-router
-	// Set up the various states which the app can be in.
-	// Each state's controller can be found in controllers.js
 
 	function shouldLogin($q, $state, jsonRpc) {
 		//redirect if not logged

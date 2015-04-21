@@ -1,8 +1,15 @@
-<ion-view view-title="Reglages">
+<ion-view view-title="Réglages">
 	<ion-content class="padding">
-		<div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
-		<ion-toggle ng-model="localSettings.workOffline" toggle-class="toggle-calm">Work offline</ion-toggle>
+		<ion-toggle ng-model="localSettings.workOffline" toggle-class="toggle-calm">Travailler hors-ligne</ion-toggle>
 
+		<ion-toggle ng-model="localSettings.isLoggedIn" ng-click="!localSettings.isLoggedIn && logout()" ng-disabled="!localSettings.isLoggedIn">État connexion : 
+				<span ng-show="localSettings.isLoggedIn">connecté</span>
+				<span ng-show="!localSettings.isLoggedIn">pas connecté</span>
+			</ion-toggle>
+		<div class="item"  ng-show="!localSettings.isLoggedIn">
+			<div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
+		</div>
+		<label class="item">Server <input type="" ng-model="jsonRpc.odoo_server"></input></label>
 		<button class="button button-positive" ng-click="loadForm()">LoadForm</button>
 	</ion-content>
 </ion-view>
