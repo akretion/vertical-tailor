@@ -48,12 +48,6 @@ class MeasureMeasure(models.Model):
           return {
                   'invisible': [('measure_form_type','not in',listb)]
               }
-    
-    def _get_list_article(self):
-        list = []
-        for keys in self.get_form().keys():
-            list.append(key) 
-        return list
    
     def _all_fields(self):
         list=[]
@@ -62,12 +56,6 @@ class MeasureMeasure(models.Model):
                 if field not in list:
                     list.append(field)
         return list
-            
-    def _fields_link_article(self):
-        dict = {}
-        for field in self._all_fields():
-            dict[field] = self._get_list_article()
-        return dict
 
     def _prepare_list_for_invisible(self):
         dict_fields_link_form={}
