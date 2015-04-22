@@ -1,4 +1,4 @@
-<ion-view view-title="Orders">
+<ion-view view-title="Commandes">
 	<ion-nav-buttons side="secondary">
 		<button class="button" ng-click="newOrder()">
 			+
@@ -12,8 +12,8 @@
 			<div class="list list-inset">
 				<label class="item item-input">
 					<i class="icon ion-search placeholder-icon"></i>
-				<input type="text" placeholder="Search" ng-model="orderFilterTxt">
-			{{ orderFilterTxt}}	</label>
+				  <input type="text" placeholder="Search" ng-model="orderFilterTxt">
+			  </label>
 			</div>
 			
 			<ion-item ng-show="orderDraft">
@@ -36,11 +36,9 @@
 			<ion-item ng-show="orders.length == 0">
 				<h2>Aucune commande</h2>
 			</ion-item>
-
 			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: orderFilterTxt | orderBy: 'state' track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
-				<h2>{{order.name}} | {{ order.partner_name }} ({{ order.partner_matricule }})</h2>
-				<p>{{order.notes}}</p>
-				<p>State : {{ order.state }} </p>
+				<h2>{{order.name}} | {{ order.partner_name }} </h2>
+				<p>{{order.notes}} {{ order.partner_matricule }}</p>
 				<p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
 				<span ng-hide="$last">, </span></span></p>
 				<i class="icon ion-chevron-right icon-accessory"></i>
