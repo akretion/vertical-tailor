@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<record id="product_vareuse" model="product.product">
+	    <field name="name">Jupe</field>
+	    <field name="measure_form_type">jupe_lot2</field>
+	</record>
+	<record id="partner" model="res.partner">
+	    <field name="name">HILALI ABDESSAMAD</field>
+	</record>
+	
+        <record id="detail_field_custom_in_view_demo" model="measure.measure.demo">
+	    <field name="partner_id"  ref="partner" />
+	    <field name="product_id" ref="product_vareuse"/>
+            <field name="tested_size" eval="88"/>
+	    <field name="qty" eval="1000"/>
+            <field name="vor_attitude_VOR" eval="-3"/>
+            <field name="short_neck_back_amount_TDD" eval="-1.5"/>
+            <field name="shoulder_height_left_HEPL" eval="-2" /> 
+            <field name="shoulder_eight_right_HEPR" eval="-2" /> 
+            <field name="progress_before_AVD" eval="-1.5"/>
+            <field name="shoulder_behind_EPAB" eval="-1.5"/> 
+            <field name="shoulder_forward_EPAF" eval="-1.5"/>
+            <field name="strong_chest_DED" eval="1"/>
+            <field name="forcing_chest_clip_FPP" eval="0.5"/> 
+            <field name="shoulders_CAR" eval="-1.5"/>
+            <field name="shoulder_width_LEP" eval="-1.5"/>
+            <field name="armhole_Edge_CAM"  eval="-1.5"/> 
+            <field name="belt_CEI"  eval="-1.5"/>
+            <field name="basin_LBA" eval="-1.5" /> 
+            <field name="clip_in_reverse_PSR">True</field>
+            <field name="hollow_kidneys_CBR" eval="1"/> 
+            <field name="length_Dos_LON" >EN-</field>
+            <field name="sleeve_length_left_MANG">EN-</field> 
+            <field name="sleeve_length_right_MAND">EN-</field> 
+            <field name="half_width_belt_PCE" eval="-2"/>
+            <field name= "parallel_amount_PCO" eval="-3"/> 
+            <field name="amount_before_PDE" eval="-3"/> 
+            <field name="length_dimension_PLO">EN-</field>                      
+	</record>
+    </data>
+</openerp>
