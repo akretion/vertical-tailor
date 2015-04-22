@@ -66,8 +66,8 @@ angular.module('starter')
 
 
 	$scope.newMeasure = function () {
-		Formulaire.getFormsProducts().then(function (formProducts) {
-			$scope.produitsFormulaire = formProducts;
+		Formulaire.getFormsProducts().then(function (formsProducts) {
+			$scope.produitsFormulaire = formsProducts;
 		});
 		$scope.measureDraft = Order.createMeasure();
 	};
