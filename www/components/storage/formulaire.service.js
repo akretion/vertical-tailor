@@ -11,8 +11,11 @@ angular.module('starter')
 				var formProd = formProducts.map(function (fp) {
 					return fp.pop();
 				});
-				localStorage.set('formProducts', formProd);
+				localStorage.set('formsProducts', formProd);
 			});
+      remoteStorage.get('forms').then(function(forms) {
+        localStorage.set('forms', forms);
+      });
 		},
 		getFormsProducts: function () {
 			formsProductsPromise = formsProductsPromise || storage.get('formsProducts').then(function (formProducts) {
