@@ -51,7 +51,7 @@ angular.module('starter')
 		$scope.editMode = !$scope.editMode;
 	};
 
-	$scope.saveMeasure = function (measure, productForm) {
+	$scope.saveMeasure = function (measure, productForm){
 
 		if (productForm) {
 			measure.product_name = productForm.name;
