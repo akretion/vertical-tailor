@@ -5,10 +5,10 @@ angular.module('starter')
 	var orders = null;
 	var service = {
 		all: function() {
-			return storage.get('orders').then(function (data) {
-				orders = data;
+			return storage.get('orders').then(function (results) {
+				orders = results;
 				orders.forEach(function (o) {
-					o.order_line.map(function (d) { if (!d.data) d.data = []; });
+					o.order_line.map(function (m) { if (!m.data) m.data = {}; });
 				});
 				return orders;
 			});
