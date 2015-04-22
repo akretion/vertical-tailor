@@ -78,10 +78,5 @@ class MeasureMeasure(models.Model):
  
     
     
-
-
-
-#if field not in  dict_fields_link_form.keys():
-                        #dict_fields_link_form[field]=[]
   
     
