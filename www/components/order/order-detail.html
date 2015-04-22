@@ -13,7 +13,7 @@
 				{{order.notes}}
 			</p>
 		</div>
-		<h2>Measures</h2>
+		<h2>Mesures</h2>
 		<ion-list show-delete="editMode">
 			<ion-item ng-show="editMode" class="enable-pointer-events">
 				<p ng-show="produitsFormulaire.length == 0"><strong class="assertive">Pas de formulaire disponible.</strong></p>
@@ -27,19 +27,16 @@
 
 			</ion-item>
 
-			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, measure) in order.order_line track by key">
-				<div ui-sref="tab.measure({orderId: order.id, measureId: key})">{{ measure.line_id }} {{ measure.product_name }} {{ measure.form }}
-				{{ measure.state }}
-				</div>
-				<div resume-measures measure="measure"></div>
-				<ion-delete-button class="ion-minus-circled" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
-				<i class="icon ion-chevron-right icon-accessory"></i>
-
+			<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, measure) in order.order_line track by key" ui-sref="tab.measure({orderId: order.id, measureId: key})">
+          <p>{{ measure.product_name }} <small>{{ measure.form }}</small></p>
+          <div resume-measures measure="measure"></div>
+				  <ion-delete-button class="ion-minus-circled" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
+			    <i class="icon ion-chevron-right icon-accessory"></i>
 			</ion-item>
 
 			<ion-item type="" ng-show="order.order_line.length == 0">Pas de mesure</ion-item>
 
-			<div class="item item-button-right">
+			<div class="item item-button-right bar">
 				<button class="button button-positive icon icon-checkmark pull-right" ng-click="terminateOrder()" ng-hide="editMode">Clore la commande</button>
 			</div>
 		</ion-list>
