@@ -48,26 +48,18 @@ class MeasureMeasure(models.Model):
           return {
                   'invisible': [('measure_form_type','not in',listb)]
               }
-   
-    def _all_fields(self):
-        list=[]
-        for form, values in self.get_form().items():
-            for field in values:
-                if field not in list:
-                    list.append(field)
-        return list
-
+        
     def _prepare_list_for_invisible(self):
-        dict_fields_link_form={}
-        for field in self._all_fields():
-            list_invisible_element =[]
-            for keys,value in self.get_form().items():
-                if field in value.keys() :
-                    if keys not in list_invisible_element:
-                        list_invisible_element.append(keys)   
-            dict_fields_link_form[field]=list_invisible_element
+        dict_fields_link_form = {}
+        for form,value in self.get_form().items():
+            for field in value.keys():
+                    if field not in  dict_fields_link_form.keys():
+                        dict_fields_link_form[field]=[]
+                    dict_fields_link_form[field].append(form)
         return dict_fields_link_form
- 
+
+        
+     
     @api.model               
     def fields_view_get(self,view_id=None, view_type='form',
      toolbar=False, submenu=False):
