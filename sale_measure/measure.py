@@ -1,4 +1,5 @@
 from openerp import fields, models , api
+from collections import defaultdict
 from openerp import exceptions
 from openerp.osv import orm
 from lxml import etree
@@ -50,11 +51,9 @@ class MeasureMeasure(models.Model):
               }
         
     def _prepare_list_for_invisible(self):
-        dict_fields_link_form = {}
+        dict_fields_link_form = defaultdict(list)
         for form,value in self.get_form().items():
-            for field in value.keys():
-                    if field not in  dict_fields_link_form.keys():
-                        dict_fields_link_form[field]=[]
+            for field in value:
                     dict_fields_link_form[field].append(form)
         return dict_fields_link_form
 
@@ -68,9 +67,10 @@ class MeasureMeasure(models.Model):
                         view_type=view_type,toolbar=toolbar, submenu=submenu)
         if view_type == 'form':
             root = etree.fromstring(res['arch'])
+            prepare_list = self._prepare_list_for_invisible()
             for field in root.findall(".//field"):
-                if field.attrib['name'] in self._prepare_list_for_invisible().keys():
-                    attrs = self._prepare_list_for_invisible()[field.attrib['name']]
+                if prepare_list[field.attrib['name']]:
+                    attrs = prepare_list[field.attrib['name']]
                     field.set('attrs',str(self._prepare_attrs_value(attrs)))
                     orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
@@ -81,6 +81,7 @@ class MeasureMeasure(models.Model):
 
 
 
-
+#if field not in  dict_fields_link_form.keys():
+                        #dict_fields_link_form[field]=[]
   
     
