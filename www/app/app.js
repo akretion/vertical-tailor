@@ -22,7 +22,7 @@ angular.module('starter', ['ionic','buche','odoo'])
 	});
 
 	jsonRpc.interceptors.push(function (a) {
-		if (a.title === 'session_expired')
+		if (a.title === 'session_expired' && !$state.current.data.global.workOffline)
 			$state.go('redirect');
 	});
 
