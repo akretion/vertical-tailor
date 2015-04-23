@@ -3,15 +3,17 @@ angular.module('starter')
 .factory('Order', ['storage','$q', function(storage, $q) {
 
 	var orders = null;
+	var ordersPromise = null;
 	var service = {
 		all: function() {
-			return storage.get('orders').then(function (results) {
+			ordersPromise = storage.get('orders').then(function (results) {
 				orders = results;
 				orders.forEach(function (o) {
 					o.order_line.map(function (m) { if (!m.data) m.data = {}; });
 				});
 				return orders;
 			});
+			return ordersPromise;
 		},
 		remove: function(order) {
 			var pos = orders.indexOf(order);
@@ -21,19 +23,15 @@ angular.module('starter')
 			orders.splice(pos, 1);
 			storage.set('orders', orders);
 		},
-		get: function(orderId) { //remove it ?			
+		get: function(orderId) {
+
 			function search() {
 				return orders.filter(function (c) {
 					return c.id == orderId; //with == cause we want type coercion
 				}).pop();
 			}
-
-			return $q(function (resolve, reject) {
-				if (!orders)
-					resolve(service.all().then(search));
-				else
-					resolve(search());
-			});
+			ordersPromise = ordersPromise || service.all(); //work with cache
+			return ordersPromise.then(search);
 		},
 		create: function() {
 			return {
