@@ -83,10 +83,10 @@ angular.module('starter')
 				});
 
 				return $q.all([lpromise, rpromise]).then(function (result) {
-          if (!remote)
-            return local;
-          if (!local)
-            return remote;
+					if (!remote)
+						return local;
+					if (!local)
+						return remote;
 					return merge(remote, local);
 				});
 			}
