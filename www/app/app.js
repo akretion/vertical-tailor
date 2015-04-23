@@ -15,11 +15,6 @@ angular.module('starter', ['ionic','buche','odoo'])
 		}
 	});
 
-	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams){
-		if (toState.url !== '/redirect' ) {
-			$state.go('redirect');
-		}
-	});
 
 	jsonRpc.interceptors.push(function (a) {
 		if (a.title === 'session_expired' && !$state.current.data.global.workOffline)
@@ -29,16 +24,6 @@ angular.module('starter', ['ionic','buche','odoo'])
 }])
 .config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
 
-	function shouldLogin($q, $state, jsonRpc) {
-		//redirect if not logged
-		//or if workOffline not set
-		if (!jsonRpc.isLoggedIn() && !$state.current.data.global.workOffline)
-		{
-			return $q.reject();
-		}
-		return true;
-	}
-
 	$stateProvider
 
 	// setup an abstract state for the tabs directive
@@ -47,7 +32,7 @@ angular.module('starter', ['ionic','buche','odoo'])
 		abstract: true,
 		templateUrl: "app/tabs.html",
 		data: {
-			global: { workOffline: false}
+			global: { isLoggedIn: undefined}
 		}
 	})
 
@@ -68,9 +53,6 @@ angular.module('starter', ['ionic','buche','odoo'])
 				templateUrl: 'components/order/order-list.html',
 				controller: 'OrderCtrl',
 			}
-		},
-		resolve : {
-			redirectIf: shouldLogin
 		}
 	})
 	.state('tab.order-detail', {
@@ -80,9 +62,6 @@ angular.module('starter', ['ionic','buche','odoo'])
 				templateUrl: 'components/order/order-detail.html',
 				controller: 'OrderDetailCtrl'
 			}
-		},
-		resolve : {
-			redirectIf: shouldLogin
 		}
 	})
 	.state('tab.measure', {
@@ -92,9 +71,6 @@ angular.module('starter', ['ionic','buche','odoo'])
 				templateUrl: 'components/measure/measure-detail.html',
 				controller: 'MeasureDetailCtrl'
 			}
-		},
-		resolve : {
-			redirectIf: shouldLogin
 		}
 	})
 	.state('tab.settings', {
@@ -105,25 +81,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 				controller: 'SettingsCtrl'
 			}
 		}
-	}).state('redirect', { 
-	//because ionic can't redirect from to his previous state :
-	// state is settings
-	// click/go to orders 
-	//	-> rejected because not logged
-	//		-> state.go(settings) : blank page
-	//
-	// redirect state is only needed to reslove this issue
-	// more info :  https://github.com/angular-ui/ui-router/issues/178
-	//				https://github.com/angular-ui/ui-router/issues/1234
-		url: '/redirect',
-		controller: ['$scope', '$state', function ($scope, $state) {
-			$scope.$on('$ionicView.enter', function() {
-				$state.go('tab.settings');
-			});
-		}]
 	})
 
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/tab/order');
+	$urlRouterProvider.otherwise('/tab/settings');
 
 }]);
