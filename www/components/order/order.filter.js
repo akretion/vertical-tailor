@@ -8,4 +8,12 @@ angular.module('starter').filter('orderFilter', [function () {
 			return (i.partner_name.toUpperCase().indexOf(orderFilterTxtUpper) !== -1 || i.partner_matricule.toUpperCase().indexOf(orderFilterTxtUpper) !== -1);
 		});
 	};
+}]).filter('isOrderDone', [function () {
+	return function (order) {
+		if (!order)
+			return false;
+		return order.order_line.every(function (measure) {
+			return Object.keys(measure.data).length > 0;
+		});
+	};
 }]);

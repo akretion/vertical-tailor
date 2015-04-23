@@ -29,7 +29,7 @@ angular.module('starter')
 		});
 	};
 
-}]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire', function($scope, $stateParams, $state, Order, Formulaire) {
+}]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter) {
 	console.log('OrderDetailCtrl');
 
 	$scope.order = null;	
@@ -44,9 +44,13 @@ angular.module('starter')
 		return reason;
 	});
 
+	$scope.$on('$ionicView.enter', function() { //refresh on load
+		$scope.isOrderDone = isOrderDoneFilter($scope.order);
+	});
 	$scope.toggleMode = function () {
 		if ($scope.editMode) {
 			//save all? 
+			$scope.isOrderDone = isOrderDoneFilter($scope.order);
 		} else {
 			$scope.newMeasure();
 		}
