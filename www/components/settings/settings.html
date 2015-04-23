@@ -11,7 +11,7 @@
 		<div class="item" ng-show="!global.isLoggedIn">
 			<div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
 		</div>
-		<div class="item" ng-show="!global.isLoggedIn">
+		<div class="item" ng-show="global.isLoggedIn">
 			<button class="button button-positive" ng-click="loadForm()">LoadForm</button>
 		</div>
 		<label class="item">Server <input type="" ng-model="jsonRpc.odoo_server"></input></label>
