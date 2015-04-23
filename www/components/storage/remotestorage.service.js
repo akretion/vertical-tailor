@@ -11,7 +11,7 @@ angular.module('starter')
 			return $http.post('key', value);
 		},
 		get: function(key) {
-			if (!jsonRpc.isLoggedIn()) {
+			if (jsonRpc.isLoggedIn() === false) { //do not block request if undefined
 				return $q.reject('session_expired');
 			}
 			return jsonRpc.call(keys[key].domain, keys[key].action, [], {}).then(function (result) {
