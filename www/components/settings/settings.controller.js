@@ -36,4 +36,7 @@ angular.module('starter')
 	$scope.loadForm = function () {
 		Formulaire.load();
 	};
+	$scope.reset = function () { 
+		['odoo_server', 'forms', 'orders', 'formsProducts'].map( (key) => localStorage.remove(key)  );
+	};
 }]);
