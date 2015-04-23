@@ -2,9 +2,11 @@ angular.module('starter')
 .controller('OrderCtrl', ['$scope', 'Order','$state', function($scope, Order, $state) {
 
 	$scope.orders = null;
-	
-	Order.all().then(function (orders) {
-		$scope.orders = orders;
+
+	$scope.$on('$ionicView.enter', function() { //refresh on load
+		Order.all().then(function (orders) { //au premier chargement ou à chaque fois ? 
+			$scope.orders = orders;
+		});
 	});
 
 	$scope.newOrder = function () {
