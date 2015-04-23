@@ -13,7 +13,7 @@ angular.module('starter').filter('orderFilter', [function () {
 		if (!order)
 			return false;
 		return order.order_line.every(function (measure) {
-			return Object.keys(measure.data).length > 0;
+			return measure.edited; //set in measure.ctrl.saveAndBackToOrder()
 		});
 	};
 }]);

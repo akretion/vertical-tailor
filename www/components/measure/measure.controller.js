@@ -30,8 +30,8 @@ angular.module('starter')
 			$scope.measure.data[name] = val;
 	};
 
-	$scope.validate = function() {
-		$scope.measure.state = 'done';
+	$scope.saveAndBackToOrder = function() {
+		$scope.measure.edited = Object.keys($scope.measure.data).length > 0;
 		Order.save($scope.order);
 		$state.go('tab.order-detail', {orderId: $stateParams.orderId});
 	}
