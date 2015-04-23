@@ -1,27 +1,34 @@
 angular.module('starter')
 .factory('remoteStorage', ['$http', 'jsonRpc', '$q', function($http, jsonRpc, $q) {
-	var keys = {
+	var getKeys = {
 		'orders': { domain: 'sale.order' , action: 'get_measure' },
 		'formsProducts': { domain: 'product.template', action: 'get_measurable_product' },
 		'forms': { domain: 'measure.measure', action: 'get_form'}
 	};
+  var setKeys = {
+    'orders': { domain: 'sale.order', action:'set_measure'}
+}
+  function continueIfLogged() {
+	  return $q(function(resolve, reject) {
+      if (jsonRpc.isLoggedIn() === false) //do not block request if undefined
+				return reject('session_expired');
+      else
+       return resolve();
+      });
+  };
 
 	return {
 		set: function(key, value) {
-			return $http.post('key', value);
+			return continueIfLogged().then(function () {
+        return jsonRpc.call(setKeys[key].domain, setKeys[key].action, [value], {});
+      });
 		},
 		get: function(key) {
-			if (jsonRpc.isLoggedIn() === false) { //do not block request if undefined
-				return $q.reject('session_expired');
-			}
-			return jsonRpc.call(keys[key].domain, keys[key].action, [], {}).then(function (result) {
-				return result;
-			}, function (reason) {
-				if (reason.title === 'session_expired') {
-					return $q.reject('session_expired');
-				}
-				return $q.reject(reason);
-			});
+			return continueIfLogged().then(function () {
+        return jsonRpc.call(getKeys[key].domain, getKeys[key].action, [], {}).then(function (result) {
+				  return result;
+		  	});
+      });
 		}
 	}
 }]);
