@@ -9,6 +9,7 @@
 			</ion-toggle>
 		
 		<div class="item" ng-show="!global.isLoggedIn">
+      <p>{{ error }}</p>
 			<div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
 		</div>
 		<div class="item" ng-show="global.isLoggedIn">
