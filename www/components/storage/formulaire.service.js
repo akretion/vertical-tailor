@@ -8,10 +8,7 @@ angular.module('starter')
 		load: function () {
 			//for debug
 			remoteStorage.get('formsProducts').then(function (formProducts) {
-				var formProd = formProducts.map(function (fp) {
-					return fp.pop();
-				});
-				localStorage.set('formsProducts', formProd);
+				localStorage.set('formsProducts', formProducts);
 			});
 			remoteStorage.get('forms').then(function(forms) {
 				localStorage.set('forms', forms);
@@ -19,12 +16,8 @@ angular.module('starter')
 		},
 		getFormsProducts: function () {
 			formsProductsPromise = formsProductsPromise || storage.get('formsProducts').then(function (formProducts) {
-				var formProd = formProducts.map(function (fp) {
-					return fp.pop();
-				});
-			
-				localStorage.set('formsProducts', formProd);
-				return formProd;
+				localStorage.set('formsProducts', formProducts);
+				return formProducts;
 			});
 			return formsProductsPromise;
 		},
