@@ -36,9 +36,11 @@ angular.module('starter')
 	$scope.measureDraft = null;
 	$scope.editMode = false;
 	$scope.produitsFormulaire = null;
+	$scope.isOrderDone = null;
 
 	Order.get($stateParams.orderId).then(function (order) {
 		$scope.order = order;
+		$scope.isOrderDone = isOrderDoneFilter($scope.order);
 	}, function (reason) {
 		$state.go('tab.order');
 		return reason;
