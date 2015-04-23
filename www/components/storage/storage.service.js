@@ -2,7 +2,7 @@ angular.module('starter')
 .factory('storage', ['remoteStorage', 'localStorage', '$q', function(remoteStorage, localStorage, $q) {
 
 		function merge(remote, local) {
-			if (Array.isArray(remote))
+			if (Array.isArray(remote) && Array.isArray(local))
 				return mergeArrays(remote, local);
 			return mergeObjects(remote, local);
 		}
@@ -67,8 +67,8 @@ angular.module('starter')
 				}
 			},
 			get: function(key) {
-				var remote = [];
-				var local = [];
+				var remote = null;
+				var local = null;
 				
 				var rpromise = remoteStorage.get(key).then(function (result) {
 					remote = result;
@@ -83,6 +83,10 @@ angular.module('starter')
 				});
 
 				return $q.all([lpromise, rpromise]).then(function (result) {
+          if (!remote)
+            return local;
+          if (!local)
+            return remote;
 					return merge(remote, local);
 				});
 			}
