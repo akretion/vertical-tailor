@@ -13,9 +13,9 @@ angular.module('starter')
 				});
 				localStorage.set('formsProducts', formProd);
 			});
-      remoteStorage.get('forms').then(function(forms) {
-        localStorage.set('forms', forms);
-      });
+			remoteStorage.get('forms').then(function(forms) {
+				localStorage.set('forms', forms);
+			});
 		},
 		getFormsProducts: function () {
 			formsProductsPromise = formsProductsPromise || storage.get('formsProducts').then(function (formProducts) {

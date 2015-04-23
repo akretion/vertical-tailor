@@ -37,8 +37,9 @@
 
 			<ion-item type="" ng-show="order.order_line.length == 0">Pas de mesure</ion-item>
 
-			<div class="item item-button-right bar">
-				<button class="button button-positive icon icon-checkmark pull-right" ng-click="terminateOrder()" ng-hide="editMode">Clore la commande</button>
+			<div class="item item-button-right bar" ng-hide="editMode">
+				<small ng-show="isOrderDone">Toutes les mesures doivent être prises pour clore la commande</small>
+				<button class="button button-positive icon icon-checkmark pull-right" ng-click="terminateOrder()" ng-disabled="isOrderDone">Clore la commande</button>
 			</div>
 		</ion-list>
 	</ion-content>
