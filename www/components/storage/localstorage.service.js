@@ -14,6 +14,11 @@ angular.module('starter')
 				else
 					reject('key not found');
 			});
-		}
+		},
+    remove: function(key) {
+      return $q(function (resolve) {
+        resolve($window.localStorage.removeItem(key));
+      });
+    }
 	}
 }]);
