@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', function($scope, $stateParams, $state, jsonRpc, Formulaire) {
+.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'localStorage', function($scope, $stateParams, $state, jsonRpc, Formulaire, localStorage) {
 
 	$scope.global = $state.current.data.global;
 
@@ -16,6 +16,8 @@ angular.module('starter')
 		jsonRpc.login('db', this.bucheUsername, this.buchePassword).then(function () { //this.buche because of new scope of ion-view
 			console.log("login succeed");
 			$scope.global.isLoggedIn = true;
+			if (jsonRpc.odoo_server)
+				localStorage.set('odoo_server', jsonRpc.odoo_server);
 		}, function (reason) {
 			console.log('login failed');
 			console.log(reason);

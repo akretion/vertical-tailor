@@ -2,7 +2,7 @@
 
 angular.module('starter', ['ionic','buche','odoo'])
 
-.run(['$ionicPlatform', '$rootScope', '$state', 'jsonRpc', function($ionicPlatform, $rootScope, $state, jsonRpc) {
+.run(['$ionicPlatform', '$rootScope', '$state', 'jsonRpc', 'localStorage', function($ionicPlatform, $rootScope, $state, jsonRpc, localStorage) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -21,6 +21,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 			$state.current.data.global.isLoggedIn = false; //ensure state is always uptodate 
 	});
 
+	localStorage.get('odoo_server').then(function (url) {
+		jsonRpc.odoo_server = url;
+	});
 }])
 .config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
 
