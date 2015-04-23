@@ -24,7 +24,10 @@ angular.module('starter')
 		var val = e.target.textContent.trim();
 		if (e.target.nodeName != 'BUTTON')
 			return;
-		$scope.measure.data[name] = ($scope.measure.data[name] == val) ? null : val;
+		if ($scope.measure.data[name])
+			delete $scope.measure.data[name];
+		else
+			$scope.measure.data[name] = val;
 	};
 
 	$scope.validate = function() {
