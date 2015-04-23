@@ -19,27 +19,18 @@
 #
 ###############################################################################
 
-
-
-
-# -*- coding: utf-8 -*-
 {
     'name': "Sale measure",
-
     'summary': """Manage trainings""",
-
     'description': """
-       
-            Sale measure   
+        Sale measure
     """,
-
     'author': "Akretion",
     'website': "http://www.Akretion.com",
-
-
+    'license': "AGPL-V3",
     'category': 'sale',
     'version': '0.1',
-    'depends': ['base','sale','product'],
+    'depends': ['base', 'sale', 'product'],
     'data': [
         'measure.xml',
         'partner.xml',
@@ -48,8 +39,4 @@
     ],
     # only loaded in demonstration mode
     'demo': [],
-
-
 }
-
-
