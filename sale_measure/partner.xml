@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+
+	<record model="ir.ui.view" id="detail_field_in_view">
+	    <field name="name">Measure</field>
+	    <field name="model">res.partner</field>
+	    <field name="inherit_id" ref="base.view_partner_form"/>
+	    <field name="arch" type="xml">
+		<xpath expr="//form/sheet/div[@name='buttons']" position="inside">  
+		    <button class="oe_inline oe_stat_button" name="%(act_partner_2_measure)d"
+				    type="action"
+				    string="Measure"
+				    icon="fa-star"/>
+		</xpath>
+	    </field>
+	</record>
+    </data> 
+</openerp>
