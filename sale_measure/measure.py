@@ -1,4 +1,4 @@
-from openerp import fields, models, api
+from openerp import fields, models , api
 from collections import defaultdict
 from openerp.exceptions import Warning
 from openerp.osv import orm
