@@ -43,13 +43,13 @@ class MeasureMeasure(models.Model):
     @api.multi
     def write(self, vals):
         res = super(MeasureMeasure, self).write(vals)
-        self._check_form()
+        #self._check_form()
         return res
 
     @api.model
     def create(self, vals):
         res = super(MeasureMeasure, self).create(vals)
-        res._check_form()
+        #res._check_form()
         return res
 
     def _prepare_attrs_value(self, listb):
