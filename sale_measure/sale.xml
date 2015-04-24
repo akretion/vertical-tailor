@@ -14,7 +14,6 @@
 		</xpath>
 	    </field>
 	</record>
-	
       	<record model="ir.actions.act_window" id="action_line_sale_order_measure_xml">
 		<field name="name">New Sale Order field Measure</field>
 		<field name="res_model">sale.order</field>

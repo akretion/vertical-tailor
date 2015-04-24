@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <openerp>
     <data>
-
-<!-- ===================== This is free layout for mesure.mesure =============================-->
 	  <record model="ir.ui.view" id="view_measure_tree">
             <field name="model">measure.measure</field>
-	    <field name="type">tree</field>
             <field name="arch" type="xml"> 
 		<tree string="Measure">
 		    <field name="product_id" string = "Produit"/> 
@@ -15,11 +12,8 @@
 		</tree>
             </field>
         </record>
-<!-- ===================== This is from layout for mesure.mesure =============================-->
-
-          <record model="ir.ui.view" id="view_measure_form">
+        <record model="ir.ui.view" id="view_measure_form">
             <field name="model">measure.measure</field>
-	     <field name="type">form</field>
             <field name="arch" type="xml">
 	     <form string="Measure">
               <sheet>
@@ -34,10 +28,7 @@
 	   </form>
             </field>
         </record>
-	  
-<!-- ===================== This is filtre layout for mesure.mesure =============================-->
-
-          <record model="ir.ui.view" id="measure_search">
+        <record model="ir.ui.view" id="measure_search">
             <field name="model">measure.measure</field>
             <field name="arch" type="xml">
              <search>
@@ -49,9 +40,6 @@
 	    </search>
             </field>
         </record>
-	  
-<!-- ===================== This is from layout for sale.order.line =============================-->
-
 	<record id="act_partner_2_measure" model="ir.actions.act_window">
             <field name="name">Measure</field>
             <field name="res_model">measure.measure</field>
@@ -59,8 +47,7 @@
             <field name="view_mode">tree,form,graph</field>
 	    <field name = "domain" > [('partner_id','=',active_id)]</field>
         </record>
-	
-	  <record model="ir.actions.act_window" id="action_measure_measure_xml">
+	<record model="ir.actions.act_window" id="action_measure_measure_xml">
 		<field name="name">Measure</field>
 		<field name="res_model">measure.measure</field>
 		<field name="view_type">form</field>
