@@ -27,7 +27,7 @@
     """,
     'author': "Akretion",
     'website': "http://www.Akretion.com",
-    'license': "AGPL-V3",
+    'license': 'AGPL-3',
     'category': 'sale',
     'version': '0.1',
     'depends': ['base', 'sale', 'product'],
