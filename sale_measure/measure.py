@@ -1,4 +1,4 @@
-from openerp import fields, models , api
+from openerp import fields, models, api
 from collections import defaultdict
 from openerp.exceptions import Warning
 from openerp.osv import orm
@@ -30,15 +30,18 @@ class MeasureMeasure(models.Model):
     def get_form(cls):
         return {}
 
-    def _check_form(self):
+    def _message(self, name, value):
         message = ('There are a problem'
-                'in %s the value isn`t in %s'
-                %(value['name'], value['value'])
-                 )
+                'in %s the value is not in %s'
+                %(name, value)
+                    )
+        return message
+
+    def _check_form(self):
         for key,value  in self.get_form()[self.measure_form_type].items():
             if 'value' in value.keys():
                 if self[key] not in value['value']:
-                    raise Warning(message)
+                    raise Warning(self._message(value['name'], value['value']))
     @api.multi
     def write(self, vals):
         res = super(MeasureMeasure, self).write(vals)
@@ -47,15 +50,15 @@ class MeasureMeasure(models.Model):
 
     @api.model
     def create(self,vals):
-        res = super(MeasureMeasure,self).create(vals)
+        res = super(MeasureMeasure, self).create(vals)
         res._check_form()
         return res
     
-    def _prepare_attrs_value(self,list_invisible_form):
+    def _prepare_attrs_value(self, list_invisible_form):
           return {
-                  'invisible': [('measure_form_type','not in',list_invisible_form)]
+                  'invisible': [('measure_form_type', 'not in', list_invisible_form)]
               }
-        
+
     def _prepare_list_for_invisible(self):
         dict_fields_link_form = defaultdict(list)
         for form,value in self.get_form().items():
