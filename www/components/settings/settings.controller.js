@@ -9,7 +9,6 @@ angular.module('starter')
 		//because ctrl is not reloaded
 		$scope.global.isLoggedIn = jsonRpc.isLoggedIn(true);
 	});
-	});
 
 	$scope.login = function () {
 		console.log("dans login()");
