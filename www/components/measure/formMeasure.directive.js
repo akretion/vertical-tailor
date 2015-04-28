@@ -31,7 +31,7 @@ angular.module('starter')
 				var val = e.target.textContent.trim();
 				if (e.target.nodeName != 'BUTTON')
 					return;
-				if ($scope.measure.data[name])
+				if ($scope.measure.data[name] && $scope.measure.data[name] === val)
 					delete $scope.measure.data[name];
 				else
 					$scope.measure.data[name] = val;
