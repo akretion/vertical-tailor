@@ -7,7 +7,8 @@ angular.module('starter')
 
 	$scope.$on('$ionicView.enter', function() { //refresh on load
 		//because ctrl is not reloaded
-		$scope.global.isLoggedIn = jsonRpc.isLoggedIn();
+		$scope.global.isLoggedIn = jsonRpc.isLoggedIn(true);
+	});
 	});
 
 	$scope.login = function () {
