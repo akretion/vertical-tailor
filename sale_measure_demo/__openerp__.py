@@ -28,12 +28,11 @@
     'description': """
             Sale measure Demo
     """,
-
+=
     'author': "Akretion",
     'website': "http://www.Akretion.com",
-
-
-    'category': 'sale',
+    'license': 'AGPL-3',
+    'category': 'Measure ',
     'version': '0.1',
     'depends': ['sale'],
     'data': [
