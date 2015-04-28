@@ -1,4 +1,4 @@
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 from collections import defaultdict
 from openerp.exceptions import Warning
 from openerp.osv import orm
@@ -40,8 +40,11 @@ class MeasureMeasure(models.Model):
     def _check_form(self):
         for key, value in self.get_form()[self.measure_form_type].items():
             if 'value' in value.keys():
-                if self[key] not in value['value']:
-                    raise Warning(self._message(value['name'], value['value']))
+                    if self[key] not in value['value']:
+                        raise Warning(
+                            _("There are problems in %s the value"
+                              " is not in %s")
+                            % (value['name'], value['value']))
 
     @api.multi
     def write(self, vals):

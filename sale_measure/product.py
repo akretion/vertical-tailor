@@ -7,8 +7,8 @@ class ProductProduct(models.Model):
     measure_form_type = fields.Selection(selection='_get_measure_form_type')
 
     def _get_measure_form_type(self):
-        list = []
+        form_list = []
         form = self.env['measure.measure'].get_form()
         for key in form.keys():
-            list.append((key, key))
-        return list
+            form_list.append((key, key))
+        return form_list
