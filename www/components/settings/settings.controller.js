@@ -30,7 +30,7 @@ angular.module('starter')
 
 	$scope.logout = function () {
 		console.log('logout');
-		jsonRpc.logout();
+		jsonRpc.logout(true);
 		$scope.global.isLoggedIn = false;
 	};
 
