@@ -7,7 +7,8 @@ angular.module('starter')
 
 	$scope.$on('$ionicView.enter', function() { //refresh on load
 		//because ctrl is not reloaded
-		$scope.global.isLoggedIn = jsonRpc.isLoggedIn();
+		$scope.global.isLoggedIn = jsonRpc.isLoggedIn(true);
+	});
 	});
 
 	$scope.login = function () {
@@ -29,7 +30,7 @@ angular.module('starter')
 
 	$scope.logout = function () {
 		console.log('logout');
-		jsonRpc.logout();
+		jsonRpc.logout(true);
 		$scope.global.isLoggedIn = false;
 	};
 
@@ -37,6 +38,7 @@ angular.module('starter')
 		Formulaire.load();
 	};
 	$scope.reset = function () { 
-		['odoo_server', 'forms', 'orders', 'formsProducts'].map( function (key){ localStorage.remove(key)}  );
+		['odoo_server', 'forms', 'orders', 'formsProducts'].map(function(key) { localStorage.remove(key) });
+		localStorage.set('orders', []);
 	};
 }]);
