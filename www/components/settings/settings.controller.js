@@ -38,6 +38,7 @@ angular.module('starter')
 		Formulaire.load();
 	};
 	$scope.reset = function () { 
-		['odoo_server', 'forms', 'orders', 'formsProducts'].map( (key) => localStorage.remove(key)  );
+		['odoo_server', 'forms', 'orders', 'formsProducts'].map(function(key) { localStorage.remove(key) });
+		localStorage.set('orders', []);
 	};
 }]);
