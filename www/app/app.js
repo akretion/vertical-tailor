@@ -16,7 +16,7 @@ angular.module('starter', ['ionic','buche','odoo'])
 	});
 
 
-	jsonRpc.interceptors.push(function (a) {
+	jsonRpc.errorInterceptors.push(function (a) {
 		if (a.title === 'session_expired')
 			$state.current.data.global.isLoggedIn = false; //ensure state is always uptodate 
 	});
