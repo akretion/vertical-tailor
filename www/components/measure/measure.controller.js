@@ -19,17 +19,6 @@ angular.module('starter')
 		});
 	});
 
-
-	$scope.click = function (name, e) {
-		var val = e.target.textContent.trim();
-		if (e.target.nodeName != 'BUTTON')
-			return;
-		if ($scope.measure.data[name])
-			delete $scope.measure.data[name];
-		else
-			$scope.measure.data[name] = val;
-	};
-
 	$scope.saveAndBackToOrder = function() {
 		$scope.measure.edited = Object.keys($scope.measure.data).length > 0;
 		Order.save($scope.order);
