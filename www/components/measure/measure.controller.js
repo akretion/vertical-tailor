@@ -8,15 +8,17 @@ angular.module('starter')
 	Order.get($stateParams.orderId).then(function (order) {
 		$scope.order = order;
 		$scope.measure = order.order_line[$stateParams.measureId];
-
 	}, function (reason) {
 		$state.go('tab.order');
 		return reason;
 	}).then(function () {
-
 		return Formulaire.get($scope.measure.form).then(function (formulaire) {
 			$scope.form = formulaire;
 		});
+	});
+	
+	Formulaire.get('commun').then(function (formulaire) {
+		$scope.formUser = formulaire;
 	});
 
 	$scope.saveAndBackToOrder = function() {

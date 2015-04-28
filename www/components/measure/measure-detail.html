@@ -7,9 +7,16 @@
 	<ion-nav-buttons side="secondary">
 		<div show-login-state></div>
 	</ion-nav-buttons>
-  <ion-content class="padding">
+  <ion-content class="padding" ng-init="editUserToggle=false">
   	<p>{{ order.notes}}</p>
-
+  	<ion-toggle ng-model="editUserToggle" ng-click="!editUserToggle"> 
+  		<div>
+  			<div class="item-divider">Commun</div>
+  			<div resume-measures measure="order.measure_user" ng-hide="editUserToggle">resume</div>
+  		</div>
+		<div form-measure measure="order.measure_user" form="formUser" ng-show="editUserToggle"  style="pointer-events: initial;"></div>
+	</ion-toggle>
+  	
 	<div ng-show="form.length == 0">Pas de formulaire</div>
 
 	<div form-measure measure="measure" form="form">directive</div>

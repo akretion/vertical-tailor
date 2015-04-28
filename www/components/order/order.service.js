@@ -39,6 +39,10 @@ angular.module('starter')
 				order_line: [],
 				isLocalOnly: true,
 				partner_matricule: null,
+				measure_user: {
+					form: 'commun',
+					data: {}
+				}
 			};
 		},
 		createMeasure: function() {
