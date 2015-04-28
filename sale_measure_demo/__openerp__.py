@@ -19,9 +19,6 @@
 #
 ###############################################################################
 
-
-
-
 # -*- coding: utf-8 -*-
 {
     'name': "Sale measure demo",
@@ -29,8 +26,7 @@
     'summary': """Manage trainings""",
 
     'description': """
-       
-            Sale measure Demo  
+            Sale measure Demo
     """,
 
     'author': "Akretion",
@@ -39,17 +35,15 @@
 
     'category': 'sale',
     'version': '0.1',
-    'depends': ['base','sale','product'],
+    'depends': ['sale'],
     'data': [
         'measure_demo.xml'
-        
     ],
-    # only loaded in demonstration mode
     'demo': [
-            'demo/measure_demo.xml',
-             'demo/res.partner.csv',
-             'demo/product.product.csv'
-             ],
+        'demo/measure_demo.xml',
+        'demo/res.partner.csv',
+        'demo/product.product.csv'
+        ],
 
 
 }
