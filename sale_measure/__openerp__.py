@@ -33,10 +33,10 @@
     'version': '0.1',
     'depends': [
                 'sale'
-                ],
+        ],
     'data': [
         'measure.xml',
-        'partner.xml'
+        'product.xml'
 
     ],
     # only loaded in demonstration mode
