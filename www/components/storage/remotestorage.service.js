@@ -6,7 +6,7 @@ angular.module('starter')
 		'forms': { domain: 'measure.measure', action: 'get_form'}
 	};
 	var setKeys = {
-		'orders': { domain: 'sale.order', action:'set_measure'}
+		'toSync': { domain: 'sale.order', action:'set_measure'}
 	};
 
 	function continueIfLogged() {
