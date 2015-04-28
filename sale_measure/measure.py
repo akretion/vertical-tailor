@@ -10,9 +10,9 @@ class MeasureMeasure(models.Model):
     _description = "Measure for each partner"
 
     product_id = fields.Many2one(
-            'product.product',
-            string="Product" ,
-            required=True)
+        'product.product',
+        string="Product",
+        required=True)
     partner_id = fields.Many2one(
         'res.partner',
         string="partner",
@@ -31,17 +31,18 @@ class MeasureMeasure(models.Model):
         return {}
 
     def _message(self, name, value):
-        message = ('There are a problem'
-                'in %s the value is not in %s'
-                %(name, value)
-                    )
+        message = (
+            'There are a problem'
+            'in %s the value is not in %s'
+            % (name, value))
         return message
 
     def _check_form(self):
-        for key,value  in self.get_form()[self.measure_form_type].items():
+        for key, value in self.get_form()[self.measure_form_type].items():
             if 'value' in value.keys():
                 if self[key] not in value['value']:
                     raise Warning(self._message(value['name'], value['value']))
+
     @api.multi
     def write(self, vals):
         res = super(MeasureMeasure, self).write(vals)
@@ -49,25 +50,29 @@ class MeasureMeasure(models.Model):
         return res
 
     @api.model
-    def create(self,vals):
+    def create(self, vals):
         res = super(MeasureMeasure, self).create(vals)
         res._check_form()
         return res
-    
+
     def _prepare_attrs_value(self, list_invisible_form):
-          return {
-                  'invisible': [('measure_form_type', 'not in', list_invisible_form)]
-              }
+        return {
+            'invisible': [('measure_form_type',
+                           'not in',
+                           list_invisible_form)]
+            }
 
     def _prepare_list_for_invisible(self):
         dict_fields_link_form = defaultdict(list)
-        for form,value in self.get_form().items():
+        for form, value in self.get_form().items():
             for field in value:
                     dict_fields_link_form[field].append(form)
         return dict_fields_link_form
 
     @api.model
-    def fields_view_get(self, view_id=None, view_type='form',
+    def fields_view_get(self,
+                        view_id=None,
+                        view_type='form',
                         toolbar=False, submenu=False):
         res = super(MeasureMeasure, self).fields_view_get(
             view_id=view_id,
@@ -80,7 +85,7 @@ class MeasureMeasure(models.Model):
             for field in root.findall(".//field"):
                 if get_list_invisible_form[field.attrib['name']]:
                     attrs = get_list_invisible_form[field.attrib['name']]
-                    field.set('attrs',str(self._prepare_attrs_value(attrs)))
-                    orm.setup_modifiers(root, field)
+                    field.set('attrs', str(self._prepare_attrs_value(attrs)))
+                    orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
         return res

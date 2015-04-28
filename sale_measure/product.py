@@ -25,3 +25,16 @@ class ProductTemplate(models.Model):
     def get_measurable_product(self):
         products = self.search([('measure_form_type', '!=', False)])
         return products._prepare_measurable_product()
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    measure_form_type = fields.Selection(selection='_get_measure_form_type')
+
+    def _get_measure_form_type(self):
+        list = []
+        form = self.env['measure.measure'].get_form()
+        for key in form.keys():
+            list.append((key, key))
+        return list

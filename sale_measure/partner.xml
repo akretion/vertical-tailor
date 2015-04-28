@@ -1,6 +1,5 @@
 <openerp>
     <data>
-
 	<record model="ir.ui.view" id="detail_field_in_view">
 	    <field name="name">Measure</field>
 	    <field name="model">res.partner</field>

@@ -19,6 +19,7 @@
 #
 ###############################################################################
 
+
 {
     'name': "Sale measure",
     'summary': """Manage trainings""",
@@ -30,12 +31,13 @@
     'license': 'AGPL-3',
     'category': 'sale',
     'version': '0.1',
-    'depends': ['base', 'sale', 'product'],
+    'depends': [
+                'sale'
+                ],
     'data': [
         'measure.xml',
-        'partner.xml',
-        'sale.xml',
-        'product.xml'
+        'partner.xml'
+
     ],
     # only loaded in demonstration mode
     'demo': [],
