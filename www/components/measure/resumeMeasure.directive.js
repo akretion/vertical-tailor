@@ -7,7 +7,7 @@ angular.module('starter')
 		template: '' +
 		'<div class="row responsive-sm" ng-repeat="m in dateResume">' +
 			'<div class="col" ng-repeat="(key, val) in m" style="border: 1px solid gray">'+
-				'{{ val }} - {{ measure.data[val] }}'+
+				'{{ val }} : {{ measure.data[val] }}'+
 			'</div>'+
 		'</div>',
 		link: function ($scope, elem, attrs) {
