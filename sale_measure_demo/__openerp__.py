@@ -27,7 +27,6 @@
     'description': """
             Sale measure Demo
     """,
-=
     'author': "Akretion",
     'website': "http://www.Akretion.com",
     'license': 'AGPL-3',
