@@ -1,7 +1,7 @@
 <openerp>
     <data>
           <record model="ir.ui.view" id="view_measure_demo_tree">
-            <field name="model">measure.measure.demo</field>
+            <field name="model">measure.measure</field>
 	    <field name="type">tree</field>
             <field name="arch" type="xml"> 
 		<tree string="Measure">
@@ -13,7 +13,7 @@
             </field>
         </record>
         <record model="ir.ui.view" id="view_measure_demo_form">
-                    <field name="model">measure.measure.demo</field>
+                    <field name="model">measure.measure</field>
                      <field name="type">form</field>
                     <field name="arch" type="xml">
                      <form string="Measure">

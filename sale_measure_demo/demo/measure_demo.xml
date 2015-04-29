@@ -9,7 +9,7 @@
 	    <field name="name">HILALI ABDESSAMAD</field>
 	</record>
 	
-        <record id="detail_field_custom_in_view_demo" model="measure.measure.demo">
+        <record id="detail_field_custom_in_view_demo" model="measure.measure">
 	    <field name="partner_id"  ref="partner" />
 	    <field name="product_id" ref="product_vareuse"/>
             <field name="tested_size" eval="88"/>
