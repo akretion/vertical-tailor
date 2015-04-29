@@ -47,8 +47,6 @@
 <record id="act_partner_2_measure" model="ir.actions.act_window">
     <field name="res_model">measure.measure</field>
     <field name="view_type">form</field>
-
-
     <field name="view_mode">tree,form,graph</field>
 <field name = "domain" > [('partner_id','=',active_id)]</field>
 </record>
