@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 ##############################################################################
 #
 #  licence AGPL version 3 or later
@@ -7,6 +8,7 @@
 #  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 #
 ##############################################################################
+
 
 from . import sale
 from . import measure

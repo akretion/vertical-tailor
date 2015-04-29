@@ -8,10 +8,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api
-from openerp import exceptions
-from openerp.osv import orm
-
+from openerp import fields, models
 
 
 class MeasureDemo(models.Model):
