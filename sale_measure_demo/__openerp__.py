@@ -1,4 +1,6 @@
+
 # -*- coding: utf-8 -*-
+
 ##############################################################################
 #
 #    Copyright (C) All Rights Reserved 2015 Akretion
@@ -20,10 +22,10 @@
 ###############################################################################
 
 {
+
     'name': "Sale measure demo",
 
     'summary': """Manage trainings""",
-
     'description': """
             Sale measure Demo
     """,
@@ -41,8 +43,4 @@
         'demo/res.partner.csv',
         'demo/product.product.csv'
         ],
-
-
 }
-
-

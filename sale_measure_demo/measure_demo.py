@@ -192,7 +192,7 @@ class MeasureDemo(models.Model):
                         'value': [-2, -1.5, -1, 1, 1.5, 2],
                         'type': 'integer'
                         },
-                    'parallel_amount_PCO':{
+                    'parallel_amount_PCO': {
                         'name': 'Montant parallele PCO',
                         'value': [-3, -2, -1, 1, 2, 3],
                         'type': 'integer'
