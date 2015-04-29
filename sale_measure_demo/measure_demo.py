@@ -9,13 +9,13 @@
 ##############################################################################
 
 from openerp import fields, models, api
-from collections import defaultdict
 from openerp import exceptions
 from openerp.osv import orm
-from lxml import etree
+
 
 
 class MeasureDemo(models.Model):
+    """ Measure Class demo """
     _inherit = "measure.measure"
 
     tested_size = fields.Float(" Tested size")
@@ -57,168 +57,174 @@ class MeasureDemo(models.Model):
     parallel_amount_PCO = fields.Float('parallel amount PCO ')
     amount_before_PDE = fields.Float('amount before PDE')
 
+    @classmethod
     def get_form(cls):
+        """ return a dictionary with form and attribute value"""
         return {
-            'vareuse_homme_lot1': {    
-                'qty': {
-                    'name': 'Quantite',
-                    'type': 'integer'
+            'vareuse_homme_lot1':
+                {
+                    'qty': {
+                        'name': 'Quantite',
+                        'type': 'integer'
+                        },
+                    'tested_size': {
+                        'name': 'Taille essayee',
+                        'type': 'integer'
+                        },
+                    'vor_attitude_VOR': {
+                        'name': 'Attitude VOR',
+                        'value': [-3, -2, -1, 1, 2, 3],
+                        'type': 'integer'
+                        },
+                    'short_neck_back_amount_TDD': {
+                        'name': 'Montant dos cou court-cou long TDD',
+                        'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'shoulder_height_left_HEPL': {
+                        'name': 'Hauteur epaule Gauche HEPG',
+                        'value': [-2, -1, 1, 2],
+                        'type': 'interger'
+                        },
+                    'shoulder_eight_right_HEPR': {
+                        'name': 'Hauteur epaule Droite HEPD',
+                        'value': [-2, -1, 1, 2],
+                        'type': 'interger'
+                        },
+                    'progress_before_AVD': {
+                        'name': 'Avancement devant AVD',
+                        'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'shoulder_behind_EPAB': {
+                        'name': 'Epaule Arriere EPA',
+                        'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'shoulder_forward_EPAF': {
+                        'name': 'Epaule Avant EPA',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'strong_chest_DED': {
+                        'name': 'Poitrine forte (dvpmt devant) DED',
+                        'value': [1, 1.5, 2],
+                        'type': 'interger'
+                        },
+                    'forcing_chest_clip_FPP': {
+                        'name': 'Forcer pince poitrine FPP',
+                        'value': [0.5, 1, 2],
+                        'type': 'interger'
+                        },
+                    'shoulders_CAR': {
+                        'name': '1/2 Carrure CAR',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'shoulder_width_LEP': {
+                        'name': 'Largeur epaule LEP',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'armhole_Edge_CAM': {
+                        'name': 'Carre d''emmanchure CAM',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'belt_CEI': {
+                        'name': '1/2 Ceinture CEI',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'basin_LBA': {
+                        'name': '1/2 Bassin LBA',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'clip_in_reverse_PSR': {
+                        'name': 'Pince sous revers PSR',
+                        'type': 'Boolean'
+                        },
+                    'forcing_chest_obesity_FPV': {
+                        'name': 'Forcer pince obesite FPV',
+                        'value': [1, 1.5, 2],
+                        'type': 'interger'
+                        },
+                    'hollow_kidneys_CBR': {
+                        'name': 'Reins Creux CBR',
+                        'value': [1, 1.5, 2],
+                        'type': 'integer'
+                        },
+                    'length_Dos_LON': {
+                        'name': 'Longueur Dos LAN',
+                        'value': ['EN-', 'EN+'],
+                        'type': 'Selection'
+                        },
+                    'sleeve_length_left_MANG': {
+                        'name': 'Longueur manche Gauche',
+                        'value': ['EN-', 'EN+'],
+                        'type': 'Selection'
+                        },
+                    'sleeve_length_right_MAND': {
+                        'name': 'Longueur manche Droite',
+                        'value': ['EN-', 'EN+'],
+                        'type': 'Selection'
+                        },
+                    'sleeves_MAR': {
+                        'name': ' manches MAR ',
+                        'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'},
                     },
-                'tested_size': {
-                    'name': 'Taille essayee',
-                    'type': 'integer'
-                    },
-                'vor_attitude_VOR': {
-                    'name': 'Attitude VOR',
-                    'value': [-3, -2, -1, 1, 2, 3],
-                    'type': 'integer'
-                    },
-                'short_neck_back_amount_TDD': {
-                    'name': 'Montant dos cou court-cou long TDD',
-                    'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'shoulder_height_left_HEPL': {
-                    'name': 'Hauteur epaule Gauche HEPG',
-                    'value': [-2, -1, 1, 2],
-                    'type': 'interger'
-                    },
-                'shoulder_eight_right_HEPR': {
-                    'name': 'Hauteur epaule Droite HEPD',
-                    'value': [-2, -1, 1, 2],
-                    'type': 'interger'
-                    },
-                'progress_before_AVD': {
-                    'name': 'Avancement devant AVD',
-                    'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'shoulder_behind_EPAB': {
-                    'name': 'Epaule Arriere EPA',
-                    'value': [-1.5, -1, -0.5,  0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'shoulder_forward_EPAF': {
-                    'name': 'Epaule Avant EPA',
-                    'value': [-1.5, 1, -0.5,  0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'strong_chest_DED': {
-                    'name': 'Poitrine forte (dvpmt devant) DED',
-                    'value': [1, 1.5, 2],
-                    'type': 'interger'
-                    },
-                'forcing_chest_clip_FPP': {
-                    'name': 'Forcer pince poitrine FPP',
-                    'value': [0.5, 1, 2],
-                    'type': 'interger'
-                    },
-                'shoulders_CAR': {
-                    'name': '1/2 Carrure CAR',
-                    'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'shoulder_width_LEP': {
-                    'name': 'Largeur epaule LEP',
-                    'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'armhole_Edge_CAM': {
-                    'name': 'Carre d''emmanchure CAM',
-                    'value': [-1.5, 1, -0.5,  0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'belt_CEI': {
-                    'name': '1/2 Ceinture CEI',
-                    'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'basin_LBA': {
-                    'name': '1/2 Bassin LBA',
-                    'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'clip_in_reverse_PSR': {
-                    'name': 'Pince sous revers PSR',
-                    'type': 'Boolean'
-                    },
-                'forcing_chest_obesity_FPV': {
-                    'name': 'Forcer pince obesite FPV',
-                    'value': [1, 1.5, 2],
-                    'type': 'interger'
-                    },
-                'hollow_kidneys_CBR': {
-                    'name': 'Reins Creux CBR',
-                    'value': [1, 1.5, 2] ,
-                    'type': 'integer'
-                    },
-                'length_Dos_LON': {
-                    'name': 'Longueur Dos LAN',
-                    'value': ['EN-', 'EN+'],
-                    'type': 'Selection'
-                    },
-                'sleeve_length_left_MANG': {
-                    'name': 'Longueur manche Gauche',
-                    'value': ['EN-', 'EN+'],
-                    'type': 'Selection'
-                    },
-                'sleeve_length_right_MAND': {
-                    'name': 'Longueur manche Droite',
-                    'value': ['EN-', 'EN+'],
-                    'type': 'Selection'
-                    },
-                'sleeves_MAR': {
-                    'name': ' manches MAR ',
-                    'value': [-1.5, 1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'},
-                },
             'jupe_lot2':
                 {
-                'qty': {
-                    'name': 'Quantite',
-                    'type': 'integer'
+                    'qty': {
+                        'name': 'Quantite',
+                        'type': 'integer'
+                        },
+                    'tested_size': {
+                        'name': 'Taille essayee',
+                        'type': 'integer'
+                        },
+                    'length_dimension_PLO': {
+                        'name': 'Longueur Cote',
+                        'value': ['EN-', 'EN+'],
+                        'type': 'Selection'
+                        },
+                    'half_width_belt_PCE': {
+                        'name': 'Largeur 1/2 ceinture PCE',
+                        'value': [-2, -1.5, -1, 1, 1.5, 2],
+                        'type': 'integer'
+                        },
+                    'parallel_amount_PCO':{
+                        'name': 'Montant parallele PCO',
+                        'value': [-3, -2, -1, 1, 2, 3],
+                        'type': 'integer'
+                        },
+                    'basin_LBA': {
+                        'name': '1/2 Bassin LBA',
+                        'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
+                        'type': 'interger'
+                        },
+                    'amount_before_PDE': {
+                        'name': 'Montant devant PDE',
+                        'value': [-3, -2, -1, 1, 2, 3],
+                        'type': 'interger'
+                        },
                     },
-                'tested_size': {
-                    'name': 'Taille essayee',
-                    'type': 'integer'
-                    },
-                'length_dimension_PLO': {
-                    'name': 'Longueur Cote',
-                    'value': ['EN-', 'EN+'],
-                    'type': 'Selection'
-                    },
-                'half_width_belt_PCE': {
-                    'name': 'Largeur 1/2 ceinture PCE',
-                    'value': [-2, -1.5, -1, 1, 1.5, 2],
-                    'type': 'integer'
-                    },
-                'parallel_amount_PCO':{
-                    'name': 'Montant parallele PCO',
-                    'value': [-3, -2, -1, 1, 2, 3],
-                    'type': 'integer'
-                    },
-                'basin_LBA': {
-                    'name': '1/2 Bassin LBA',
-                    'value': [-1.5, -1, -0.5, 0.5, 1, 1.5],
-                    'type': 'interger'
-                    },
-                'amount_before_PDE': {
-                    'name': 'Montant devant PDE',
-                    'value': [-3, -2, -1, 1, 2, 3],
-                    'type': 'interger'
-                    },
-                },
         }
 
 
 class ProductProduct(models.Model):
+    """ Product Class """
     _inherit = 'product.product'
 
     measure_form_type = fields.Selection(selection='_get_measure_form_type')
 
     def _get_measure_form_type(self):
-        list = []
-        form = self.env['measure.measure.demo'].get_form()
+        """ Get a form dictionary  """
+
+        form_list = []
+        form = self.env['measure.measure'].get_form()
         for key in form.keys():
-            list.append((key, key))
-        return list
+            form_list.append((key, key))
+        return form_list

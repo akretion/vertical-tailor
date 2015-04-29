@@ -18,8 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-
-
 {
     'name': "Sale measure",
     'summary': """Manage trainings""",
@@ -32,7 +30,7 @@
     'category': 'sale',
     'version': '0.1',
     'depends': [
-                'sale'
+        'sale'
         ],
     'data': [
         'measure.xml',
