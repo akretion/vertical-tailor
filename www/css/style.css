@@ -153,3 +153,12 @@ p.commande-name small {
 .bar-header {
 	top:0px;
 }
+
+.list .item.big-item {
+	height:70px;
+}
+
+.list .item.big-item .button {
+	padding:15px;
+}
+
