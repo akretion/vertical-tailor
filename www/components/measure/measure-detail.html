@@ -9,13 +9,19 @@
 	</ion-nav-buttons>
   <ion-content class="padding" ng-init="editUserToggle=false">
   	<p>{{ order.notes}}</p>
-  	<ion-toggle ng-model="editUserToggle" ng-click="!editUserToggle"> 
   		<div>
-  			<div class="item-divider">Commun</div>
+  			<div class="item-divider list-mesure-title" >
+  				Commun
+			  	<label class="toggle">
+					<input type="checkbox" ng-model="editUserToggle">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+  			</div>
   			<div resume-measures measure="order.measure_user" ng-hide="editUserToggle">resume</div>
   		</div>
-		<div form-measure measure="order.measure_user" form="formUser" ng-show="editUserToggle"  style="pointer-events: initial;"></div>
-	</ion-toggle>
+		<div form-measure measure="order.measure_user" hide-title="true" form="formUser" ng-show="editUserToggle"  style="pointer-events: initial;"></div>
   	
 	<div ng-show="form.length == 0">Pas de formulaire</div>
 

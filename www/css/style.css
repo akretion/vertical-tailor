@@ -1,1 +1,155 @@
 /* Empty. Add your own CSS if you like */
+.item.list-mesure {
+	margin:0;
+	padding:0;
+	border:none;
+}
+
+.question-widget > div{
+	height:120px;
+}
+
+.list.list-mesure-container {
+	margin-bottom: 0;
+}
+
+.item.list-mesure label,
+.item.list-mesure .button-bar,
+.item.list-mesure select,
+.item.list-mesure input {
+	float:left;
+	height:100%;
+}
+
+.item-divider.list-mesure-title {
+	font-size:1.9rem;
+	background-color: #285eb5;
+	color:#fff;
+	padding:20px;
+	text-transform: capitalize;
+}
+
+.item.list-mesure .button-bar,
+.item.list-mesure select,
+.item.list-mesure input {
+	width:77%;
+}
+
+.item.list-mesure select,
+.item.list-mesure input {
+	font-size: 3rem;
+}
+
+.item.list-mesure input {
+	padding-left:10px;
+}
+
+.item.list-mesure .button-bar button {
+	border: none;
+	white-space: normal;
+	line-height: 20px;
+	font-size:1.2em;
+}
+
+.item.list-mesure label {
+	display:block;
+	width:23%;
+	text-align: center;
+	background-color: #387ef5;
+	color:#fff;
+	text-transform: uppercase;
+	font-weight: 600;
+	white-space: normal;
+	padding:10px;
+}
+
+.item.list-mesure label span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.item.list-mesure label:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -0.25em;
+}
+
+.row.row-result {
+	padding:0;
+	margin:2px 0;
+}
+
+.row.row-result .col {
+	border: none;
+	height:100px;
+	background-color: #7a7a7a;
+	color:#fff;
+	padding:10px;
+	margin:0 2px;
+}
+
+.row.row-result .col label {
+	color:#b0b0b0;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.row.row-result .col .data-mesure {
+	font-size: 1.6rem;
+	padding:20px 0;
+}
+
+.label {
+	padding:4px;
+	background-color: #387ef5;
+	color:#fff;
+	display: inline-block;
+	border-radius: 2px;
+}
+
+.item h1 .small {
+	font-size:16px;
+	position:relative;
+	bottom:7px;
+}
+
+.create, p.commande-name {
+	font-size: 1.2rem;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+p.commande-name small {
+	font-size: 0.8em;
+	font-weight: 200;
+	text-transform: none;
+}
+
+.create select {
+	height:47px;
+	width:220px;
+	font-size:1.9rem;
+}
+
+.tabs-icon-top > .tabs .tab-item, .tabs-icon-top.tabs .tab-item, .tabs-icon-bottom > .tabs .tab-item, .tabs-icon-bottom.tabs .tab-item {
+	font-size: 13px;
+}
+
+.tab-item .icon {
+	font-size: 50px;
+	height: 50px;
+}
+
+.tabs-top > .tabs, .tabs.tabs-top {
+	height:70px;
+}
+
+.has-tabs-top {
+	top:113px;
+}
+
+.bar-header {
+	top:0px;
+}

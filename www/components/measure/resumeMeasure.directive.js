@@ -5,9 +5,10 @@ angular.module('starter')
 	return { 
 		scope: { measure:'=' },
 		template: '' +
-		'<div class="row responsive-sm" ng-repeat="m in dateResume">' +
-			'<div class="col" ng-repeat="(key, val) in m" style="border: 1px solid gray">'+
-				'{{ val }} : {{ measure.data[val] }}'+
+		'<div class="row responsive-sm row-result" ng-repeat="m in dateResume">' +
+			'<div class="col" ng-repeat="(key, val) in m">'+
+				'<label>{{val}}</label>'+
+				'<div class="data-mesure">{{ measure.data[val] }}</div>'+
 			'</div>'+
 		'</div>',
 		link: function ($scope, elem, attrs) {
@@ -24,7 +25,7 @@ angular.module('starter')
 				}).sort(); //easier to read
 
 				return values.reduce(function r(prev, current, i) {
-					if (i % 3 == 0)
+					if (i % 5 == 0)
 						prev.push([]);
 					prev[prev.length -1].push(current);
 					return prev;

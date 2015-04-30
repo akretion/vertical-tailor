@@ -1,22 +1,29 @@
 <ion-view view-title="Commandes">
 	<ion-nav-buttons side="secondary">
 		<div show-login-state></div>
-		<button class="button" ng-click="newOrder()">
-			+
-		</button>
-		<button class="button" ng-click="refresh()">
-			Refresh
-		</button>
 	</ion-nav-buttons>
 	 <ion-content>
 		<ion-list>
-			<div class="list list-inset">
-				<label class="item item-input">
-					<i class="icon ion-search placeholder-icon"></i>
-				  <input type="text" placeholder="Search" ng-model="orderFilterTxt">
-			  </label>
+			<div class="row">
+				<div class="col col-20">
+					<div class="button-bar">
+						<a class="button button-positive" ng-click="newOrder()">
+							<i class="icon ion-plus-round"></i>
+						</a>
+						<a class="button button-calm" ng-click="refresh()">
+							<i class="icon ion-refresh"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col">
+					<div class="list list-inset" style="margin-top:0px;">
+						<label class="item item-input">
+							<i class="icon ion-search placeholder-icon"></i>
+							<input type="text" placeholder="Search" ng-model="orderFilterTxt">
+					  </label>
+					</div>
+				</div>
 			</div>
-			
 			<ion-item ng-show="orderDraft">
 				<label>
 					Nom
@@ -38,7 +45,7 @@
 				<h2>Aucune commande</h2>
 			</ion-item>
 			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: orderFilterTxt | orderBy: 'state' track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
-				<h2>{{order.name}} | {{ order.partner_name }} </h2>
+					<h2><span class="label" ng-show="!!order.name">{{order.name}}</span> {{ order.partner_name }} </h2>
 				<p>{{order.notes}} {{ order.partner_matricule }}</p>
 				<p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
 				<span ng-hide="$last">, </span></span></p>

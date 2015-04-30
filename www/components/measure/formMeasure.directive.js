@@ -3,28 +3,28 @@
 angular.module('starter')
 .directive('formMeasure', [function () {
 	return { 
-		scope: { measure:'=', form: '=' },
+		scope: { measure:'=', form: '=', hideTitle:'=' },
 		template: 
-		'<div class="list" ng-repeat="categorie in form">' +
-			'<div class="item-divider">{{ categorie.group_title }}</div>' +
-			'<div class="item" ng-repeat="c in categorie.questions" ng-class="{\'active\': measure.data[c.name]}">' +
-				'<div ng-switch="c.widget">' +
-					'<div ng-switch-when="buttons" ng-click="click(c.name, $event)">' +
-						'<div>{{c.name}}</div>' +
+		'<div class="list list-mesure-container" ng-repeat="categorie in form">' +
+			'<div class="item-divider list-mesure-title" ng-hide="hideTitle">{{ categorie.group_title }}</div>' +
+			'<div class="item list-mesure" ng-repeat="c in categorie.questions" ng-class="{\'active\': measure.data[c.name]}">' +
+				'<div ng-switch="c.widget" class="question-widget">' +
+					'<div ng-switch-when="selection" ng-click="click(c.name, $event)">' +
+						'<label><span>{{c.name}}</span></label>' +
 						'<div class="button-bar">' +
 							'<button class="button" ng-repeat="v in c.value" ng-class="{\'active\': v == measure.data[c.name]}">{{ v }}</button>' +
 						'</div>' +
 					'</div>' +
-					'<div ng-switch-when="selection">' +
-						'<div>{{c.name}}</div>' +
+					'<div ng-switch-when="buttons">' +
+						'<label><span>{{c.name}}</span></label>' +
 						'<select ng-model="measure.data[c.name]" ng-options="v as v for v in c.value "></select>' +
 					'</div>' +
-					'<div ng-switch-when="numeric" class="button-bar">' +
-						'<div>{{c.name}}</div>' +
+					'<div ng-switch-when="numeric">' +
+						'<label><span>{{c.name}}</span></label>' +
 						'<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number"></input>' +
 					'</div>' +
-					'<div ng-switch-when="number" class="button-bar">' +
-						'<div>{{c.name}}</div>' +
+					'<div ng-switch-when="number">' +
+						'<label><span>{{c.name}}</span></label>' +
 						'<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number"></input>' +
 					'</div>' +
 				'</div>' +

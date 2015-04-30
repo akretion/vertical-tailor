@@ -6,8 +6,8 @@ angular.module('starter')
 		scope: { },
 		template: '' +
 		'<div ng-switch="global.isLoggedIn" ui-sref="tab.settings">' +
-			'<span ng-switch-when="true">Connecté</span>'+
-			'<span ng-switch-when="false">Non connecté</span>'+
+			'<span class="padding-top" ng-switch-when="true">Connecté</span>'+
+			'<button class="button" ng-switch-when="false">Se connecter</button>'+
 			'<span ng-switch-when="undefined">Indéfini</span>'+
 		'</div>',
 		link: function ($scope, elem, attrs) {
