@@ -2,6 +2,8 @@ angular.module('starter')
 .controller('OrderCtrl', ['$scope', 'Order','$state', function($scope, Order, $state) {
 
 	$scope.orders = null;
+	$scope.editMode = false;
+	$scope.orderDraft = null;
 
 	$scope.$on('$ionicView.enter', function() { //refresh on load
 		Order.all().then(function (orders) { //au premier chargement ou à chaque fois ? 
@@ -9,18 +11,20 @@ angular.module('starter')
 		});
 	});
 
-	$scope.newOrder = function () {
-		if (!$scope.orderDraft)
+	$scope.toggleMode = function () {
+		if (!$scope.editMode)
 			$scope.orderDraft = Order.create();
 		else
 			$scope.orderDraft = null;
+		$scope.editMode = !$scope.editMode;
 	};
+
 	$scope.saveOrder = function () {
 		$scope.orders.push($scope.orderDraft);
 		Order.save($scope.orderDraft);
 
 		$state.go('tab.order-detail', { orderId: $scope.orderDraft.id});
-		$scope.orderDraft = null;
+		$scope.toggleMode();
 	};
 
 	$scope.refresh = function () {

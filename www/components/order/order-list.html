@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col col-20">
 					<div class="button-bar">
-						<a class="button button-positive" ng-click="newOrder()">
+						<a class="button button-positive" ng-click="toggleMode()">
 							<i class="icon ion-plus-round"></i>
 						</a>
 						<a class="button button-calm" ng-click="refresh()">
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 			</div>
-			<ion-item ng-show="orderDraft">
+			<ion-item ng-show="editMode">
 				<label>
 					Nom
 					<input type="text" ng-model="orderDraft.partner_name">
@@ -41,7 +41,7 @@
 				<button class="button" ng-click="saveOrder(orderDraft)">Enregistrer</button>
 			</ion-item>
 		</ion-list>
-		<ion-list show-delete="orderDraft">
+		<ion-list show-delete="editMode">
 
 			<ion-item ng-show="orders.length == 0">
 				<h2>Aucune commande</h2>
