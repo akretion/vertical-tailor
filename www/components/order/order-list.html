@@ -40,12 +40,16 @@
 				</label>
 				<button class="button" ng-click="saveOrder(orderDraft)">Enregistrer</button>
 			</ion-item>
+		</ion-list>
+		<ion-list show-delete="orderDraft">
 
 			<ion-item ng-show="orders.length == 0">
 				<h2>Aucune commande</h2>
 			</ion-item>
 			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: orderFilterTxt | orderBy: 'state' track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
-					<h2><span class="label" ng-show="!!order.name">{{order.name}}</span> {{ order.partner_name }} </h2>
+				<ion-delete-button ng-show="order.isLocalOnly" class="ion-minus" ng-click="removeOrder(order, $index)"></ion-delete-button>
+
+				<h2><span class="label" ng-show="!!order.name">{{order.name}}</span> {{ order.partner_name }} </h2>
 				<p>{{order.notes}} {{ order.partner_matricule }}</p>
 				<p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
 				<span ng-hide="$last">, </span></span></p>

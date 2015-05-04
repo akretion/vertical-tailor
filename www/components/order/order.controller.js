@@ -29,6 +29,11 @@ angular.module('starter')
 		});
 	};
 
+	$scope.removeOrder = function (order) {
+		console.log('remove ', order);
+		Order.remove(order);
+	};
+
 }]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter) {
 	console.log('OrderDetailCtrl');
 
