@@ -28,9 +28,12 @@ angular.module('starter')
 	};
 
 	$scope.refresh = function () {
+		//force reload
 		Order.all().then(function (orders) {
-		$scope.orders = orders;
+			$scope.orders = orders;
 		});
+		//quit edit mode
+		$scope.editMode = false;
 	};
 
 	$scope.removeOrder = function (order) {
