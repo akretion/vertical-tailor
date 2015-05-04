@@ -34,10 +34,10 @@
 					</ion-item>
 
 					<ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, measure) in order.order_line track by key" ui-sref="tab.measure({orderId: order.id, measureId: key})">
-		          <p class="commande-name">{{ measure.product_name }} <small>{{ measure.form }}</small></p>
-		          <div resume-measures measure="measure"></div>
-						  <ion-delete-button class="ion-minus" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
-					    <i class="icon ion-chevron-right icon-accessory"></i>
+						<p class="commande-name">{{ measure.product_name }} <small>{{ measure.form }}</small></p>
+						<div resume-measures measure="measure"></div>
+						<ion-delete-button class="ion-minus" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
+						<i class="icon ion-chevron-right icon-accessory"></i>
 					</ion-item>
 
 					<ion-item type="" ng-show="order.order_line.length == 0">Pas de mesure</ion-item>
@@ -46,7 +46,7 @@
 						<small ng-hide="isOrderDone">Toutes les mesures doivent être prises pour clore la commande</small>
 						<button class="button button-positive icon icon-checkmark pull-right" ng-click="terminateOrder()" ng-disabled="!isOrderDone">Clore la commande</button>
 					</div>
-			</ion-list>
+				</ion-list>
 			</div>
 		</div>
 	</ion-content>
