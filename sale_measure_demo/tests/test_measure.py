@@ -21,7 +21,6 @@
 #
 ###############################################################################
 import openerp.tests.common as common
-from openerp import fields, models, api
 from lxml import etree
 import ast
 
