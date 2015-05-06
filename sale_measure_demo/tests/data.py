@@ -36,7 +36,7 @@ DATA = {
                     'tissu': 'CPL 300 bleu aviation'
                 },
                 'product_name': 'veste'
-            },{
+            }, {
                 'edited': True,
                 'product_id': 58,
                 'form': 'PentalonF',
@@ -65,7 +65,7 @@ DATA = {
                 'product_name': 'pantalon',
                 'form': 'PentalonF',
                 'product_id': 54,
-            },{
+            }, {
                 'edited': True,
                 'product_id': 58,
                 'form': 'PentalonF',
