@@ -55,7 +55,6 @@ class SaleOrder(models.Model):
             self._prepare_measure(line, partner_id))
         return {
             'product_id': line['product_id'],
-            #TODO fix the way to get the qty
             'product_uom_qty': line['data'].get('quantity', 1),
             'measure_id': measure.id,
             }
