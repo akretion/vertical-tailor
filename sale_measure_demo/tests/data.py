@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-###############################################################################
+##############################################################################
 #
 #   Module for OpenERP
 #   Copyright (C) 2014 Akretion (http://www.akretion.com).
@@ -18,7 +18,7 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-###############################################################################
+##############################################################################
 
 
 DATA = {
@@ -87,5 +87,6 @@ DATA = {
 
 
 # session.open()
-# session.registry('sale.order').set_measure(session.cr, 1, DATA['unknown_order_1'])
+# session.registry('sale.order').set_measure(session.cr, 1,
+# "DATA['unknown_order_1'])'
 # session.cr.commit()

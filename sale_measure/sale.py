@@ -2,7 +2,7 @@
 Sale line Class there is a link with measure Class
 
 """
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class SaleLineOrder(models.Model):

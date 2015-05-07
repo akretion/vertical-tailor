@@ -39,8 +39,9 @@
         'measure_demo.xml'
     ],
     'demo': [
-        'demo/measure_demo.xml',
-        'demo/res.partner.csv',
-        'demo/product.product.csv'
+        'tests/sale_measure_demo.xml'
+        # 'demo/measure_demo.xml',
+        # 'demo/res.partner.csv',
+        # 'demo/product.product.csv'
         ],
 }
