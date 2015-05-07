@@ -151,9 +151,7 @@ class TestNewSource(common.TransactionCase):
     def test_set_measure_connect(self):
         connect = self.data_connect()
         self.assertEqual(self.sale_order_model.set_measure(connect), True)
-        print '--- Connect OK---- '
 
     def test_set_measure_localOnly(self):
         localOnly = self.data_localOnly()
         self.assertEqual(self.sale_order_model.set_measure(localOnly), True)
-        print '--- localOnly OK---- '
