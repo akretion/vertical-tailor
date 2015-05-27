@@ -35,7 +35,10 @@ angular.module('starter', ['ionic','buche','odoo'])
 		abstract: true,
 		templateUrl: "app/tabs.html",
 		data: {
-			global: { isLoggedIn: undefined}
+			global: { 
+				isLoggedIn: undefined,
+				localServer: undefined
+			}
 		}
 	})
 

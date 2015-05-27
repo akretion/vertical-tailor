@@ -4,6 +4,10 @@ angular.module('starter')
 		function merge(remote, local) {
 			if (Array.isArray(remote) && Array.isArray(local))
 				return mergeArrays(remote, local);
+			if (!remote && local)
+				return local;
+			if (remote && !local)
+				return remote;
 			return mergeObjects(remote, local);
 		}
 
@@ -69,25 +73,28 @@ angular.module('starter')
 			get: function(key) {
 				var remote = null;
 				var local = null;
-				
+				var neighbour = null;
+
 				var rpromise = remoteStorage.get(key).then(function (result) {
 					remote = result;
 				}, function (reason) {
 					return;
 				});
-				
+
 				var lpromise = localStorage.get(key).then(function (result) {
 					local = result;
 				}, function (reason) {
 					return;
 				});
 
-				return $q.all([lpromise, rpromise]).then(function (result) {
-					if (!remote)
-						return local;
-					if (!local)
-						return remote;
-					return merge(remote, local);
+				var npromise = neighbourStorage.get(key).then(function (result) {
+					neighbour = result;
+				}, function (reason) {
+					return;
+				});
+
+				return $q.all([lpromise, rpromise, npromise]).then(function (result) {					
+					return merge(merge(remote, neighbour), local);
 				});
 			}
 		}
