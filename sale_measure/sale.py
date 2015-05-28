@@ -88,6 +88,13 @@ class SaleOrder(models.Model):
             'partner_matricule': '1234',
             'partner_id': self.partner_id.id,
             'order_line': self.order_line._prepare_order_line_measure(),
+            #TODO add real data
+            'measure_user': {
+                'data': {
+                    'taille': '-1',
+                    'largeur': '-1.5',
+                    'hauteur': '1'
+                }},
             }
 
     @api.model
