@@ -51,20 +51,18 @@ class MeasureMeasure(models.Model):
     def write(self, vals):
         """ Overload write function """
         res = super(MeasureMeasure, self).write(vals)
-        # self._check_form()
+        #self._check_form()
         return res
 
     @api.model
     def create(self, vals):
         """ Overload Create function """
         res = super(MeasureMeasure, self).create(vals)
-        # res._check_form()
+        #res._check_form()
         return res
 
     def _prepare_attrs_value(self, list_invisible_form):
-
         """  prepare list of invisible form """
-
         return {
             'invisible': [('measure_form_type',
                            'not in',
@@ -72,9 +70,7 @@ class MeasureMeasure(models.Model):
             }
 
     def _prepare_list_for_invisible(self):
-
         """  get a list of invisible form """
-
         dict_fields_link_form = defaultdict(list)
         for form, value in self.get_form().items():
             for field in value:
