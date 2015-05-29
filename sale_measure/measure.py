@@ -32,10 +32,14 @@ class MeasureMeasure(models.Model):
     qty = fields.Float('Quantity')
 
     @classmethod
-    def get_form(cls):
-        """ inherited functionso we have a same funtion in custom
-             this function return dictionary with all forms attribute """
+    def _get_form(cls):
         return {}
+
+    @api.model
+    def get_form(self):
+        """ inherited function so we have a same function in custom
+             this function return dictionary with all forms attribute """
+        return self._get_form()
 
     def _check_form(self):
         """function used for checking input value """
@@ -77,24 +81,24 @@ class MeasureMeasure(models.Model):
                 dict_fields_link_form[field].append(form)
         return dict_fields_link_form
 
-    @api.model
-    def fields_view_get(self,
-                        view_id=None,
-                        view_type='form',
-                        toolbar=False, submenu=False):
-        """ Dynamic modification of fields """
-        res = super(MeasureMeasure, self).fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu)
-        if view_type == 'form':
-            root = etree.fromstring(res['arch'])
-            get_list_invisible_form = self._prepare_list_for_invisible()
-            for field in root.findall(".//field"):
-                if get_list_invisible_form[field.attrib['name']]:
-                    attrs = get_list_invisible_form[field.attrib['name']]
-                    field.set('attrs', str(self._prepare_attrs_value(attrs)))
-                    orm.setup_modifiers(field, root)
-            res['arch'] = etree.tostring(root, pretty_print=True)
-        return res
+#    @api.model
+#    def fields_view_get(self,
+#                        view_id=None,
+#                        view_type='form',
+#                        toolbar=False, submenu=False):
+#        """ Dynamic modification of fields """
+#        res = super(MeasureMeasure, self).fields_view_get(
+#            view_id=view_id,
+#            view_type=view_type,
+#            toolbar=toolbar,
+#            submenu=submenu)
+#        if view_type == 'form':
+#            root = etree.fromstring(res['arch'])
+#            get_list_invisible_form = self._prepare_list_for_invisible()
+#            for field in root.findall(".//field"):
+#                if get_list_invisible_form[field.attrib['name']]:
+#                    attrs = get_list_invisible_form[field.attrib['name']]
+#                    field.set('attrs', str(self._prepare_attrs_value(attrs)))
+#                    orm.setup_modifiers(field, root)
+#            res['arch'] = etree.tostring(root, pretty_print=True)
+#        return res
