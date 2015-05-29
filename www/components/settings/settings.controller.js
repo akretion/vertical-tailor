@@ -29,6 +29,11 @@ angular.module('starter')
 		});
 	};
 
+	$scope.saveLocalServer = function(url) {
+		localStorage.set('local_server', url);
+		console.log('validate ', url);
+	};
+
 	$scope.logout = function () {
 		console.log('logout');
 		jsonRpc.logout(true);

@@ -16,7 +16,10 @@
 			<button class="button button-positive" ng-click="loadForm()">LoadForm</button>
 		</div>
 		<label class="item">Odoo Server <input type="" ng-model="jsonRpc.odoo_server"></input></label>
-		<label class="item">Local Server <input type="" ng-model="global.localServer"></input></label>
+		<div class="item">
+			<label>Local Server <input ng-model="global.localServer"></input></label>
+			<button class="button" ng-click="saveLocalServer(global.localServer)">Enregistrer</button></div>
+		</div>
 		<div class="item"><button class="button button-assertive" ng-click="reset()">Reset</button></div>
 	</ion-content>
 </ion-view>

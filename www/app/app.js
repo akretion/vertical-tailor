@@ -24,6 +24,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 	localStorage.get('odoo_server').then(function (url) {
 		jsonRpc.odoo_server = url;
 	});
+	localStorage.get('local_server').then(function (url) {
+		$state.get('tab').data.localServer = url;
+	});
 }])
 .config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
 
@@ -37,7 +40,7 @@ angular.module('starter', ['ionic','buche','odoo'])
 		data: {
 			global: { 
 				isLoggedIn: undefined,
-				localServer: undefined
+				localServer: 'http://10.47.0.1/'
 			}
 		}
 	})

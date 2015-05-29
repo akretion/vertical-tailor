@@ -73,7 +73,6 @@ angular.module('starter')
 			get: function(key) {
 				var remote = null;
 				var local = null;
-				var neighbour = null;
 
 				var rpromise = remoteStorage.get(key).then(function (result) {
 					remote = result;
@@ -87,14 +86,9 @@ angular.module('starter')
 					return;
 				});
 
-				var npromise = neighbourStorage.get(key).then(function (result) {
-					neighbour = result;
-				}, function (reason) {
-					return;
-				});
 
-				return $q.all([lpromise, rpromise, npromise]).then(function (result) {					
-					return merge(merge(remote, neighbour), local);
+				return $q.all([lpromise, rpromise]).then(function (result) {					
+					return merge(remote, local);
 				});
 			}
 		}
