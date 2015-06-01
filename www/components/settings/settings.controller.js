@@ -40,7 +40,7 @@ angular.module('starter')
 		console.log('save settings', settings);
 		localStorage.set('settings', settings);
 		if (settings.odooServer)
-			jsonRpc.odoo_server = odooServer;
+			jsonRpc.odoo_server = settings.odooServer;
 	};
 
 	$scope.loadForm = function () {
