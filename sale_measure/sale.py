@@ -55,6 +55,7 @@ class SaleOrder(models.Model):
             self._prepare_measure(line, partner_id))
         return {
             'product_id': line['product_id'],
+            #TODO fix the way to get the qty
             'product_uom_qty': line['data'].get('quantity', 1),
             'measure_id': measure.id,
             }
@@ -92,6 +93,13 @@ class SaleOrder(models.Model):
             'partner_matricule': '1234',
             'partner_id': self.partner_id.id,
             'order_line': self.order_line._prepare_order_line_measure(),
+            #TODO add real data
+            'measure_user': {
+                'data': {
+                    'taille': '-1',
+                    'largeur': '-1.5',
+                    'hauteur': '1'
+                }},
             }
 
     @api.model

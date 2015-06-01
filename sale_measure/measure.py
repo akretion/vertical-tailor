@@ -32,10 +32,14 @@ class MeasureMeasure(models.Model):
     quantite = fields.Float('Quantity')
 
     @classmethod
-    def get_form(cls):
-        """ inherited functionso we have a same funtion in custom
-             this function return dictionary with all forms attribute """
+    def _get_form(cls):
         return {}
+
+    @api.model
+    def get_form(self):
+        """ inherited function so we have a same function in custom
+             this function return dictionary with all forms attribute """
+        return self._get_form()
 
     def _check_form(self):
         """function used for checking input value """
@@ -62,9 +66,7 @@ class MeasureMeasure(models.Model):
         return res
 
     def _prepare_attrs_value(self, list_invisible_form):
-
         """  prepare list of invisible form """
-
         return {
             'invisible': [('measure_form_type',
                            'not in',
@@ -72,9 +74,7 @@ class MeasureMeasure(models.Model):
             }
 
     def _prepare_list_for_invisible(self):
-
         """  get a list of invisible form """
-
         dict_fields_link_form = defaultdict(list)
         for form, value in self.get_form().items():
             for field in value:
