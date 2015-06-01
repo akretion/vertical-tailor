@@ -24,9 +24,13 @@ angular.module('starter')
 		}, function (reason) {
 			console.log('login failed');
 			console.log(reason);
+
 			console.log(JSON.stringify(reason));
 			$scope.global.isLoggedIn = false;
-			$scope.error = "Authentication failed";
+			var message = (reason.message ? reason.message : "")
+			var status = (reason.fullTrace && reason.fullTrace.status ? reason.fullTrace.status : "" );
+			$scope.error = ["Authentication failed :", message, "(", status, ")"].join(' ');
+
 		});
 	};
 
