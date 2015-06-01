@@ -3,7 +3,8 @@ angular.module('starter')
 
 
 	function buildUrl() {
-		return localStorage.get('local_server').then(function (url) {
+		return localStorage.get('settings').then(function (settings) {
+			var url = settings.localServer;
 			console.log('new url : ', url + 'neighbour.json');
 			return url + 'neighbour.json';
 		});
