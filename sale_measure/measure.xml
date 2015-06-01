@@ -9,7 +9,7 @@
         <tree string="Measure">
             <field name="product_id" string = "Produit"/>
             <field name="partner_id" string = "Pratner"/>
-            <field name="qty" string = "Quantité"/>
+            <field name="quantite" string = "Quantité"/>
             <field name="measure_form_type" string ="Mesure"/>
         </tree>
     </field>
@@ -25,7 +25,7 @@
                     <field name="product_id" string = "Produit"/>
                     <field name="partner_id" string = "Partenaire"/>
                     <field name="measure_form_type" string ="Mesure"/>
-                    <field name="qty" string = "Quantité"/>
+                    <field name="quantite" string = "Quantité"/>
                 </group>
         </sheet>
     </form>

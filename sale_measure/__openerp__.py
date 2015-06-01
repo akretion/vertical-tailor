@@ -20,10 +20,6 @@
 ###############################################################################
 {
     'name': "Sale measure",
-    'summary': """Manage trainings""",
-    'description': """
-        Sale measure
-    """,
     'author': "Akretion",
     'website': "http://www.Akretion.com",
     'license': 'AGPL-3',
