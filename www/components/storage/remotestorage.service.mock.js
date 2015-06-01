@@ -15,13 +15,8 @@ angular.module('starter')
                 if (val)
                     resolve(JSON.parse(val));
                 else
-                    $http.get(key+'.json').then(function (r) {
-                        console.log(r);
-                        resolve(r.data.result);
-                    }, function () {
-                        reject('key not found')
-                    });
-            });
+                    reject('key not found')
+                });
         }
     }
 }]);
