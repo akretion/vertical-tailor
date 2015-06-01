@@ -21,9 +21,12 @@ angular.module('starter', ['ionic','buche','odoo'])
 			$state.current.data.global.isLoggedIn = false; //ensure state is always uptodate 
 	});
 
-	localStorage.get('odoo_server').then(function (url) {
-		jsonRpc.odoo_server = url;
+	localStorage.get('settings').then(function (settings) {
+		//load config from localStorage
+		if (settings.odooServer)
+			jsonRpc.odoo_server = settings.odooServer;
 	});
+
 }])
 .config(['$stateProvider', '$urlRouterProvider', 'jsonRpcProvider',  function($stateProvider, $urlRouterProvider, jsonRpcProvider) {
 
@@ -35,7 +38,9 @@ angular.module('starter', ['ionic','buche','odoo'])
 		abstract: true,
 		templateUrl: "app/tabs.html",
 		data: {
-			global: { isLoggedIn: undefined}
+			global: { 
+				isLoggedIn: undefined,
+			}
 		}
 	})
 

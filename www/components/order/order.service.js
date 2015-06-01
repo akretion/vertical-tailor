@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.factory('Order', ['storage','$q', function(storage, $q) {
+.factory('Order', ['storage','$q', 'neighbourMerge', function(storage, $q, neighbourMerge) {
 
 	var orders = null;
 	var ordersPromise = null;
@@ -67,6 +67,13 @@ angular.module('starter')
 				console.log('error !', reason);
 				storage.set('orders', orders); //save quand même (async)
 				return reason;
+			});
+		},
+		refreshNeighbour: function () {
+			return neighbourMerge.refresh().then(function () {
+				//new values are now in localStorage
+				//refresh
+				return service.all();
 			});
 		}
 	};

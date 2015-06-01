@@ -28,12 +28,19 @@ angular.module('starter')
 	};
 
 	$scope.refresh = function () {
-		//force reload
+		//force reload from storage
 		Order.all().then(function (orders) {
 			$scope.orders = orders;
 		});
 		//quit edit mode
 		$scope.editMode = false;
+	};
+
+	$scope.refreshNeighbour = function() {
+		//download orders from a local pc instead of odoo
+		Order.refreshNeighbour().then(function (orders) {
+			$scope.orders = orders;
+		});
 	};
 
 	$scope.removeOrder = function (order) {

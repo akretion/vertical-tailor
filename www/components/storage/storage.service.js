@@ -69,20 +69,21 @@ angular.module('starter')
 			get: function(key) {
 				var remote = null;
 				var local = null;
-				
+
 				var rpromise = remoteStorage.get(key).then(function (result) {
 					remote = result;
 				}, function (reason) {
 					return;
 				});
-				
+
 				var lpromise = localStorage.get(key).then(function (result) {
 					local = result;
 				}, function (reason) {
 					return;
 				});
 
-				return $q.all([lpromise, rpromise]).then(function (result) {
+
+				return $q.all([lpromise, rpromise]).then(function (result) {					
 					if (!remote)
 						return local;
 					if (!local)
