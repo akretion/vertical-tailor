@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ The goal of this program is make a measure with different
     forms for example trousers,skirt,.... and for each form there are
     differnt fields, so we hide or show fields as a function of forms  """
@@ -9,7 +10,7 @@ from openerp.osv import orm
 from lxml import etree
 
 
-class MeasureMeasure(models.Model):
+class ProductMeasure(models.Model):
     """Measure Class"""
     _name = 'measure.measure'
     _description = "Measure for each partner"
@@ -29,7 +30,7 @@ class MeasureMeasure(models.Model):
         'sale.order.line',
         'measure_id',
         string="Measure Ligne")
-    quantite = fields.Float('Quantity')
+    quantite = fields.Float('Quantite')
 
     @classmethod
     def _get_form(cls):
@@ -43,25 +44,27 @@ class MeasureMeasure(models.Model):
 
     def _check_form(self):
         """function used for checking input value """
-        for key, value in self.get_form()[self.measure_form_type].items():
-            if 'value' in value.keys():
-                if self[key] not in value['value']:
-                    raise Warning(
-                        _("There are problems in %s the value"
-                          "is not in %s")
-                        % (value['name'], value['value']))
+        for list_dict_question in self.get_form()[self.measure_form_type]:
+            for question in list_dict_question['questions']:
+                if 'value' in question.keys():
+                    if self[question['name']] not in question['value']:
+                        raise Warning(
+                            _("There are problems in %s the value"
+                              " is not in %s")
+                            % (self._fields[question['name']].string,
+                               question['value']))
 
     @api.multi
     def write(self, vals):
         """ Overload write function """
-        res = super(MeasureMeasure, self).write(vals)
+        res = super(ProductMeasure, self).write(vals)
         self._check_form()
         return res
 
     @api.model
     def create(self, vals):
         """ Overload Create function """
-        res = super(MeasureMeasure, self).create(vals)
+        res = super(ProductMeasure, self).create(vals)
         res._check_form()
         return res
 
@@ -77,8 +80,9 @@ class MeasureMeasure(models.Model):
         """  get a list of invisible form """
         dict_fields_link_form = defaultdict(list)
         for form, value in self.get_form().items():
-            for field in value:
-                dict_fields_link_form[field].append(form)
+            for dict_question in value:
+                for question in dict_question['questions']:
+                    dict_fields_link_form[question['name']].append(form)
         return dict_fields_link_form
 
     @api.model
@@ -87,7 +91,7 @@ class MeasureMeasure(models.Model):
                         view_type='form',
                         toolbar=False, submenu=False):
         """ Dynamic modification of fields """
-        res = super(MeasureMeasure, self).fields_view_get(
+        res = super(ProductMeasure, self).fields_view_get(
             view_id=view_id,
             view_type=view_type,
             toolbar=toolbar,
@@ -101,4 +105,5 @@ class MeasureMeasure(models.Model):
                     field.set('attrs', str(self._prepare_attrs_value(attrs)))
                     orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
+        print res['arch']
         return res
