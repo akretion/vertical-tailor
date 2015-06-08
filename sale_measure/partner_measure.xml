@@ -1,47 +1,41 @@
 <openerp>
     <data>
-<record model="ir.ui.view" id="view_partner_measure_tree">
-    <field name="model">partner.measure</field>
-    <field name="type">tree</field>
-    <field name="arch" type="xml">
-        <tree string="Measure">
-            <field name="partner_id" string = "Pratner"/>
-            <field name="date" string = "Date"/>
-            <field name="stature" string = "Stature"/>
-            <field name="weight" string = "Weight"/>
-            <field name="chest_size" string = "Chest size"/>
-            <field name="waistline" string = "Waistline"/>
-            <field name="head_measurement" string = "Head Measurement"/>
-            <field name="Leg_length" string = "Leg length"/>
-            <field name="crotch" string = "Crotch"/>
-            <field name=" Leg_length" string = "Leg length"/>
-            <field name=" pelvis_tower" string = "Pelvis Tower"/>
-        </tree>
-    </field>
-</record>
-<record model="ir.ui.view" id="view_partner_measure_form">
-    <field name="model">partner.measure</field>
-    <field name="type">form</field>
-    <field name="arch" type="xml">
-    <form string="Measure">
-        <sheet>
-            <h1><label string="Measure Page"/></h1>
-                <group col="4">
-                     <field name="partner_id" string = "Pratner"/>
-                    <field name="date" string = "Date"/>
-                    <field name="stature" string = "Stature"/>
-                    <field name="weight" string = "Weight"/>
-                    <field name="chest_size" string = "Chest size"/>
-                    <field name="waistline" string = "Waistline"/>
-                    <field name="head_measurement" string = "Head Measurement"/>
-                    <field name="Leg_length" string = "Leg length"/>
-                    <field name="crotch" string = "Crotch"/>
-                    <field name=" Leg_length" string = "Leg length"/>
-                    <field name=" pelvis_tower" string = "Pelvis Tower"/>
-                </group>
-        </sheet>
-    </form>
-    </field>
-</record>
+        <record model="ir.ui.view" id="view_partner_measure_tree">
+            <field name="model">partner.measure</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Measure">
+                    <field name="date"/>
+                    <field name="stature"/>
+                    <field name="weight"/>
+                    <field name="chest_size"/>
+                    <field name="waistline"/>
+                    <field name="head_measurement"/>
+                    <field name="Leg_length"/>
+                    <field name="crotch"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_partner_measure_form">
+            <field name="model">partner.measure</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Measure">
+                    <sheet>
+                        <h1><label string="Measure Page"/></h1>
+                        <group col="4">
+                            <field name="date"/>
+                            <field name="stature"/>
+                            <field name="weight"/>
+                            <field name="chest_size"/>
+                            <field name="waistline"/>
+                            <field name="head_measurement"/>
+                            <field name="Leg_length"/>
+                            <field name="crotch"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 </data>
 </openerp>

@@ -2,24 +2,25 @@
 <openerp>
     <data>
 
-	<record model="ir.ui.view" id="detail_measure_field_in_view">
-	    <field name="name">New Sale Measure</field>
-	    <field name="model">sale.order</field>
-	    <field name="inherit_id" ref="sale.view_order_form"/>
-	    <field name="arch" type="xml">
-		<xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="before">  
-		 <field name = "measure_id" string = "Mesaure" 
-		  context="{'default_search_partner_id': parent.partner_id,'default_search_product_id': product_id}"/>
-	        <field name="need_measure"/>
-		</xpath>
-	    </field>
-	</record>
-      	<record model="ir.actions.act_window" id="action_line_sale_order_measure_xml">
-		<field name="name">New Sale Order field Measure</field>
-		<field name="res_model">sale.order</field>
-		<field name="view_type">form</field>
-		<field name="view_mode">tree,form</field>
-	</record>   
+        <record model="ir.ui.view" id="detail_measure_field_in_view">
+            <field name="name">New Sale Measure</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="before">  
+                 <field name = "measure_id"
+                  context="{'default_search_partner_id': parent.partner_id,'default_search_product_id': product_id}"/>
+                    <field name="need_measure"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_line_sale_order_measure_xml">
+            <field name="name">New Sale Order field Measure</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
     </data> 
 </openerp>
