@@ -30,8 +30,8 @@
         ],
     'data': [
         'measure.xml',
-        'product.xml'
-
+        'product.xml',
+        'partner_measure',
     ],
     # only loaded in demonstration mode
     'demo': [],
