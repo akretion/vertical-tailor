@@ -10,4 +10,7 @@
 ##############################################################################
 
 
-from . import models
+from . import sale
+from . import measure
+from . import product
+from . import partner_measure
