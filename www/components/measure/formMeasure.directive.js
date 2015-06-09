@@ -10,21 +10,21 @@ angular.module('starter')
             '<div class="item list-mesure" ng-repeat="c in categorie.questions" ng-class="{\'active\': measure.data[c.name]}">' +
                 '<div ng-switch="c.widget" class="question-widget">' +
                     '<div ng-switch-when="selection" ng-click="click(c.name, $event)">' +
-                        '<label><span>{{c.name}}</span></label>' +
+                        '<label><span>{{c.label}}</span></label>' +
                         '<div class="button-bar">' +
                             '<button class="button" ng-repeat="v in c.value" ng-class="{\'active\': v == measure.data[c.name]}">{{ v }}</button>' +
                         '</div>' +
                     '</div>' +
                     '<div ng-switch-when="buttons">' +
-                        '<label><span>{{c.name}}</span></label>' +
+                        '<label><span>{{c.label}}</span></label>' +
                         '<select ng-model="measure.data[c.name]" ng-options="v as v for v in c.value "></select>' +
                     '</div>' +
                     '<div ng-switch-when="numeric">' +
-                        '<label><span>{{c.name}}</span></label>' +
+                        '<label><span>{{c.label}}</span></label>' +
                         '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number"></input>' +
                     '</div>' +
                     '<div ng-switch-when="number">' +
-                        '<label><span>{{c.name}}</span></label>' +
+                        '<label><span>{{c.label}}</span></label>' +
                         '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number"></input>' +
                     '</div>' +
                 '</div>' +

@@ -48,7 +48,7 @@ angular.module('starter')
         Order.remove(order);
     };
 
-}]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter) {
+}]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter','$q', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter, $q) {
     console.log('OrderDetailCtrl');
 
     $scope.order = null;    
@@ -60,7 +60,8 @@ angular.module('starter')
     Order.get($stateParams.orderId).then(function (order) {
         $scope.order = order;
         $scope.isOrderDone = isOrderDoneFilter($scope.order);
-    }, function (reason) {
+        return order;
+    }).then(null, function (reason) {
         $state.go('tab.order');
         return reason;
     });
