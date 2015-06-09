@@ -17,7 +17,7 @@ angular.module('starter')
         });
     });
     
-    Formulaire.get('commun').then(function (formulaire) {
+    Formulaire.get('common').then(function (formulaire) {
         $scope.formUser = formulaire;
     });
 

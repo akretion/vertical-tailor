@@ -3,7 +3,7 @@ angular.module('starter')
     var getKeys = {
         'orders': { domain: 'sale.order' , action: 'get_measure' },
         'formsProducts': { domain: 'product.template', action: 'get_measurable_product' },
-        'forms': { domain: 'measure.measure', action: 'get_form'}
+        'forms': { domain: 'product.measure', action: 'get_form'}
     };
     var setKeys = {
         'toSync': { domain: 'sale.order', action:'set_measure'}
