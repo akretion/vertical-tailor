@@ -108,6 +108,11 @@
 	display: inline-block;
 	border-radius: 2px;
 }
+.label.label-calm {
+	border-color: #0A9EC7;
+	background-color: #11C1F3;
+	color: #FFF;
+}
 
 .item h1 .small {
 	font-size:16px;
