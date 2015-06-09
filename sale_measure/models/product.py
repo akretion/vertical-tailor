@@ -30,7 +30,7 @@ class ProductTemplate(models.Model):
 
     def _get_measure_form_type(self):
         form_list = []
-        form = self.env['measure.measure']._get_form()
+        form = self.env['product.measure']._get_form()
         for key in form.keys():
             form_list.append((key, key))
         return form_list

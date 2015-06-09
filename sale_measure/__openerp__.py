@@ -29,9 +29,11 @@
         'sale'
         ],
     'data': [
-        'measure.xml',
-        'product.xml',
-        'partner_measure',
+        'views/measure.xml',
+        'views/partner_measure.xml',
+        'views/partner.xml',
+        'views/product.xml',
+        'views/sale.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],

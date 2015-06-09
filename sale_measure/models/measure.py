@@ -12,7 +12,7 @@ from lxml import etree
 
 class ProductMeasure(models.Model):
     """Measure Class"""
-    _name = 'measure.measure'
+    _name = 'product.measure'
     _description = "Measure for each partner"
 
     product_id = fields.Many2one(
@@ -40,7 +40,9 @@ class ProductMeasure(models.Model):
     def get_form(self):
         """ inherited function so we have a same function in custom
              this function return dictionary with all forms attribute """
-        return self._get_form()
+        res = self._get_form()
+        res['common'] = self.env['partner.measure']._get_form()
+        return res
 
     def _check_form(self):
         """function used for checking input value """
@@ -105,5 +107,4 @@ class ProductMeasure(models.Model):
                     field.set('attrs', str(self._prepare_attrs_value(attrs)))
                     orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
-        print res['arch']
         return res

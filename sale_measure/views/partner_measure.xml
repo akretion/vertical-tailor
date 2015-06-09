@@ -10,9 +10,10 @@
                     <field name="weight"/>
                     <field name="chest_size"/>
                     <field name="waistline"/>
-                    <field name="head_measurement"/>
-                    <field name="Leg_length"/>
+                    <field name="head_size"/>
+                    <field name="leg_length"/>
                     <field name="crotch"/>
+                    <field name="pelvis_size"/>
                 </tree>
             </field>
         </record>
@@ -29,9 +30,10 @@
                             <field name="weight"/>
                             <field name="chest_size"/>
                             <field name="waistline"/>
-                            <field name="head_measurement"/>
-                            <field name="Leg_length"/>
+                            <field name="head_size"/>
+                            <field name="leg_length"/>
                             <field name="crotch"/>
+                            <field name="pelvis_size"/>
                         </group>
                     </sheet>
                 </form>

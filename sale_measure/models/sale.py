@@ -10,7 +10,7 @@ class SaleLineOrder(models.Model):
     _inherit = 'sale.order.line'
 
     measure_id = fields.Many2one(
-        'measure.measure',
+        'product.measure',
         string="Measure",
         domain="[(('product_id','=',product_id))]")
     need_measure = fields.Boolean(compute='_compute_need_measure', store=True)
@@ -51,7 +51,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def _prepare_order_line_from_measure(self, line, partner_id):
-        measure = self.env['measure.measure'].create(
+        measure = self.env['product.measure'].create(
             self._prepare_measure(line, partner_id))
         return {
             'product_id': line['product_id'],
@@ -76,13 +76,23 @@ class SaleOrder(models.Model):
         if not vals.get('isLocalOnly'):
             for line in vals['order_line']:
                 measure_vals = self._prepare_measure(line, vals['partner_id'])
-                measure = self.env['measure.measure'].create(measure_vals)
+                measure = self.env['product.measure'].create(measure_vals)
                 line = self.env['sale.order.line'].browse(line['line_id'])
                 line.write({'measure_id': measure.id})
         else:
             vals = self._prepare_order_from_measure(vals)
             self.create(vals)
         return True
+
+    def _prepare_partner_measure(self):
+        res = {}
+        measure = self.partner_id.measure_ids\
+            and self.partner_id.measure_ids[0]
+        if measure:
+            for field_name, field in measure._columns.items():
+                if hasattr(field, 'form') and field.form:
+                    res[field_name] = measure[field_name]
+        return res
 
     @api.one
     def _prepare_export_measure_from_order(self):
@@ -95,12 +105,9 @@ class SaleOrder(models.Model):
             'order_line': self.order_line._prepare_order_line_measure(),
             #TODO add real data
             'measure_user': {
-                'data': {
-                    'taille': '-1',
-                    'largeur': '-1.5',
-                    'hauteur': '1'
-                }},
+                'data': self._prepare_partner_measure(),
             }
+        }
 
     @api.model
     def get_measure(self):
