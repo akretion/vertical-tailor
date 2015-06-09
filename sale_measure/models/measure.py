@@ -49,7 +49,8 @@ class ProductMeasure(models.Model):
         for list_dict_question in self.get_form()[self.measure_form_type]:
             for question in list_dict_question['questions']:
                 if 'value' in question.keys():
-                    if self[question['name']] not in question['value']:
+                    val = self[question['name']]
+                    if val and val not in question['value']:
                         raise Warning(
                             _("There are problems in %s the value"
                               " is not in %s")
