@@ -4,7 +4,7 @@
             <field name="model">partner.measure</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Measure">
+                <tree string="Measure" colors="grey:active==False">
                     <field name="date"/>
                     <field name="stature"/>
                     <field name="weight"/>
@@ -14,6 +14,7 @@
                     <field name="leg_length"/>
                     <field name="crotch"/>
                     <field name="pelvis_size"/>
+                    <field name="active" invisible="True"/>
                 </tree>
             </field>
         </record>

@@ -1,22 +1,34 @@
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class Partner(models.Model):
     _inherit = "res.partner"
 
-    measure_ids = fields.One2many('partner.measure', 'partner_id')
+    measure_ids = fields.One2many('partner.measure', 'partner_id',
+        domain=['|', ('active', '=', False), ('active', '=', True)])
     product_measure_ids = fields.One2many('product.measure', 'partner_id')
 
 
 class PartnerMeasure(models.Model):
     _name = "partner.measure"
-    _order = "date desc"
+    _order = "date desc, id desc"
+
+    @api.depends('partner_id.measure_ids.date')
+    @api.one
+    def _is_active(self):
+        if self.partner_id.measure_ids[0] != self:
+            if self.active:
+                self.active = False
+        else:
+            if not self.active:
+                self.active = True
 
     partner_id = fields.Many2one(
         'res.partner',
         string="partner",
         required=True)
-    date = fields.Date("Date")
+    date = fields.Date("Date", default=fields.datetime.now(), required=True)
+    active = fields.Boolean("Active", compute=_is_active, store=True)
     stature = fields.Float("Stature", form=True)
     weight = fields.Float("Weight", form=True)
     chest_size = fields.Float("Chest size", form=True)
