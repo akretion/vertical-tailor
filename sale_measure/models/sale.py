@@ -71,17 +71,33 @@ class SaleOrder(models.Model):
                 ],
             }
 
+    @api.one
+    def set_partner_measure(self, vals):
+        partner_measure_obj = self.env['partner.measure']
+        domain = [('partner_id', '=', self.partner_id.id)]
+        for field_name, field in partner_measure_obj._columns.items():
+            if hasattr(field, 'form') and field.form:
+                domain.append((field_name, '=', vals[field_name]))
+        if not partner_measure_obj.search(domain):
+            vals['partner_id'] = self.partner_id.id
+            partner_measure_obj.create(vals)
+        return True
+
     @api.model
     def set_measure(self, vals):
         if not vals.get('isLocalOnly'):
+            sale_order = None
             for line in vals['order_line']:
                 measure_vals = self._prepare_measure(line, vals['partner_id'])
                 measure = self.env['product.measure'].create(measure_vals)
                 line = self.env['sale.order.line'].browse(line['line_id'])
                 line.write({'measure_id': measure.id})
+                if not sale_order:
+                    sale_order = line.order_id
         else:
             vals = self._prepare_order_from_measure(vals)
-            self.create(vals)
+            sale_order = self.create(vals)
+        sale_order.set_partner_measure(vals['measure_user']['data'])
         return True
 
     def _prepare_partner_measure(self):
