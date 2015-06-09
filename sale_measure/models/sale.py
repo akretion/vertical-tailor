@@ -46,11 +46,21 @@ class SaleOrder(models.Model):
         return res
 
     @api.model
-    def _get_partner_from_measure(self):
-        return 1
+    def _get_partner_from_measure(self, vals):
+        return self.env['res.partner'].search([
+            ('ref', '=', vals['partner_matricule']),
+            ])
+
+    @api.model
+    def _get_product(self, line):
+        tmpl = self.env['product.template'].browse(line['product_tmpl_id'])
+        return tmpl.product_variant_ids[0].id
 
     @api.model
     def _prepare_order_line_from_measure(self, line, partner_id):
+        #TODO be more explicite, use product_tmpl_id
+        line['product_tmpl_id'] = line['product_id']
+        line['product_id'] = self._get_product(line)
         measure = self.env['product.measure'].create(
             self._prepare_measure(line, partner_id))
         return {
@@ -62,11 +72,11 @@ class SaleOrder(models.Model):
 
     @api.model
     def _prepare_order_from_measure(self, vals):
-        partner_id = self._get_partner_from_measure()
+        partner = self._get_partner_from_measure(vals)
         return {
-            'partner_id': partner_id,
+            'partner_id': partner.id,
             'order_line': [
-                (0, 0, self._prepare_order_line_from_measure(line, partner_id))
+                (0, 0, self._prepare_order_line_from_measure(line, partner.id))
                 for line in vals['order_line']
                 ],
             }
@@ -77,7 +87,7 @@ class SaleOrder(models.Model):
         domain = [('partner_id', '=', self.partner_id.id)]
         for field_name, field in partner_measure_obj._columns.items():
             if hasattr(field, 'form') and field.form:
-                domain.append((field_name, '=', vals[field_name]))
+                domain.append((field_name, '=', vals.get(field_name)))
         if not partner_measure_obj.search(domain):
             vals['partner_id'] = self.partner_id.id
             partner_measure_obj.create(vals)
@@ -95,8 +105,8 @@ class SaleOrder(models.Model):
                 if not sale_order:
                     sale_order = line.order_id
         else:
-            vals = self._prepare_order_from_measure(vals)
-            sale_order = self.create(vals)
+            sale_vals = self._prepare_order_from_measure(vals)
+            sale_order = self.create(sale_vals)
         sale_order.set_partner_measure(vals['measure_user']['data'])
         return True
 
