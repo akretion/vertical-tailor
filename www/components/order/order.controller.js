@@ -48,7 +48,7 @@ angular.module('starter')
         Order.remove(order);
     };
 
-}]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter) {
+}]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter','$q', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter, $q) {
     console.log('OrderDetailCtrl');
 
     $scope.order = null;    
@@ -56,11 +56,28 @@ angular.module('starter')
     $scope.editMode = false;
     $scope.produitsFormulaire = null;
     $scope.isOrderDone = null;
+    $scope.forms = [];
 
     Order.get($stateParams.orderId).then(function (order) {
         $scope.order = order;
         $scope.isOrderDone = isOrderDoneFilter($scope.order);
-    }, function (reason) {
+        return order;
+    }).then(function (order) {
+        return $q.when([
+            Formulaire.get(order.measure_user.form).then(function (f) {
+                var r = {};
+                r[order.measure_user.form] = f;
+                $scope.forms.push(r);
+            }),
+            order.order_line.map(function (o) {
+                Formulaire.get(o.form).then(function (f) {
+                    var r = {};
+                    r[o.form] = f;
+                    $scope.forms.push(r);
+                });
+            })
+        ]);
+    }).then(null, function (reason) {
         $state.go('tab.order');
         return reason;
     });

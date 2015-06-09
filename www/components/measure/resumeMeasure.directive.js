@@ -3,19 +3,21 @@
 angular.module('starter')
 .directive('resumeMeasures', [function () {
     return { 
-        scope: { measure:'=' },
+        scope: { measure:'=', form:'=' },
         template: '' +
         '<div class="row responsive-sm row-result" ng-repeat="m in dateResume">' +
             '<div class="col" ng-repeat="(key, val) in m">'+
-                '<label>{{val}}</label>'+
+                '<label>{{lookup[val]}}</label>'+
                 '<div class="data-mesure">{{ measure.data[val] }}</div>'+
             '</div>'+
         '</div>',
         link: function ($scope, elem, attrs) {
             $scope.dataResume = [];
+            $scope.lookupTable = {};
             $scope.$watchCollection('measure.data', function (newVal, oldVal) {
             if (newVal)
                 $scope.dateResume = splitIn3(newVal);
+                $scope.lookupTable = lookup($scope.form);
             });
 
             function splitIn3 (a) { //split an Object into array of 3 cols
@@ -30,6 +32,17 @@ angular.module('starter')
                     prev[prev.length -1].push(current);
                     return prev;
                 }, []);
+            }
+            function lookup(form) {
+                console.log('lookup', form);
+                var lookupTable = {};
+                if (form)
+                    form.forEach(function (f) {
+                        f.questions.forEach(function (q) {
+                            lookupTable[q.name] = q.label;
+                        });
+                    });
+                return lookupTable;
             }
         }
     };
