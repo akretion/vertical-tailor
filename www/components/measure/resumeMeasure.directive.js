@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('starter')
-.directive('resumeMeasures', [function () {
+.directive('resumeMeasures', ['Formulaire', function (Formulaire) {
     return { 
-        scope: { measure:'=', form:'=' },
+        scope: { measure:'='},
         template: '' +
         '<div class="row responsive-sm row-result" ng-repeat="m in dateResume">' +
             '<div class="col" ng-repeat="(key, val) in m">'+
@@ -15,9 +15,20 @@ angular.module('starter')
             $scope.dataResume = [];
             $scope.lookupTable = {};
             $scope.$watchCollection('measure.data', function (newVal, oldVal) {
-            if (newVal)
-                $scope.dateResume = splitIn3(newVal);
-                $scope.lookupTable = lookup($scope.form);
+                if (newVal)
+                    $scope.dateResume = splitIn3(newVal);
+            });
+
+            var unWatchForm = $scope.$watch('measure.form', function (newVal) {
+                //create a lookup table only when measure.form is resolved
+                //destroy thereafter because the form will not change anymore.
+                if (!newVal)
+                    return;
+
+                Formulaire.get(newVal).then(function (form) {
+                    $scope.lookupTable = lookup(form);
+                });
+                unWatchForm(); //self deregister
             });
 
             function splitIn3 (a) { //split an Object into array of 3 cols
@@ -34,14 +45,13 @@ angular.module('starter')
                 }, []);
             }
             function lookup(form) {
-                console.log('lookup', form);
+            //build a lookup table in the form : { 'head_size': 'Head size'}
                 var lookupTable = {};
-                if (form)
-                    form.forEach(function (f) {
-                        f.questions.forEach(function (q) {
-                            lookupTable[q.name] = q.label;
-                        });
+                form.forEach(function (f) {
+                    f.questions.forEach(function (q) {
+                        lookupTable[q.name] = q.label; //there should be no collision
                     });
+                });
                 return lookupTable;
             }
         }

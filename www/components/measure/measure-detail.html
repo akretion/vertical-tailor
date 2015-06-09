@@ -19,14 +19,14 @@
                     </div>
                 </label>
             </div>
-            <div resume-measures measure="order.measure_user" form="formUser" ng-hide="editUserToggle">resume</div>
+            <div resume-measures measure="order.measure_user" ng-hide="editUserToggle">resume</div>
         </div>
         <div form-measure measure="order.measure_user" hide-title="true" form="formUser" ng-show="editUserToggle"  style="pointer-events: initial;"></div>
     <div ng-show="form.length == 0">Pas de formulaire</div>
 
     <div form-measure measure="measure" form="form">directive</div>
 
-    <div resume-measures measure="measure" form="form"></div>
+    <div resume-measures measure="measure"></div>
     <div class="list">
         <div class="item item-button-right bar big-item">
             <button class="button button-positive icon icon-checkmark pull-right" ng-click="saveAndBackToOrder()">Enregistrer</button>

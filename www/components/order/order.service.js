@@ -40,7 +40,7 @@ angular.module('starter')
                 isLocalOnly: true,
                 partner_matricule: null,
                 measure_user: {
-                    form: 'commun',
+                    form: 'common',
                     data: {}
                 }
             };

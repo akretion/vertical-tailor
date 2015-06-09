@@ -32,10 +32,9 @@
                         <button class="button button-positive icon ion-checkmark" ng-click="saveMeasure(measureDraft, produitFormulaire);produitFormulaire=null"></button>
 
                     </ion-item>
-                    <ion-item>{{ forms }}</ion-item>
                     <ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, measure) in order.order_line track by key" ui-sref="tab.measure({orderId: order.id, measureId: key})">
                         <p class="commande-name">{{ measure.product_name }} <small>{{ measure.form }}</small></p>
-                        <div resume-measures measure="measure" form="forms[measure.form]"></div>
+                        <div resume-measures measure="measure"></div>
                         <ion-delete-button class="ion-minus" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
                         <i class="icon ion-chevron-right icon-accessory"></i>
                     </ion-item>
