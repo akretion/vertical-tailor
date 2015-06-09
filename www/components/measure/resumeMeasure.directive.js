@@ -7,7 +7,7 @@ angular.module('starter')
         template: '' +
         '<div class="row responsive-sm row-result" ng-repeat="m in dateResume">' +
             '<div class="col" ng-repeat="(key, val) in m">'+
-                '<label>{{lookup[val]}}</label>'+
+                '<label>{{lookupTable[val]}}</label>'+
                 '<div class="data-mesure">{{ measure.data[val] }}</div>'+
             '</div>'+
         '</div>',
