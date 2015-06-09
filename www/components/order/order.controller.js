@@ -31,6 +31,10 @@ angular.module('starter')
         //force reload from storage
         Order.all().then(function (orders) {
             $scope.orders = orders;
+
+            orders.filter(function (o) {
+                return o.state === 'done'; //get orders ready
+            }).forEach(Order.terminate); //terminate them
         });
         //quit edit mode
         $scope.editMode = false;
