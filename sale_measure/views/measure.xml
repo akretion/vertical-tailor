@@ -8,7 +8,6 @@
                 <tree string="Measure">
                     <field name="product_id"/>
                     <field name="partner_id"/>
-                    <field name="quantite"/>
                     <field name="measure_form_type"/>
                 </tree>
             </field>
@@ -25,7 +24,6 @@
                             <field name="product_id"/>
                             <field name="partner_id"/>
                             <field name="measure_form_type"/>
-                            <field name="quantite"/>
                         </group>
                 </sheet>
             </form>

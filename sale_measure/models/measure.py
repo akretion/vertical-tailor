@@ -30,7 +30,6 @@ class ProductMeasure(models.Model):
         'sale.order.line',
         'measure_id',
         string="Measure Ligne")
-    quantite = fields.Float('Quantite')
 
     @classmethod
     def _get_form(cls):
