@@ -12,6 +12,10 @@
         <p>{{ error }}</p>
         <div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
         </div>
+        <div class="item item-divider">
+            Réglages
+        </div>
+
         <label class="item item-input item-stacked-label">
             <span class="item-label">Odoo Server </span>
             <input ng-model="settings.odooServer" type="text" placeholder="Serveur Odoo"></input>
@@ -27,8 +31,8 @@
             Debug
         </div>
         <div class="item" ng-show="global.isLoggedIn">
-            <button class="button button-positive" ng-click="loadForm()">LoadForm</button>
+            <button class="button button-positive" ng-click="loadForm()">Recharger produits</button>
         </div>
-        <div class="item"><button class="button button-assertive" ng-click="reset()">Reset</button></div>
+        <div class="item"><button class="button button-assertive" ng-click="reset()">Réinitaliser</button></div>
     </ion-content>
 </ion-view>
