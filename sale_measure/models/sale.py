@@ -3,6 +3,7 @@ Sale line Class there is a link with measure Class
 
 """
 from openerp import fields, models, api
+from openerp.exceptions import Warning
 
 
 class SaleLineOrder(models.Model):
@@ -54,10 +55,23 @@ class SaleOrder(models.Model):
         return res
 
     @api.model
+    def _get_partner_domain(self, vals):
+        return [('ref', '=', vals['partner_matricule'])]
+
+    @api.model
     def _get_partner_from_measure(self, vals):
-        return self.env['res.partner'].search([
-            ('ref', '=', vals['partner_matricule']),
-            ])
+        partner_obj = self.env['res.partner']
+        if vals['partner_matricule']:
+            domain = self._get_partner_domain(vals)
+            partner = partner_obj.search(domain)
+            if len(partner) == 1:
+                return partner
+            elif len(partner) > 1:
+                raise Warning('Too many partner found for the reference %s')
+        return partner_obj.create({
+            'name': vals['partner_name'],
+            'ref': vals['partner_matricule'],
+            })
 
     @api.model
     def _get_product(self, line):
