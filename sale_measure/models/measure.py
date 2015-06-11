@@ -40,6 +40,13 @@ class ProductMeasure(models.Model):
         """ inherited function so we have a same function in custom
              this function return dictionary with all forms attribute """
         res = self._get_form()
+        for form in res:
+            res[form][0]['questions'].insert(0, {
+                'name': 'qty',
+                'widget': 'numeric',
+                'label': self.env['sale.order.line'].\
+                    _columns['product_uom_qty'].string,
+                    })
         res['common'] = self.env['partner.measure']._get_form()
         return res
 

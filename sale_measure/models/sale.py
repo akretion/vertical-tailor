@@ -52,6 +52,7 @@ class SaleOrder(models.Model):
             'partner_id': partner_id,
             }
         res.update(line['data'])
+        del res['qty']
         return res
 
     @api.model
@@ -88,7 +89,7 @@ class SaleOrder(models.Model):
         return {
             'product_id': line['product_id'],
             #TODO fix the way to get the qty
-            'product_uom_qty': line['data'].get('quantity', 1),
+            'product_uom_qty': line['data'].get('qty', 1),
             'measure_id': measure.id,
             }
 
