@@ -110,9 +110,11 @@ angular.module('starter')
     };
 
     $scope.terminateOrder = function () {
-        $scope.isOrderDone = true;
-        $scope.order.state = 'done';
-        Order.terminate($scope.order);
-        $state.go('tab.order');
+        if ($scope.isOrderDone) {        
+            $scope.isOrderDone = false;//block double click
+            $scope.order.state = 'done';
+            Order.terminate($scope.order);
+            $state.go('tab.order');
+        }
     };
 }]);
