@@ -110,6 +110,7 @@ angular.module('starter')
     };
 
     $scope.terminateOrder = function () {
+        $scope.isOrderDone = true;
         $scope.order.state = 'done';
         Order.terminate($scope.order);
         $state.go('tab.order');
