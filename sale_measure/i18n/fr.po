@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_measure
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-16 14:24+0000\n"
+"PO-Revision-Date: 2015-06-16 17:30+0100\n"
+"Last-Translator: Abdessamad HILALI <abdessamad.hilali@akretion.com>\n"
+"Language-Team:  <abdessamad.hilali@akretion.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: Français\n"
+
+#. module: sale_measure
+#: field:partner.measure,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: sale_measure
+#: field:partner.measure,chest_size:0
+msgid "Chest size"
+msgstr "Tour de poitrine"
+
+#. module: sale_measure
+#: field:partner.measure,create_uid:0
+#: field:product.measure,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_measure
+#: field:partner.measure,create_date:0
+#: field:product.measure,create_date:0
+msgid "Created on"
+msgstr "Créé sur"
+
+#. module: sale_measure
+#: field:partner.measure,crotch:0
+msgid "Crotch"
+msgstr "Entre-jambes"
+
+#. module: sale_measure
+#: field:partner.measure,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: sale_measure
+#: field:partner.measure,head_size:0
+msgid "Head Size"
+msgstr "Tour de Tête"
+
+#. module: sale_measure
+#: field:partner.measure,id:0
+#: field:product.measure,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_measure
+#: field:partner.measure,write_uid:0
+#: field:product.measure,write_uid:0
+msgid "Last Updated by"
+msgstr "Mise à Jour Par"
+
+#. module: sale_measure
+#: field:partner.measure,write_date:0
+#: field:product.measure,write_date:0
+msgid "Last Updated on"
+msgstr "Mise à Jour"
+
+#. module: sale_measure
+#: field:partner.measure,leg_length:0
+msgid "Leg length"
+msgstr "Longueur de Jambe"
+
+#. module: sale_measure
+#: model:ir.ui.menu,name:sale_measure.choix_measure
+#: view:partner.measure:sale_measure.view_partner_measure_form
+#: view:partner.measure:sale_measure.view_partner_measure_tree
+#: view:product.measure:sale_measure.view_measure_form
+#: view:product.measure:sale_measure.view_measure_tree
+#: view:res.partner:sale_measure.detail_field_in_view
+#: field:sale.order.line,measure_id:0
+msgid "Measure"
+msgstr "Mesure"
+
+#. module: sale_measure
+#: view:product.template:sale_measure.product_template_form_view
+msgid "Measure Form Type"
+msgstr "Type de Mesure"
+
+#. module: sale_measure
+#: field:product.measure,sale_line_ids:0
+msgid "Measure Ligne"
+msgstr "Ligne de Mesure"
+
+#. module: sale_measure
+#: view:partner.measure:sale_measure.view_partner_measure_form
+#: view:product.measure:sale_measure.view_measure_form
+msgid "Measure Page"
+msgstr "Page de Mesure"
+
+#. module: sale_measure
+#: view:product.measure:sale_measure.measure_search
+msgid "Measure With Order"
+msgstr "Mesure avec Commande"
+
+#. module: sale_measure
+#: view:product.measure:sale_measure.measure_search
+msgid "Measure Without Order"
+msgstr "Mesure sans Commande"
+
+#. module: sale_measure
+#: model:ir.model,name:sale_measure.model_product_measure
+msgid "Measure for each partner"
+msgstr "Mesure pour Chaque Client"
+
+#. module: sale_measure
+#: field:product.template,measure_form_type:0
+msgid "Measure form type"
+msgstr "Type de Mesure"
+
+#. module: sale_measure
+#: field:res.partner,measure_ids:0
+msgid "Measure ids"
+msgstr "Mesure"
+
+#. module: sale_measure
+#: model:ir.actions.act_window,name:sale_measure.act_partner_2_measure
+msgid "Measure to Partner"
+msgstr "Mesure Client"
+
+#. module: sale_measure
+#: field:sale.order.line,need_measure:0
+msgid "Need measure"
+msgstr "Besion de Mesure"
+
+#. module: sale_measure
+#: model:ir.actions.act_window,name:sale_measure.action_line_sale_order_measure_xml
+msgid "New Sale Order field Measure"
+msgstr "Champ Mesure Pour Nouveau Bon de Commande"
+
+#. module: sale_measure
+#: model:ir.model,name:sale_measure.model_res_partner
+msgid "Partner"
+msgstr "Client"
+
+#. module: sale_measure
+#: field:partner.measure,pelvis_size:0
+msgid "Pelvis Size"
+msgstr "Taille Bassin"
+
+#. module: sale_measure
+#: model:ir.actions.act_window,name:sale_measure.action_product_measure_xml
+#: model:ir.ui.menu,name:sale_measure.choix_measure_product_form
+#: field:product.measure,product_id:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: sale_measure
+#: model:ir.model,name:sale_measure.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: sale_measure
+#: field:res.partner,product_measure_ids:0
+msgid "Product measure ids"
+msgstr "Mesure Produit"
+
+#. module: sale_measure
+#: model:ir.model,name:sale_measure.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_measure
+#: model:ir.model,name:sale_measure.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: sale_measure
+#: field:partner.measure,stature:0
+msgid "Stature"
+msgstr "Stature"
+
+#. module: sale_measure
+#: code:addons/sale_measure/models/measure.py:61
+#, python-format
+msgid "There are problems in %s the value is not in %s"
+msgstr "Il y a des problèmes dans  %s car la valeur correcte est dans %s"
+
+#. module: sale_measure
+#: field:partner.measure,waistline:0
+msgid "Waistline"
+msgstr "Tour de ceinture"
+
+#. module: sale_measure
+#: field:partner.measure,weight:0
+msgid "Weight"
+msgstr "Poids"
+
+#. module: sale_measure
+#: field:partner.measure,partner_id:0
+#: field:product.measure,partner_id:0
+msgid "partner"
+msgstr "Client"
+
