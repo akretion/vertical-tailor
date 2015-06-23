@@ -26,7 +26,8 @@ from openerp import fields, models, api
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    measure_form_type = fields.Selection(selection='_get_measure_form_type')
+    measure_form_type = fields.Selection(string='Measure Form Type',
+                                         selection='_get_measure_form_type')
 
     def _get_measure_form_type(self):
         form_list = []

@@ -5,13 +5,14 @@
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
               <xpath expr="//form/sheet/div/div[@name='options']/div/field[@name='sale_ok']" position="before">
-                <label string="Measure Form Type" />
+                <group col="4">
                 <field name = "measure_form_type"/>
+                </group>
                 </xpath>
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_product_measure_xml">
+   <!--     <record model="ir.actions.act_window" id="action_product_template_xml">
             <field name="name">Product</field>
             <field name="res_model">product.template</field>
             <field name="view_type">form</field>
@@ -21,7 +22,7 @@
         <menuitem
             name="Product"
             id="choix_measure_product_form"
-            parent="base.menu_measure"
-            action="action_product_measure_xml"/>
+            parent="base.menu_product"
+            action="action_product_template_xml"/>-->
      </data>
 </openerp>

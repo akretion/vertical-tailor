@@ -58,15 +58,9 @@
         </record>
 
         <menuitem
-            id="base.menu_measure"
-            name="Measure"
-            parent="base.menu_base_partner"
-            sequence="9"/>
-
-        <menuitem
             name="Measure"
             id="choix_measure"
-            parent="base.menu_measure"
+            parent="base.menu_product"
             action="action_product_measure_xml"/>
 
     </data> 
