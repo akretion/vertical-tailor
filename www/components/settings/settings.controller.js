@@ -2,7 +2,7 @@ angular.module('starter')
 .controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'localStorage', function($scope, $stateParams, $state, jsonRpc, Formulaire, localStorage) {
 
     $scope.global = $state.current.data.global;
-    $scope.settings = { localServer: "http://10.47.0.1/", odooServer: ""};
+    $scope.settings = { localServer: "http://10.47.0.1/", odooServer: "", odooDb: "db"};
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         //because ctrl is not reloaded
@@ -18,7 +18,7 @@ angular.module('starter')
     $scope.login = function () {
         console.log("dans login()");
         $scope.error = "";
-        jsonRpc.login('db', this.bucheUsername, this.buchePassword).then(function () { //this.buche because of new scope of ion-view
+        jsonRpc.login(jsonRpc.odoo_db, this.bucheUsername, this.buchePassword).then(function () { //this.buche because of new scope of ion-view
             console.log("login succeed");
             $scope.global.isLoggedIn = true;
         }, function (reason) {
@@ -45,6 +45,8 @@ angular.module('starter')
         localStorage.set('settings', settings);
         if (settings.odooServer)
             jsonRpc.odoo_server = settings.odooServer;
+        if (settings.odooDb)
+            jsonRpc.odoo_db = settings.odooDb;
     };
 
     $scope.loadForm = function () {
