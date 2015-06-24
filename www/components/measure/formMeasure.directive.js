@@ -21,11 +21,11 @@ angular.module('starter')
                     '</div>' +
                     '<div ng-switch-when="numeric">' +
                         '<label><span>{{c.label}}</span></label>' +
-                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number"></input>' +
+                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="numeric"></input>' +
                     '</div>' +
                     '<div ng-switch-when="number">' +
                         '<label><span>{{c.label}}</span></label>' +
-                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number"></input>' +
+                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number" step="0.5"></input>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
