@@ -39,6 +39,7 @@ class SaleLineOrder(models.Model):
             'product_id': self.product_id.id,
             'form': self.product_id.measure_form_type,
             'line_id': self.id,
+            'qty': self.product_uom_qty,
             }
 
 

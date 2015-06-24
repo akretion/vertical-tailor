@@ -1,4 +1,4 @@
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 
 
 class Partner(models.Model):
@@ -38,17 +38,16 @@ class PartnerMeasure(models.Model):
     crotch = fields.Float("Crotch", form=True)
     pelvis_size = fields.Float("Pelvis Size", form=True)
 
-    @classmethod
-    def _get_form(cls):
+    def _get_form(self):
         res = {
             'group_title': '',
             'questions' : [],
             }
-        for field_name, field in cls._columns.items():
+        for field_name, field in self._fields.items():
             if hasattr(field, 'form') and field.form:
                 res['questions'].append({
                     'name': field_name,
                     'widget': 'numeric',
-                    'label': field.string,
+                    'label': field.get_description(self.env)['string'],
                     })
         return [res]

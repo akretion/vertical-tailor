@@ -44,10 +44,10 @@ class ProductMeasure(models.Model):
             res[form][0]['questions'].insert(0, {
                 'name': 'qty',
                 'widget': 'numeric',
-                'label': self.env['sale.order.line'].\
-                    _columns['product_uom_qty'].string,
+                'label': _(self.env['sale.order.line'].\
+                    _columns['product_uom_qty'].string),
                     })
-        res['common'] = self.env['partner.measure']._get_form()
+        res['common'] = self.env['partner.measure'].browse([])._get_form()
         return res
 
     def _check_form(self):
