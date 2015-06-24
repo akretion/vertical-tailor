@@ -41,7 +41,8 @@
                     Notes
                     <textarea ng-model="orderDraft.notes"></textarea>
                 </label>
-                <button class="button" ng-click="saveOrder(orderDraft)">Enregistrer</button>
+                <button class="button button-positive" ng-click="saveOrder(orderDraft)">Enregistrer</button>
+                <button class="button" ng-click="toggleMode()">Annuler</button>
             </ion-item>
         </ion-list>
         <ion-list show-delete="editMode">
