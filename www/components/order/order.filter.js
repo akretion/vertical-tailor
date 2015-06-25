@@ -5,7 +5,14 @@ angular.module('starter').filter('orderFilter', [function () {
 
         var orderFilterTxtUpper = orderFilterTxt.toUpperCase();
         return items.filter(function (i) {
-            return (i.partner_name.toUpperCase().indexOf(orderFilterTxtUpper) !== -1 || i.partner_matricule.toUpperCase().indexOf(orderFilterTxtUpper) !== -1);
+            
+            return ['partner_matricule', 'partner_name'].some(function (field) {
+                if (!i[field])
+                    return false;
+
+                return i[field].toUpperCase().indexOf(orderFilterTxtUpper) !== -1;
+            });
+ 
         });
     };
 }]).filter('isOrderDone', [function () {
