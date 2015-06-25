@@ -18,7 +18,7 @@ angular.module('starter')
     $scope.login = function () {
         console.log("dans login()");
         $scope.error = "";
-        jsonRpc.login(jsonRpc.odoo_db, this.bucheUsername, this.buchePassword).then(function () { //this.buche because of new scope of ion-view
+        jsonRpc.login(jsonRpc.odoo_db || 'db', this.bucheUsername, this.buchePassword).then(function () { //this.buche because of new scope of ion-view
             console.log("login succeed");
             $scope.global.isLoggedIn = true;
         }, function (reason) {

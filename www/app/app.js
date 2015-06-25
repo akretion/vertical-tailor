@@ -25,6 +25,8 @@ angular.module('starter', ['ionic','buche','odoo'])
         //load config from localStorage
         if (settings.odooServer)
             jsonRpc.odoo_server = settings.odooServer;
+        if (settings.odooDb)
+            jsonRpc.odoo_db = settings.odooDb;
     });
 
 }])
