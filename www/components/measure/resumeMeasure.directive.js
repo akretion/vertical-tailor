@@ -38,7 +38,7 @@ angular.module('starter')
                 }).sort(); //easier to read
 
                 return values.reduce(function r(prev, current, i) {
-                    if (i % 5 == 0)
+                    if (i % 3 == 0)
                         prev.push([]);
                     prev[prev.length -1].push(current);
                     return prev;
