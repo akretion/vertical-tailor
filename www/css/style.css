@@ -144,7 +144,7 @@ p.commande-name small {
 	text-transform: none;
 }
 
-.create select {
+.create select, .create input {
 	height:47px;
 	width:220px;
 	font-size:1.9rem;
