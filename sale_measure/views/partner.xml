@@ -27,7 +27,13 @@
                 <notebook position="inside">
                     <page string="Measure" name="measure">
                         <field name="measure_ids"/>
-                        <field name="product_measure_ids" context="{'hide_partner':True}"/>
+                        <field name="product_measure_ids" context="{'hide_partner':True}">
+                            <tree>
+                                <field name="product_id"/>
+                                <field name="measure_form_type"/>
+                                 <field name="create_date"/>
+                            </tree>
+                        </field>
                     </page>
                 </notebook>
             </field>
