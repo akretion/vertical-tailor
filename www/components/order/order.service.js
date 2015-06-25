@@ -50,7 +50,8 @@ angular.module('starter')
                 form: null,
                 product_name: null,
                 product_id: null,
-                data: {}
+                data: {},
+                qty: 1
             };
         },
         save: function(order) {

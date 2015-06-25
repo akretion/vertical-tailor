@@ -115,6 +115,17 @@
 	color: #FFF;
 }
 
+.label.label-gray {
+	border-color: #B0B0B0;
+	background-color: #7A7A7A;
+	color: #FFF;	
+}
+.label.small {
+	font-size: 70%;
+	position: relative;
+	bottom: 2px;
+}
+
 .item h1 .small {
 	font-size:16px;
 	position:relative;

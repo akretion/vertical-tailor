@@ -23,17 +23,23 @@
                 <ion-list show-delete="editMode">
                     <ion-item ng-show="editMode" class="enable-pointer-events">
                         <p ng-show="produitsFormulaire.length == 0"><strong class="assertive">Pas de formulaire disponible.</strong></p>
-                        <label class="create">
-                            Produit<br>
-                            <select ng-model="produitFormulaire" ng-options="item.name for item in produitsFormulaire">
-                            </select>
-                        </label>
+                        <div class="item-input-inset grid">
+                            <label class="create col">
+                                Produit<br>
+                                <select ng-model="produitFormulaire" ng-options="item.name for item in produitsFormulaire">
+                                </select>
+                            </label>
+                            <label class="create col">
+                                Quantité
+                                <input type="number" ng-model="measureDraft.qty" min="1">
+                            </label>
+                            <button class="button button-positive icon ion-checkmark" ng-click="saveMeasure(measureDraft, produitFormulaire);produitFormulaire=null"></button>
+                        </div>
                         <ion-delete-button class="ion-minus" ng-click="toggleMode()"></ion-delete-button>
-                        <button class="button button-positive icon ion-checkmark" ng-click="saveMeasure(measureDraft, produitFormulaire);produitFormulaire=null"></button>
 
                     </ion-item>
                     <ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, measure) in order.order_line track by key" ui-sref="tab.measure({orderId: order.id, measureId: key})">
-                        <p class="commande-name">{{ measure.product_name }} <small>{{ measure.form }}</small></p>
+                        <p class="commande-name">{{ measure.product_name }}  <span class="label small label-gray" ng-show="measure.qty > 1">Quantité : {{ measure.qty }}</span> <small>{{ measure.form }}</small></p>
                         <div resume-measures measure="measure"></div>
                         <ion-delete-button class="ion-minus" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
                         <i class="icon ion-chevron-right icon-accessory"></i>
