@@ -34,6 +34,7 @@
         'views/partner.xml',
         'views/product.xml',
         'views/sale.xml',
+        'data/data.xml'
     ],
     # only loaded in demonstration mode
     'demo': [],

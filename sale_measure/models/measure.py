@@ -113,5 +113,9 @@ class ProductMeasure(models.Model):
                     attrs = get_list_invisible_form[field.attrib['name']]
                     field.set('attrs', str(self._prepare_attrs_value(attrs)))
                     orm.setup_modifiers(field, root)
+                if 'hide_partner' in self.env.context and field.attrib[
+                        'name'] == 'partner_id':
+                    field.set('invisible', '1')
+                    orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
         return res

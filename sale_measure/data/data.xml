@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="no_measure_for_product" model="sale.exception">
+      <field name="name">Not measure</field>
+      <field name="sequence">30</field>
+      <field name="description">Not measure for this product you need to make a measure </field>
+      <field name="model">sale.order.line</field>
+      <field name="code">if object.need_measure:
+    failed = True</field>
+      <field name="active" eval="True"/>
+    </record>
+  </data>
+</openerp>
+
+

@@ -1,5 +1,17 @@
 <openerp>
     <data>
+        <!--<record model="ir.ui.view" id="hide_partner_id_field_in_view">
+            <field name="name">Measure</field>
+            <field name="mode">extension</field>
+            <field name="model">product.measure</field>
+            <field name="inherit_id" ref="custom.view_measure_product_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+                </field>
+            </field>
+        </record>-->
+
         <record model="ir.ui.view" id="detail_field_in_view">
             <field name="name">Measure</field>
             <field name="model">res.partner</field>
@@ -15,7 +27,7 @@
                 <notebook position="inside">
                     <page string="Measure" name="measure">
                         <field name="measure_ids"/>
-                        <field name="product_measure_ids"/>
+                        <field name="product_measure_ids" context="{'hide_partner':True}"/>
                     </page>
                 </notebook>
             </field>
