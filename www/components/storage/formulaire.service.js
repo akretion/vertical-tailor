@@ -7,17 +7,19 @@ angular.module('starter')
     return {
         load: function () {
             //for debug
-            remoteStorage.get('formsProducts').then(function (formProducts) {
-                localStorage.set('formsProducts', formProducts);
+            formsProductsPromise = remoteStorage.get('formsProducts').then(function (formsProducts) {
+                localStorage.set('formsProducts', formsProducts);
+                return formsProducts;
             });
-            remoteStorage.get('forms').then(function(forms) {
+            formsPromise = remoteStorage.get('forms').then(function(forms) {
                 localStorage.set('forms', forms);
+                return forms;
             });
         },
         getFormsProducts: function () {
-            formsProductsPromise = formsProductsPromise || storage.get('formsProducts').then(function (formProducts) {
-                localStorage.set('formsProducts', formProducts);
-                return formProducts;
+            formsProductsPromise = formsProductsPromise || storage.get('formsProducts').then(function (formsProducts) {
+                localStorage.set('formsProducts', formsProducts);
+                return formsProducts;
             });
             return formsProductsPromise;
         },
@@ -30,6 +32,6 @@ angular.module('starter')
                 return forms[formName];
             });
         }
-    }
+    };
 }
 ]);
