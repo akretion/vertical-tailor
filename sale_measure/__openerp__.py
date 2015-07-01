@@ -36,7 +36,6 @@
         'views/sale.xml',
         'data/data.xml',
         'security/ir.model.access.csv'
-
     ],
     # only loaded in demonstration mode
     'demo': [],
