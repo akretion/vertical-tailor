@@ -46,6 +46,10 @@ class SaleLineOrder(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    measure_partner_name = fields.Char(readonly=True)
+    measure_partner_ref = fields.Char(readonly=True)
+    measure_offline_id = fields.Char(readonly=True)
+
     @api.model
     def _prepare_measure(self, line, partner_id):
         res = {
@@ -67,12 +71,7 @@ class SaleOrder(models.Model):
             partner = partner_obj.search(domain)
             if len(partner) == 1:
                 return partner
-            elif len(partner) > 1:
-                raise Warning('Too many partner found for the reference %s')
-        return partner_obj.create({
-            'name': vals['partner_name'],
-            'ref': vals['partner_matricule'],
-            })
+        return self.env.ref('sale_measure.res_partner_mesure_not_found')
 
     @api.model
     def _get_product(self, line):
@@ -98,6 +97,9 @@ class SaleOrder(models.Model):
         partner = self._get_partner_from_measure(vals)
         return {
             'partner_id': partner.id,
+            'measure_partner_name': vals['partner_name'],
+            'measure_partner_ref': vals['partner_matricule'],
+            'measure_offline_id': vals['id'],
             'order_line': [
                 (0, 0, self._prepare_order_line_from_measure(line, partner.id))
                 for line in vals['order_line']
@@ -117,6 +119,14 @@ class SaleOrder(models.Model):
         return True
 
     @api.model
+    def _set_measure_already_done(self, vals):
+        return bool(self.search([
+            ('measure_offline_id', '=', vals['id']),
+            ('measure_partner_name', '=', vals['partner_name']),
+            ('measure_partner_ref', '=', vals['partner_matricule']),
+            ]))
+
+    @api.model
     def set_measure(self, vals):
         if not vals.get('isLocalOnly'):
             sale_order = None
@@ -128,6 +138,8 @@ class SaleOrder(models.Model):
                 if not sale_order:
                     sale_order = line.order_id
         else:
+            if self._set_measure_already_done(vals):
+                return True
             sale_vals = self._prepare_order_from_measure(vals)
             sale_order = self.create(sale_vals)
         sale_order.set_partner_measure(vals['measure_user']['data'])
