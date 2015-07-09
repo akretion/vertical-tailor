@@ -53,7 +53,6 @@ class SaleOrder(models.Model):
             'partner_id': partner_id,
             }
         res.update(line['data'])
-        del res['qty']
         return res
 
     @api.model
