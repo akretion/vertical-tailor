@@ -25,7 +25,8 @@
                             icon="fa-star"/>
                 </xpath>
                 <notebook position="inside">
-                    <page string="Measure" name="measure">
+                    <page string="Measure" name="measure"
+                    attrs="{'invisible': [('kind','!=','individu')]}">
                         <field name="measure_ids"/>
                         <field name="product_measure_ids" context="{'hide_partner':True}">
                             <tree>
