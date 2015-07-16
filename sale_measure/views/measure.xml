@@ -57,12 +57,12 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-
+<!--
         <menuitem
             name="Measure"
             id="choix_measure"
             parent="base.menu_product"
-            action="action_product_measure_xml"/>
+            action="action_product_measure_xml"/>-->
 
     </data> 
 </openerp>
