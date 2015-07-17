@@ -3,25 +3,16 @@
         <div show-login-state></div>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <ion-toggle ng-model="global.isLoggedIn" ng-click="!global.isLoggedIn && logout()" ng-disabled="!global.isLoggedIn">État connexion : 
-            <span ng-show="global.isLoggedIn">connecté</span>
-            <span ng-show="!global.isLoggedIn">pas connecté</span>
-        </ion-toggle>
-        
-        <div class="item" ng-show="!global.isLoggedIn">
-        <p>{{ error }}</p>
-        <div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
-        </div>
         <div class="item item-divider">
-            Réglages
+            Réglages Server Odoo
         </div>
 
         <label class="item item-input item-stacked-label">
-            <span class="item-label">Odoo Server </span>
+            <span class="item-label">Url du server </span>
             <input ng-model="settings.odooServer" type="text" placeholder="Serveur Odoo"></input>
         </label>
         <label class="item item-input item-stacked-label">
-            <span class="item-label">Odoo DB </span>
+            <span class="item-label">Nom de la base de donnée </span>
             <input ng-model="settings.odooDb" type="text" placeholder="Base Odoo"></input>
         </label>
 
@@ -32,6 +23,17 @@
         <div class="item">
             <button class="button" ng-click="saveSettings(settings)">Enregistrer</button></div>
         </div>
+
+        <ion-toggle ng-model="global.isLoggedIn" ng-click="!global.isLoggedIn && logout()" ng-disabled="!global.isLoggedIn">État connexion : 
+            <span ng-show="global.isLoggedIn">connecté</span>
+            <span ng-show="!global.isLoggedIn">pas connecté</span>
+        </ion-toggle>
+
+        <div class="item" ng-show="!global.isLoggedIn">
+        <p>{{ error }}</p>
+        <div buche-login buche-login-cb="login" buche-forgot-password-text="" buche-forgot-username-text="">buche</div>
+        </div>
+
         <div class="item item-divider">
             Debug
         </div>
