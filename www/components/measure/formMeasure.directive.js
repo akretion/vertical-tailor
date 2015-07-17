@@ -21,7 +21,7 @@ angular.module('starter')
                     '</div>' +
                     '<div ng-switch-when="numeric">' +
                         '<label><span>{{c.label}}</span></label>' +
-                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number" pattern="[0-9]*"></input>' + //inputmode=numeric not supported yet
+                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number" pattern="\-?[0-9]*"></input>' + //inputmode=numeric not supported yet
                     '</div>' +
                     '<div ng-switch-when="number">' +
                         '<label><span>{{c.label}}</span></label>' +
