@@ -36,7 +36,7 @@ msgstr "Créé par"
 #: field:partner.measure,create_date:0
 #: field:product.measure,create_date:0
 msgid "Created on"
-msgstr "Créé sur"
+msgstr "Créé le"
 
 #. module: sale_measure
 #: field:partner.measure,crotch:0
