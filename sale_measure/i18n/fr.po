@@ -136,7 +136,7 @@ msgstr "Mesure Client"
 #. module: sale_measure
 #: field:sale.order.line,need_measure:0
 msgid "Need measure"
-msgstr "Besion de Mesure"
+msgstr "Besoin de Mesure"
 
 #. module: sale_measure
 #: model:ir.actions.act_window,name:sale_measure.action_line_sale_order_measure_xml
