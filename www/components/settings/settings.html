@@ -16,13 +16,11 @@
             <input ng-model="settings.odooDb" type="text" placeholder="Base Odoo"></input>
         </label>
 
+
         <label class="item item-input item-stacked-label" style="display:none;">
             <span class="item-label">Local Server </span>
             <input ng-model="settings.localServer" type="text" placeholder="PC portable"></input>
         </label>
-        <div class="item">
-            <button class="button" ng-click="saveSettings(settings)">Enregistrer</button></div>
-        </div>
 
         <ion-toggle ng-model="global.isLoggedIn" ng-click="!global.isLoggedIn && logout()" ng-disabled="!global.isLoggedIn">État connexion : 
             <span ng-show="global.isLoggedIn">connecté</span>
@@ -36,9 +34,6 @@
 
         <div class="item item-divider">
             Debug
-        </div>
-        <div class="item" ng-show="global.isLoggedIn">
-            <button class="button button-positive" ng-click="loadForm()">Recharger produits</button>
         </div>
         <div class="item"><button class="button button-assertive" ng-click="reset()">Réinitaliser</button></div>
     </ion-content>
