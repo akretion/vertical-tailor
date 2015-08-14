@@ -2,8 +2,8 @@ angular.module('starter')
 .controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'localStorage', function($scope, $stateParams, $state, jsonRpc, Formulaire, localStorage) {
 
     $scope.global = $state.current.data.global;
-    $scope.settings = { localServer: "http://10.47.0.1/", odooServer: "", odooDb: "db"};
     $scope.login = { username: undefined, password: undefined};
+    $scope.settings = { localServer: "http://10.47.0.1/", odooServer: "", odooDb: "production"};
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         //because ctrl is not reloaded
