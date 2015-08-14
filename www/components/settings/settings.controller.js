@@ -3,6 +3,7 @@ angular.module('starter')
 
     $scope.global = $state.current.data.global;
     $scope.settings = { localServer: "http://10.47.0.1/", odooServer: "", odooDb: "db"};
+    $scope.login = { username: undefined, password: undefined};
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         //because ctrl is not reloaded
@@ -23,12 +24,13 @@ angular.module('starter')
         if ($scope.settings.odooDb)
             jsonRpc.odoo_db = $scope.settings.odooDb;
         
-        jsonRpc.login(jsonRpc.odoo_db || 'db', this.bucheUsername, this.buchePassword).then(function () { //this.buche because of new scope of ion-view
+        jsonRpc.login(jsonRpc.odoo_db, $scope.login.username, $scope.login.password).then(function () { //this.buche because of new scope of ion-view
             console.log("login succeed");
             $scope.global.isLoggedIn = true;
 
        
             localStorage.set('settings', $scope.settings);
+            $scope.login.password = '';
             return Formulaire.load();
         }, function (reason) {
             console.log('login failed');

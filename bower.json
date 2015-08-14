@@ -20,7 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "buche": "FranzPoize/buche#~0.0.5",
     "odoo": "hparfr/angular-odoo#develop"
   },
   "resolutions": {
