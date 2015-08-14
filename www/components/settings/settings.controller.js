@@ -29,6 +29,7 @@ angular.module('starter')
 
        
             localStorage.set('settings', $scope.settings);
+            return Formulaire.load();
         }, function (reason) {
             console.log('login failed');
             console.log(reason);
@@ -52,7 +53,6 @@ angular.module('starter')
     $scope.reset = function () { 
         ['settings', 'forms', 'orders', 'formsProducts'].map(function(key) { localStorage.remove(key) });
         localStorage.set('orders', []);
-        Formulaire.load();
 
     };
 }]);
