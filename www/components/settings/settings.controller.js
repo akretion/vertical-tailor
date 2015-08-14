@@ -27,8 +27,8 @@ angular.module('starter')
             console.log("login succeed");
             $scope.global.isLoggedIn = true;
 
-            localStorage.set('settings', settings);
        
+            localStorage.set('settings', $scope.settings);
         }, function (reason) {
             console.log('login failed');
             console.log(reason);
