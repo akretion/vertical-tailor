@@ -11,6 +11,7 @@ angular.module('starter')
                 orders.forEach(function (o) {
                     o.order_line.map(function (m) { if (!m.data) m.data = {}; });
                 });
+                storage.set('orders', orders);
                 return orders;
             });
             return ordersPromise;
