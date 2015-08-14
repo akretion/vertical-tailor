@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('starter', ['ionic','buche','odoo'])
+angular.module('starter', ['ionic','odoo'])
 
 .run(['$ionicPlatform', '$rootScope', '$state', 'jsonRpc', 'localStorage', function($ionicPlatform, $rootScope, $state, jsonRpc, localStorage) {
     $ionicPlatform.ready(function() {
