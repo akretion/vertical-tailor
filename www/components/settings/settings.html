@@ -6,26 +6,27 @@
         <div class="item item-divider">
             Réglages Server Odoo
         </div>
+        <form>
 
-        <label class="item item-input item-stacked-label">
-            <span class="item-label">Url du server </span>
-            <input ng-model="settings.odooServer" type="text" placeholder="Serveur Odoo"></input>
-        </label>
-        <label class="item item-input item-stacked-label">
-            <span class="item-label">Nom de la base de donnée </span>
-            <input ng-model="settings.odooDb" type="text" placeholder="Base Odoo"></input>
-        </label>
+            <ion-toggle ng-model="global.isLoggedIn" ng-click="!global.isLoggedIn && logout()" ng-disabled="!global.isLoggedIn">État connexion : 
+                <span ng-show="global.isLoggedIn">connecté</span>
+                <span ng-show="!global.isLoggedIn">pas connecté</span>
+            </ion-toggle>
+
+            <label class="item item-input item-stacked-label">
+                <span class="item-label">Url du server </span>
+                <input ng-model="settings.odooServer" type="text" placeholder="Serveur Odoo"></input>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="item-label">Nom de la base de donnée </span>
+                <input ng-model="settings.odooDb" type="text" placeholder="Base Odoo"></input>
+            </label>
 
 
-        <label class="item item-input item-stacked-label" style="display:none;">
-            <span class="item-label">Local Server </span>
-            <input ng-model="settings.localServer" type="text" placeholder="PC portable"></input>
-        </label>
-
-        <ion-toggle ng-model="global.isLoggedIn" ng-click="!global.isLoggedIn && logout()" ng-disabled="!global.isLoggedIn">État connexion : 
-            <span ng-show="global.isLoggedIn">connecté</span>
-            <span ng-show="!global.isLoggedIn">pas connecté</span>
-        </ion-toggle>
+            <label class="item item-input item-stacked-label" style="display:none;">
+                <span class="item-label">Local Server </span>
+                <input ng-model="settings.localServer" type="text" placeholder="PC portable"></input>
+            </label>
 
             <div class="item" ng-show="error"><p>{{ error }}</p></div>
 
