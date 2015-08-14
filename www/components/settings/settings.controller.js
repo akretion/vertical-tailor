@@ -51,8 +51,10 @@ angular.module('starter')
 
 
     $scope.reset = function () { 
+        $scope.resetMsg = "";
         ['settings', 'forms', 'orders', 'formsProducts'].map(function(key) { localStorage.remove(key) });
         localStorage.set('orders', []);
 
+        $scope.resetMsg = "Ok";
     };
 }]);
