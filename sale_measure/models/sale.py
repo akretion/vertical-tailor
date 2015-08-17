@@ -137,6 +137,7 @@ class SaleOrder(models.Model):
                 line.write({'measure_id': measure.id})
                 if not sale_order:
                     sale_order = line.order_id
+                    sale_order.write({'exception_ids': [(6, 0, [])]})
         else:
             if self._set_measure_already_done(vals):
                 return True
