@@ -1,75 +1,79 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_measure
+#	* sale_measure
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-25 06:43+0000\n"
-"PO-Revision-Date: 2015-08-25 08:47+0100\n"
-"Last-Translator: David BEAL <david.beal@akretion.com>\n"
-"Language-Team:  <abdessamad.hilali@akretion.com>\n"
-"Language: fr\n"
+"PO-Revision-Date: 2015-08-25 06:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: sale_measure
 #: field:partner.measure,active:0
 msgid "Active"
-msgstr "Active"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,chest_size:0
 msgid "Chest size"
-msgstr "Tour de poitrine"
+msgstr ""
 
 #. module: sale_measure
-#: field:partner.measure,create_uid:0 field:product.measure,create_uid:0
+#: field:partner.measure,create_uid:0
+#: field:product.measure,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: sale_measure
-#: field:partner.measure,create_date:0 field:product.measure,create_date:0
+#: field:partner.measure,create_date:0
+#: field:product.measure,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,crotch:0
 msgid "Crotch"
-msgstr "Entre-jambes"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,date:0
 msgid "Date"
-msgstr "Date"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,head_size:0
 msgid "Head Size"
-msgstr "Tour de Tête"
+msgstr ""
 
 #. module: sale_measure
-#: field:partner.measure,id:0 field:product.measure,id:0
+#: field:partner.measure,id:0
+#: field:product.measure,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_measure
-#: field:partner.measure,write_uid:0 field:product.measure,write_uid:0
+#: field:partner.measure,write_uid:0
+#: field:product.measure,write_uid:0
 msgid "Last Updated by"
-msgstr "Mise à Jour Par"
+msgstr ""
 
 #. module: sale_measure
-#: field:partner.measure,write_date:0 field:product.measure,write_date:0
+#: field:partner.measure,write_date:0
+#: field:product.measure,write_date:0
 msgid "Last Updated on"
-msgstr "Mise à Jour"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,leg_length:0
 msgid "Leg length"
-msgstr "Longueur de Jambe"
+msgstr ""
 
 #. module: sale_measure
 #: model:ir.actions.act_window,name:sale_measure.action_product_measure_xml
@@ -80,43 +84,43 @@ msgstr "Longueur de Jambe"
 #: view:res.partner:sale_measure.detail_field_in_view
 #: field:sale.order.line,measure_id:0
 msgid "Measure"
-msgstr "Mesure"
+msgstr ""
 
 #. module: sale_measure
 #: field:product.template,measure_form_type:0
 msgid "Measure Form Type"
-msgstr "Type de Mesure"
+msgstr ""
 
 #. module: sale_measure
 #: field:product.measure,sale_line_ids:0
 msgid "Measure Ligne"
-msgstr "Ligne de Mesure"
+msgstr ""
 
 #. module: sale_measure
 #: view:partner.measure:sale_measure.view_partner_measure_form
 #: view:product.measure:sale_measure.view_measure_form
 msgid "Measure Page"
-msgstr "Page de Mesure"
+msgstr ""
 
 #. module: sale_measure
 #: view:product.measure:sale_measure.measure_search
 msgid "Measure With Order"
-msgstr "Mesure avec Commande"
+msgstr ""
 
 #. module: sale_measure
 #: view:product.measure:sale_measure.measure_search
 msgid "Measure Without Order"
-msgstr "Mesure sans Commande"
+msgstr ""
 
 #. module: sale_measure
 #: model:ir.model,name:sale_measure.model_product_measure
 msgid "Measure for each partner"
-msgstr "Mesure pour Chaque Client"
+msgstr ""
 
 #. module: sale_measure
 #: field:res.partner,measure_ids:0
 msgid "Measure ids"
-msgstr "Mesure"
+msgstr ""
 
 #. module: sale_measure
 #: field:sale.order,measure_offline_id:0
@@ -136,17 +140,17 @@ msgstr ""
 #. module: sale_measure
 #: model:ir.actions.act_window,name:sale_measure.act_partner_2_measure
 msgid "Measure to Partner"
-msgstr "Mesure Client"
+msgstr ""
 
 #. module: sale_measure
 #: field:sale.order.line,need_measure:0
 msgid "Need measure"
-msgstr "Besoin de Mesure"
+msgstr ""
 
 #. module: sale_measure
 #: model:ir.actions.act_window,name:sale_measure.action_line_sale_order_measure_xml
 msgid "New Sale Order field Measure"
-msgstr "Champ Mesure Pour Nouveau Bon de Commande"
+msgstr ""
 
 #. module: sale_measure
 #: model:sale.exception,name:sale_measure.no_customer
@@ -161,42 +165,42 @@ msgstr ""
 #. module: sale_measure
 #: model:ir.model,name:sale_measure.model_res_partner
 msgid "Partner"
-msgstr "Client"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,pelvis_size:0
 msgid "Pelvis Size"
-msgstr "Taille Bassin"
+msgstr ""
 
 #. module: sale_measure
 #: field:product.measure,product_id:0
 msgid "Product"
-msgstr "Produit"
+msgstr ""
 
 #. module: sale_measure
 #: model:ir.model,name:sale_measure.model_product_template
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr ""
 
 #. module: sale_measure
 #: field:res.partner,product_measure_ids:0
 msgid "Product measure ids"
-msgstr "Mesure Produit"
+msgstr ""
 
 #. module: sale_measure
 #: model:ir.model,name:sale_measure.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr ""
 
 #. module: sale_measure
 #: model:ir.model,name:sale_measure.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de commandes de vente"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,stature:0
 msgid "Stature"
-msgstr "Stature"
+msgstr ""
 
 #. module: sale_measure
 #: model:sale.exception,description:sale_measure.no_customer
@@ -207,7 +211,7 @@ msgstr ""
 #: code:addons/sale_measure/models/measure.py:54
 #, python-format
 msgid "There are problems in %s the value is not in %s"
-msgstr "Il y a des problèmes dans  %s car la valeur correcte est dans %s"
+msgstr ""
 
 #. module: sale_measure
 #: model:sale.exception,description:sale_measure.no_measure_for_product
@@ -217,17 +221,16 @@ msgstr ""
 #. module: sale_measure
 #: field:partner.measure,waistline:0
 msgid "Waistline"
-msgstr "Tour de ceinture"
+msgstr ""
 
 #. module: sale_measure
 #: field:partner.measure,weight:0
 msgid "Weight"
-msgstr "Poids"
+msgstr ""
 
 #. module: sale_measure
-#: field:partner.measure,partner_id:0 field:product.measure,partner_id:0
+#: field:partner.measure,partner_id:0
+#: field:product.measure,partner_id:0
 msgid "partner"
-msgstr "Client"
+msgstr ""
 
-#~ msgid "Measure form type"
-#~ msgstr "Type de Mesure"
