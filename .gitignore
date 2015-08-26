@@ -4,4 +4,4 @@ www/lib
 .sass-cache
 plugins
 plateforms
-.swp
+*.swp

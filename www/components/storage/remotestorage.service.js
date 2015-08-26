@@ -28,9 +28,9 @@ angular.module('starter')
                 return jsonRpc.call(setKeys[key].domain, setKeys[key].action, [value], {});
             });
         },
-        get: function(key) {
+        get: function(key, args) {
             return continueIfLogged().then(function () {
-                return jsonRpc.call(getKeys[key].domain, getKeys[key].action, [getKeys[key].args || []], {}).then(function (result) {
+                return jsonRpc.call(getKeys[key].domain, getKeys[key].action, [args || []], {}).then(function (result) {
                     return result;
                 });
             });
