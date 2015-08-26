@@ -34,15 +34,21 @@
                 <span class="item-label">Identifiant</span>
                 <input ng-model="login.username" type="text" placeholder="Identifiant"></input>
             </label>
-            <label class="item item-input item-stacked-label">
+             <label class="item item-input item-stacked-label" ng-hide="global.isLoggedIn">
                 <span class="item-label">Mot de passe </span>
                 <input ng-model="login.password" type="password" placeholder="Mot de passe"></input>
+            </label>
+             <label class="item item-input item-stacked-label">
+                <span class="item-label">Entrepot</span>
+                <select ng-options="warehouse as warehouse.display_name for warehouse in warehouses track by warehouse.id" ng-model="settings.warehouse">
+                  <option></option>
+                </select> 
             </label>
             <div class="item"><button class="button button-positive" ng-click="login()">Se connecter</button></div>
         </form>
 
         <div class="item item-divider">
-            Debug
+          Debug - Mesureuse v{{version}}
         </div>
         <div class="item"><button class="button button-assertive" ng-click="reset()">Réinitaliser</button> {{ resetMsg }}</div>
     </ion-content>
