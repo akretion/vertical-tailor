@@ -6,6 +6,9 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var useref = require('gulp-useref');
+var gulif = require('gulp-if');
+var uglify = require('gulp-uglify');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -34,6 +37,28 @@ gulp.task('install', ['git-check'], function() {
     .on('log', function(data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
+});
+
+gulp.task('templates', function() {
+  return gulp.src(['www/**/*.html','!www/lib/**/*.html','!www/index.html'])
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('fonts', function() {
+  return gulp.src(['www/lib/ionic/fonts/ionicons.*'])
+    .pipe(gulp.dest('dist/fonts'));
+});
+
+
+gulp.task('build',['sass', 'templates', 'fonts'], function() {
+  var assets = useref.assets();
+
+  return gulp.src('www/index.html')
+    .pipe(assets)
+    .pipe(gulif('*.css',minifyCss()))
+    .pipe(assets.restore())
+    .pipe(useref())
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('git-check', function(done) {
