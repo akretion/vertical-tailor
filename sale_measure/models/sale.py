@@ -32,8 +32,9 @@ class SaleLineOrder(models.Model):
         else:
             self.need_measure = False
 
-    @api.one
+    @api.multi
     def _prepare_order_line_measure(self):
+        self.ensure_one()
         return {
             'product_name': self.product_id.name,
             'product_id': self.product_id.id,
@@ -162,9 +163,11 @@ class SaleOrder(models.Model):
             'id': self.id,
             'name': self.name,
             'partner_name': self.partner_id.name,
-            'partner_matricule': '1234',
+            'partner_matricule': self.partner_id.ref,
             'partner_id': self.partner_id.id,
-            'order_line': self.order_line._prepare_order_line_measure(),
+            'order_line': [
+                line._prepare_order_line_measure()
+                for line in self.order_line if line.need_measure],
             #TODO add real data
             'measure_user': {
                 'data': self._prepare_partner_measure(),
@@ -172,8 +175,10 @@ class SaleOrder(models.Model):
         }
 
     @api.model
-    def get_measure(self):
+    def get_measure(self, warehouse_id=None):
         domain = [
             ['order_line.need_measure', '=', True],
             ]
+        if warehouse_id:
+            domain.append(('warehouse_id', '=', warehouse_id))
         return self.search(domain)._prepare_export_measure_from_order()
