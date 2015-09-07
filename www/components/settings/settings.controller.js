@@ -31,6 +31,7 @@ angular.module('starter')
        
             localStorage.set('settings', $scope.settings);
             $scope.login.password = '';
+            $scope.error = "Connexion réussie";
             return Formulaire.load();
         }, function (reason) {
             console.log('login failed');
