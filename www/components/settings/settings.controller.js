@@ -34,6 +34,7 @@ angular.module('starter')
             localStorage.set('settings', $scope.settings);
             $scope.login.password = '';
             $scope.error = "Connexion réussie";
+            Warehouse.load();
             return Formulaire.load();
         }, function (reason) {
             console.log('login failed');
@@ -58,8 +59,10 @@ angular.module('starter')
     $scope.reset = function () { 
         $scope.logout();
         $scope.resetMsg = "";
-        ['settings', 'forms', 'orders', 'formsProducts'].map(function(key) { localStorage.remove(key) });
+        ['settings', 'forms', 'orders', 'formsProducts', 'warehouses'].map(function(key) { localStorage.remove(key) });
         localStorage.set('orders', []);
+        localStorage.set('warehouses', []);
         $scope.resetMsg = "Réinitialisation terminée. Connectez-vous";
     };
+
 }]);

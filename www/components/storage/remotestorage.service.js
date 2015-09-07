@@ -3,15 +3,12 @@ angular.module('starter')
     var getKeys = {
         'orders': { domain: 'sale.order' , action: 'get_measure'},
         'formsProducts': { domain: 'product.template', action: 'get_measurable_product' },
-        'forms': { domain: 'product.measure', action: 'get_form'}
+        'forms': { domain: 'product.measure', action: 'get_form'},
+        'warehouses': { domain: 'stock.warehouse', action: 'search_read', args: []}
     };
     var setKeys = {
         'toSync': { domain: 'sale.order', action:'set_measure'}
     };
-
-    //    localStorage.get('warehouse').then(function(p) {
-    //        getKeys.orders.args = p.id;
-    //    });
 
     function continueIfLogged() {
         return $q(function(resolve, reject) {
@@ -30,7 +27,7 @@ angular.module('starter')
         },
         get: function(key, args) {
             return continueIfLogged().then(function () {
-                return jsonRpc.call(getKeys[key].domain, getKeys[key].action, [args || []], {}).then(function (result) {
+                return jsonRpc.call(getKeys[key].domain, getKeys[key].action, (getKeys[key].args || []), {}).then(function (result) {
                     return result;
                 });
             });
