@@ -1,9 +1,10 @@
 angular.module('starter')
-.controller('OrderCtrl', ['$scope', 'Order', '$state', 'localStorage', function($scope, Order, $state, localStorage) {
+.controller('OrderCtrl', ['$scope', 'Order', 'Warehouse', '$state', 'localStorage', function($scope, Order, Warehouse, $state, localStorage) {
 
     $scope.orders = null;
     $scope.editMode = false;
     $scope.orderDraft = null;
+    $scope.warehouses = [];
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         localStorage.get('warehouse')
@@ -15,6 +16,9 @@ angular.module('starter')
           .catch(function() {
             Order.all().then(function (orders) { //au premier chargement ou à chaque fois ? 
                 $scope.orders = orders;
+            });
+            Warehouse.get().then(function (warehouses) {
+                $scope.warehouses = warehouses;
             });
           });
     });

@@ -6,7 +6,7 @@ angular.module('starter').filter('orderFilter', [function () {
         var orderFilterTxtUpper = orderFilterTxt.toUpperCase();
         return items.filter(function (i) {
             
-            return ['partner_matricule', 'partner_name'].some(function (field) {
+            return ['partner_matricule', 'partner_name', 'warehouse'].some(function (field) {
                 if (!i[field])
                     return false;
 
