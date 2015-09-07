@@ -4,6 +4,7 @@ angular.module('starter')
     $scope.global = $state.current.data.global;
     $scope.login = { username: undefined, password: undefined};
     $scope.settings = { localServer: "http://10.47.0.1/", odooServer: "", odooDb: "production"};
+    $scope.version = window.version;
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         //because ctrl is not reloaded
@@ -13,7 +14,22 @@ angular.module('starter')
 
         localStorage.get('settings').then(function (settings) {
             $scope.settings = settings;
+            localStorage.get('warehouse').then(function (warehouse) {
+              $scope.settings.warehouse = warehouse;
+            });
         });
+
+
+        jsonRpc.searchRead('stock.warehouse',[])
+          .then(function(result) {
+            $scope.warehouses = result.records;
+          });
+    });
+
+    $scope.$watch('settings.warehouse', function(newVal, oldVal) {
+      if (angular.isDefined(newVal) && (!oldVal || oldVal.display_name !== newVal.displayName)) {
+        localStorage.set('warehouse', $scope.settings.warehouse);
+      }
     });
 
     $scope.login = function () {

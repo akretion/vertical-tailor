@@ -1,12 +1,12 @@
 angular.module('starter')
 
-.factory('Order', ['storage','$q', 'neighbourMerge', function(storage, $q, neighbourMerge) {
+.factory('Order', ['storage','$q', 'neighbourMerge', '$state', function(storage, $q, neighbourMerge, $state) {
 
     var orders = null;
     var ordersPromise = null;
     var service = {
-        all: function() {
-            ordersPromise = storage.get('orders').then(function (results) {
+        all: function(args) {
+            ordersPromise = storage.get('orders', args).then(function (results) {
                 orders = (results) ? results: [];
                 orders.forEach(function (o) {
                     o.order_line.map(function (m) { if (!m.data) m.data = {}; });
