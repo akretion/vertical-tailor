@@ -21,7 +21,7 @@ angular.module('starter')
 
     $scope.login = function () {
         console.log("dans login()");
-        $scope.error = "";
+        $scope.login.feedback = null;
         jsonRpc.odoo_server = $scope.settings.odooServer || "";
         if ($scope.settings.odooDb)
             jsonRpc.odoo_db = $scope.settings.odooDb;
@@ -30,11 +30,9 @@ angular.module('starter')
             console.log("login succeed");
             $scope.global.isLoggedIn = true;
 
-       
             $scope.settings.username = $scope.login.username;
             localStorage.set('settings', $scope.settings);
-            $scope.login.password = '';
-            $scope.error = "Connexion réussie";
+            $scope.login.feedback = { msg: "Connexion réussie", isError: false };
             return Formulaire.load();
         }, function (reason) {
             console.log('login failed');
@@ -42,9 +40,7 @@ angular.module('starter')
 
             console.log(JSON.stringify(reason));
             $scope.global.isLoggedIn = false;
-            var message = (reason.message ? reason.message : "")
-            var status = (reason.fullTrace && reason.fullTrace.status ? reason.fullTrace.status : "" );
-            $scope.error = ["Authentication failed :", message, "(", status, ")"].join(' ');
+            $scope.login.feedback = { error: reason, isError: true };
 
         });
     };

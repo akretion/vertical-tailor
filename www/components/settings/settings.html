@@ -6,7 +6,7 @@
         <div class="item item-divider">
             Réglages Serveur Odoo
         </div>
-        <form>
+        <form name="loginForm">
 
             <ion-toggle ng-model="global.isLoggedIn" ng-click="!global.isLoggedIn && logout()" ng-disabled="!global.isLoggedIn">État connexion : 
                 <span ng-show="global.isLoggedIn">connecté</span>
@@ -23,8 +23,8 @@
 
             <div class="list card">
                 <label class="item item-input item-stacked-label">
-                    <span class="item-label">Nom de la base de donnée </span>
-                    <input ng-model="settings.odooDb" type="text" placeholder="Base Odoo"></input>
+                    <span class="item-label">Nom de la base de données </span>
+                    <input ng-model="settings.odooDb" type="text" placeholder="Base Odoo" required="true"></input>
                 </label>
             </div>
 
@@ -34,17 +34,28 @@
             </label>
 
             <div class="list card">
-                <div class="item" ng-show="error"><p>{{ error }}</p></div>
+                <div class="item" ng-show="login.feedback.isError">
+                    <div ng-switch="login.feedback.error.title" class="assertive">
+                        <span ng-switch-when="wrong_login">Identifiant ou mot de passe incorrect</span>
+                        <span ng-switch-when="http">Le serveur ne répond pas correctement</span>
+                        <span ng-switch-when="database_not_found">Base de données introuvable</span>
+                        <span ng-switch-default>Autre raison</span>
+                    </div>
+                </div> 
+                <div class="item positive" ng-show="login.feedback && !login.feedback.isError">
+                    <strong>Connexion réussie</strong>
+                </div>
+
 
                 <label class="item item-input item-stacked-label">
                     <span class="item-label">Identifiant</span>
-                    <input ng-model="login.username" type="text" placeholder="Identifiant"></input>
+                    <input ng-model="login.username" type="text" placeholder="Identifiant" required="true"></input>
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="item-label">Mot de passe </span>
-                    <input ng-model="login.password" type="password" placeholder="Mot de passe"></input>
+                    <input ng-model="login.password" type="password" placeholder="Mot de passe" required="true"></input>
                 </label>
-                <div class="item"><button class="button button-positive" ng-click="login()">Se connecter</button></div>
+                <div class="item"><button class="button button-positive" ng-click="login()" ng-disabled="loginForm.$invalid">Se connecter</button></div>
             </div>
         </form>
 
