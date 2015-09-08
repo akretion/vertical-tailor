@@ -22,8 +22,7 @@ angular.module('starter')
     $scope.login = function () {
         console.log("dans login()");
         $scope.error = "";
-        if ($scope.settings.odooServer)
-            jsonRpc.odoo_server = $scope.settings.odooServer;
+        jsonRpc.odoo_server = $scope.settings.odooServer || "";
         if ($scope.settings.odooDb)
             jsonRpc.odoo_db = $scope.settings.odooDb;
         
