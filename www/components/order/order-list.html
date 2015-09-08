@@ -60,14 +60,14 @@
             <ion-item ng-show="orders.length == 0">
                 <h2>Aucune commande</h2>
             </ion-item>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: orderFilterWarehouse.display_name | orderFilter: orderFilterTxt | orderBy: '-state' track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: orderFilterWarehouse.display_name | orderFilter: orderFilterTxt | filter: {'state': orderFilterState } | orderBy: 'state' track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
                 <ion-delete-button ng-show="order.isLocalOnly" class="ion-minus" ng-click="removeOrder(order, $index)"></ion-delete-button>
                 <h2>
                     <span class="label" ng-show="!!order.name">{{order.name}}</span>
                     <span class="label label-calm" ng-show="order.state == 'done'">ready to sync</span>
                      {{ order.partner_name }}
                 </h2>
-                <p>{{order.notes}} {{ order.partner_matricule }}</p>
+                <p>{{order.notes}} {{ order.partner_matricule }} {{ order.warehouse }}</p>
                 <p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
                 <span ng-hide="$last">, </span></span></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>

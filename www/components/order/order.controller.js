@@ -5,6 +5,7 @@ angular.module('starter')
     $scope.editMode = false;
     $scope.orderDraft = null;
     $scope.warehouses = [];
+    $scope.orderFilterState = '!done';
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         localStorage.get('warehouse')
