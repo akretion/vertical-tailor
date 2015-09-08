@@ -1,5 +1,5 @@
 angular.module('starter')
-.factory('Warehouse', ['storage', '$q','remoteStorage', 'storage', function(localStorage, $q, remoteStorage, storage) {
+.factory('Warehouse', ['localStorage','remoteStorage', 'storage', function(localStorage, remoteStorage, storage) {
 
     var warehousesPromise = null;
 
@@ -9,6 +9,7 @@ angular.module('starter')
                 localStorage.set('warehouses', warehouses);
                 return warehouses;
             });
+            return warehousesPromise;
         },
         get: function () {
             warehousesPromise = warehousesPromise || storage.get('warehouses').then(function (warehouses) { 

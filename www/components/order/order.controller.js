@@ -8,20 +8,12 @@ angular.module('starter')
     $scope.orderFilterState = '!done';
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
-        localStorage.get('warehouse')
-          .then(function(w) {
-            Order.all(w.id).then(function (orders) { //au premier chargement ou à chaque fois ? 
-                $scope.orders = orders;
-            });
-          })
-          .catch(function() {
-            Order.all().then(function (orders) { //au premier chargement ou à chaque fois ? 
-                $scope.orders = orders;
-            });
-            Warehouse.get().then(function (warehouses) {
-                $scope.warehouses = warehouses;
-            });
-          });
+        Order.all().then(function (orders) { //au premier chargement ou à chaque fois ? 
+            $scope.orders = orders;
+        });
+        Warehouse.get().then(function (warehouses) {
+            $scope.warehouses = warehouses;
+        });
     });
 
     $scope.toggleMode = function () {
