@@ -53,5 +53,13 @@
           Debug - Mesureuse v{{version}}
         </div>
         <div class="item"><button class="button button-assertive" ng-click="reset()">Réinitaliser</button> {{ resetMsg }}</div>
+        <div class="card">
+            <div class="item item-text-wrap" ng-repeat="log in global.errors">
+                <p>{{ log.date.toJSON() }}</p>
+                {{ log.title }}
+                <p>{{ log.message}}</p>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>

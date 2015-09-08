@@ -19,6 +19,8 @@ angular.module('starter', ['ionic','odoo'])
     jsonRpc.errorInterceptors.push(function (a) {
         if (a.title === 'session_expired')
             $state.current.data.global.isLoggedIn = false; //ensure state is always uptodate 
+        a.date = new Date();
+        $state.current.data.global.errors.push(a);
     });
 
     localStorage.get('settings').then(function (settings) {
@@ -42,6 +44,7 @@ angular.module('starter', ['ionic','odoo'])
         data: {
             global: { 
                 isLoggedIn: undefined,
+                errors: []
             }
         }
     })
