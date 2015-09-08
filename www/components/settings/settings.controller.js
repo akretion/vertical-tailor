@@ -1,9 +1,9 @@
 angular.module('starter')
-.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'localStorage', function($scope, $stateParams, $state, jsonRpc, Formulaire, localStorage) {
+.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'localStorage', 'Config', function($scope, $stateParams, $state, jsonRpc, Formulaire, localStorage, Config) {
 
     $scope.global = $state.current.data.global;
     $scope.login = { username: undefined, password: undefined};
-    $scope.settings = { localServer: "http://10.47.0.1/", odooServer: "", odooDb: "production"};
+    $scope.settings = Config;
     $scope.version = window.version;
 
     $scope.$on('$ionicView.enter', function() { //refresh on load

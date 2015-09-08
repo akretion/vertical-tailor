@@ -6,3 +6,4 @@ plugins
 plateforms
 *.swp
 platforms
+www/app/config.js
