@@ -63,6 +63,7 @@ angular.module('starter')
         ['settings', 'forms', 'orders', 'formsProducts', 'warehouses'].map(function(key) { localStorage.remove(key) });
         localStorage.set('orders', []);
         localStorage.set('warehouses', []);
+        $scope.global.errors = [];
         $scope.resetMsg = "Réinitialisation terminée. Connectez-vous";
     };
 
