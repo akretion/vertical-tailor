@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'localStorage', 'Config', function($scope, $stateParams, $state, jsonRpc, Formulaire, localStorage, Config) {
+.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'Warehouse', 'localStorage', 'Config', function($scope, $stateParams, $state, jsonRpc, Formulaire, Warehouse, localStorage, Config) {
 
     $scope.global = $state.current.data.global;
     $scope.login = { username: undefined, password: undefined};
@@ -33,6 +33,7 @@ angular.module('starter')
             $scope.settings.username = $scope.login.username;
             localStorage.set('settings', $scope.settings);
             $scope.login.feedback = { msg: "Connexion réussie", isError: false };
+            Warehouse.load();
             return Formulaire.load();
         }, function (reason) {
             console.log('login failed');
