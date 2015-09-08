@@ -14,6 +14,7 @@ angular.module('starter')
 
         localStorage.get('settings').then(function (settings) {
             $scope.settings = settings;
+            $scope.login.username = settings.username;
         });
 
     });
@@ -31,6 +32,7 @@ angular.module('starter')
             $scope.global.isLoggedIn = true;
 
        
+            $scope.settings.username = $scope.login.username;
             localStorage.set('settings', $scope.settings);
             $scope.login.password = '';
             $scope.error = "Connexion réussie";
