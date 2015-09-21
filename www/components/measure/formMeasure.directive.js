@@ -20,12 +20,12 @@ angular.module('starter')
                         '<select ng-model="measure.data[c.name]" ng-options="v as v for v in c.value "></select>' +
                     '</div>' +
                     '<div ng-switch-when="numeric">' +
-                        '<label><span>{{c.label}}</span></label>' +
-                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number" pattern="\-?[0-9]*"></input>' + //inputmode=numeric not supported yet
+                        '<label for="numeric-{{c.name}}-{{ $index }}"><span>{{c.label}}</span></label>' +
+                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" id="numeric-{{c.name}}-{{ $index }}" type="number" pattern="\-?[0-9]*"></input>' + //inputmode=numeric not supported yet
                     '</div>' +
                     '<div ng-switch-when="number">' +
-                        '<label><span>{{c.label}}</span></label>' +
-                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" type="number" step="0.5"></input>' +
+                        '<label for="number-{{c.name}}-{{ $index }}"><span>{{c.label}}</span></label>' +
+                        '<input ng-class="{\'active\': !!measure.data[c.name]}" ng-model="measure.data[c.name]" id="number-{{c.name}}-{{ $index }}" type="number" step="0.5"></input>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
