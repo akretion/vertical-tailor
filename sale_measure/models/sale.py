@@ -172,13 +172,12 @@ class SaleOrder(models.Model):
             'measure_user': {
                 'data': self._prepare_partner_measure(),
             }
+            'warehouse_id': self.warehouse_id.id,
         }
 
     @api.model
-    def get_measure(self, warehouse_id=None):
+    def get_measure(self):
         domain = [
             ['order_line.need_measure', '=', True],
             ]
-        if warehouse_id:
-            domain.append(('warehouse_id', '=', warehouse_id))
         return self.search(domain)._prepare_export_measure_from_order()
