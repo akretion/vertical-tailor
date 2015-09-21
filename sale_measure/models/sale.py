@@ -171,7 +171,7 @@ class SaleOrder(models.Model):
             #TODO add real data
             'measure_user': {
                 'data': self._prepare_partner_measure(),
-            }
+            },
             'warehouse_id': self.warehouse_id.id,
         }
 
