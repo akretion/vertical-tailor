@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="0">
+
         <record id="no_measure_for_product" model="sale.exception">
             <field name="name">Not measure</field>
             <field name="sequence">30</field>
             <field name="description">This order have a product that need a measure please select it</field>
             <field name="model">sale.order.line</field>
-            <field name="code">if object.need_measure:
+            <field name="code">if object._check_exception_no_measure_for_product():
           failed = True</field>
             <field name="active" eval="True"/>
         </record>
@@ -22,10 +23,8 @@
         </record>
 
         <record model="res.partner" id="res_partner_mesure_not_found">
-            <field name="name">Mesured Customer not found</field>
+            <field name="name">Measured Customer not found</field>
         </record>
 
     </data>
 </openerp>
-
-

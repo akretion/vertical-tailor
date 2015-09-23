@@ -43,6 +43,12 @@ class SaleLineOrder(models.Model):
             'qty': self.product_uom_qty,
             }
 
+    @api.model
+    def _check_exception_no_measure_for_product(self):
+        if self.need_measure:
+            return True
+        return False
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
