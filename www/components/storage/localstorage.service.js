@@ -6,7 +6,7 @@ angular.module('starter')
                 resolve($window.localStorage[key] = JSON.stringify(value));
             });
         },
-        get: function(key) {            
+        get: function(key) {
             return $q(function (resolve, reject) {
                 var val = $window.localStorage[key];
                 if (val)
