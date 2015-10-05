@@ -1,10 +1,13 @@
 angular.module('starter')
-.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'Warehouse', 'localStorage', 'Config', function($scope, $stateParams, $state, jsonRpc, Formulaire, Warehouse, localStorage, Config) {
+.controller('SettingsCtrl', ['$scope', '$stateParams', '$state','jsonRpc','Formulaire', 'Warehouse', 'localStorage', 'Config', '$http', function($scope, $stateParams, $state, jsonRpc, Formulaire, Warehouse, localStorage, Config, $http) {
 
     $scope.global = $state.current.data.global;
     $scope.login = { username: undefined, password: undefined};
     $scope.settings = Config;
-    $scope.version = window.version;
+
+    $http.get('manifest.json').then(function (response) {
+        $scope.version = response.data.version;
+    });
 
     $scope.$on('$ionicView.enter', function() { //refresh on load
         //because ctrl is not reloaded
