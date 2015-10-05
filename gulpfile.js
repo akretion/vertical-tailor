@@ -45,7 +45,7 @@ gulp.task('tag', function (cb) {
 });
 
 gulp.task('bump', function () {
-  return gulp.src(['./bower.json', './package.json', './www/manifest.json'])
+  return gulp.src(['./bower.json', './package.json', './www/manifest.json'], {base: '.'})
     .pipe(bump({type: "patch"}).on('error', gutil.log))
     .pipe(gulp.dest('./'));
 });
