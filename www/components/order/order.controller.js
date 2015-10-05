@@ -39,7 +39,7 @@ angular.module('starter')
             template: 'Chargement'
         });
 
-        Order.all().then(function (orders) {
+        Order.all(true).then(function (orders) {
             $scope.orders = orders;
 
             orders.filter(function (o) {
