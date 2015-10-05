@@ -6,6 +6,7 @@ angular.module('starter')
     return {
         load: function () {
             warehousesPromise = remoteStorage.get('warehouses').then(function (warehouses) {
+                warehouses = warehouses || [];
                 localStorage.set('warehouses', warehouses);
                 return warehouses;
             });
