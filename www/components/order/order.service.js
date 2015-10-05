@@ -6,7 +6,7 @@ angular.module('starter')
     var ordersPromise = null;
     var service = {
         all: function(args) {
-            ordersPromise = storage.get('orders', args).then(function (results) {
+            ordersPromise = ordersPromise || storage.get('orders', args).then(function (results) {
                 orders = (results) ? results: [];
                 orders.forEach(function (o) {
                     o.order_line.map(function (m) { if (!m.data) m.data = {}; });
