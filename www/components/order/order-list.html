@@ -64,7 +64,7 @@
                     <span class="label label-calm" ng-show="order.state == 'done'">ready to sync</span>
                      {{ order.partner_name }}
                 </h2>
-                <p>{{order.notes}} {{ order.partner_matricule }} {{ order.warehouse }}</p>
+                <p>{{order.notes}} {{ order.partner_matricule }} {{ getWarehouse(order.warehouse_id).display_name }}</p>
                 <p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
                 <span ng-hide="$last">, </span></span></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>

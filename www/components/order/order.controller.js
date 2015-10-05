@@ -58,6 +58,12 @@ angular.module('starter')
         Order.remove(order);
     };
 
+    $scope.getWarehouse = function(warehouse_id) {
+        return $scope.warehouses.filter(function (w) {
+            return w.id == warehouse_id;
+        }).pop();
+    };
+
     $ionicModal.fromTemplateUrl('my-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
