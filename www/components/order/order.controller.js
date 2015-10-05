@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('OrderCtrl', ['$scope', 'Order', 'Warehouse', '$state', '$ionicModal', function($scope, Order, Warehouse, $state, $ionicModal) {
+.controller('OrderCtrl', ['$scope', 'Order', 'Warehouse', '$state', '$ionicModal', '$ionicLoading', function($scope, Order, Warehouse, $state, $ionicModal, $ionicLoading) {
 
     $scope.orders = null;
     $scope.editMode = false;
@@ -35,13 +35,19 @@ angular.module('starter')
 
     $scope.refresh = function () {
         //force reload from storage
+        $ionicLoading.show({
+            template: 'Chargement'
+        });
+
         Order.all().then(function (orders) {
             $scope.orders = orders;
 
             orders.filter(function (o) {
                 return o.state === 'done'; //get orders ready
             }).forEach(Order.terminate); //terminate them
-        });
+        }).then($ionicLoading.hide);
+
+
         //quit edit mode
         $scope.editMode = false;
     };
