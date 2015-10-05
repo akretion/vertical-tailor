@@ -18,22 +18,19 @@
                         </a>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col col-20">
+                    <div class="button-bar">
+                        <a class="button button-stable icon ion-funnel icon-left" ng-click="openModal()" title="Entrepôt">
+                            {{ orderFilterWarehouse.display_name }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col col">
                     <div class="list list-inset" style="margin-top:0px;">
-                        <div style="display: flex;"> 
-                            <label class="item item-select" style="flex:1; padding:2px;">
-                                <div class="input-label">
-                                  Entrepot
-                                </div>
-                                <select ng-options="warehouse as warehouse.display_name for warehouse in warehouses track by warehouse.id" ng-model="orderFilterWarehouse">
-                                    <option></option>
-                                </select>
-                            </label>
-                            <label class="item item-input" style="flex:5;">
-                                <i class="icon ion-search placeholder-icon"></i>
-                                <input type="text" placeholder="Search" ng-model="orderFilterTxt">
-                            </label>
-                        </div>
+                        <label class="item item-input">
+                            <i class="icon ion-search placeholder-icon"></i>
+                            <input type="text" placeholder="Search" ng-model="orderFilterTxt">
+                        </label>
                     </div>
                 </div>
             </div>
@@ -75,3 +72,22 @@
         </ion-list>
     </ion-content>
 </ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Entrepôt</h1>
+    </ion-header-bar>
+    <ion-content>
+          <form id="fform">
+          <label class="item item-radio" ng-repeat="warehouse in warehouses" ng-click="closeModal(warehouse)">
+            <input type="radio" name="fournisseur">
+            <div class="item-content">
+                {{ warehouse.display_name }}
+            </div> 
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </form>
+    </ion-content>
+</ion-modal-view>
+</script>

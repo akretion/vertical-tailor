@@ -13,6 +13,7 @@ angular.module('starter')
         });
         Warehouse.get().then(function (warehouses) {
             $scope.warehouses = warehouses;
+            $scope.warehouses.push({ display_name: "Tous"});
         });
     });
 
@@ -56,6 +57,24 @@ angular.module('starter')
         console.log('remove ', order);
         Order.remove(order);
     };
+
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function(warehouse) {
+        $scope.orderFilterWarehouse = warehouse;
+        $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
 
 }]).controller('OrderDetailCtrl', ['$scope', '$stateParams', '$state', 'Order','Formulaire','isOrderDoneFilter','$q', function($scope, $stateParams, $state, Order, Formulaire, isOrderDoneFilter, $q) {
     console.log('OrderDetailCtrl');
