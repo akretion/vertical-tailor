@@ -54,9 +54,6 @@
         </ion-list>
         <ion-list show-delete="editMode">
 
-            <ion-item ng-show="orders.length == 0">
-                <h2>Aucune commande</h2>
-            </ion-item>
             <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: { warehouse: orderFilterWarehouse, text: orderFilterTxt, state: orderFilterState } track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
                 <ion-delete-button ng-show="order.isLocalOnly" class="ion-minus" ng-click="removeOrder(order, $index)"></ion-delete-button>
                 <h2>
@@ -68,6 +65,9 @@
                 <p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
                 <span ng-hide="$last">, </span></span></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+            <ion-item ng-show="(orders | orderFilter: { warehouse: orderFilterWarehouse, text: orderFilterTxt, state: orderFilterState }).length == 0">
+                <p>Aucun résultat</p>
             </ion-item>
         </ion-list>
     </ion-content>
