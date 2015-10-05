@@ -1,5 +1,5 @@
 angular.module('starter')
-.controller('OrderCtrl', ['$scope', 'Order', 'Warehouse', '$state', 'localStorage', function($scope, Order, Warehouse, $state, localStorage) {
+.controller('OrderCtrl', ['$scope', 'Order', 'Warehouse', '$state', '$ionicModal', function($scope, Order, Warehouse, $state, $ionicModal) {
 
     $scope.orders = null;
     $scope.editMode = false;
