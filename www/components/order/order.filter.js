@@ -1,20 +1,31 @@
-angular.module('starter').filter('orderFilter', [function () {
-    return function (items, orderFilterTxt) {
-        if (!orderFilterTxt)
-            return items;
+angular.module('starter').filter('orderFilter', ['filterFilter', 'orderByFilter', function (filterFilter, orderByFilter) {
+    return function (items, params) {
+        if (!items)
+            return;
 
-        var orderFilterTxtUpper = orderFilterTxt.toUpperCase();
-        return items.filter(function (i) {
-            
-            return ['partner_matricule', 'partner_name', 'warehouse'].some(function (field) {
-                if (!i[field])
-                    return false;
+        var orderFiltered = items;
 
-                return i[field].toUpperCase().indexOf(orderFilterTxtUpper) !== -1;
+        if (params.warehouse)
+            orderFiltered = orderFiltered.filter(function (i) {
+                return i.warehouse_id === params.warehouse.id;
             });
+
+        if (params.text) {
+            var orderFilterTxtUpper = params.text.toUpperCase();
  
-        });
-    };
+            orderFiltered = orderFiltered.filter(function (i) {
+                return ['partner_matricule', 'partner_name', 'name'].some(function (field) {
+                    if (!i[field])
+                        return false;
+                    return i[field].toUpperCase().indexOf(orderFilterTxtUpper) !== -1;
+                });
+            });
+        }
+
+        orderFiltered = filterFilter(orderFiltered, { state: params.state})
+        orderFiltered = orderByFilter(orderFiltered, 'state');
+        return orderFiltered;
+    }
 }]).filter('isOrderDone', [function () {
     return function (order) {
         if (!order)
