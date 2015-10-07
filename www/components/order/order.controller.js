@@ -12,7 +12,7 @@ angular.module('starter')
             $scope.orders = orders;
         });
         Warehouse.get().then(function (warehouses) {
-            $scope.warehouses = warehouses;
+            $scope.warehouses = angular.copy(warehouses); //on veut pas modifier
             $scope.warehouses.push({ display_name: "Tous"});
         });
     });
