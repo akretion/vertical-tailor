@@ -5,7 +5,7 @@ angular.module('starter').filter('orderFilter', ['filterFilter', 'orderByFilter'
 
         var orderFiltered = items;
 
-        if (params.warehouse)
+        if (params.warehouse && params.warehouse.id)
             orderFiltered = orderFiltered.filter(function (i) {
                 return i.warehouse_id === params.warehouse.id;
             });
