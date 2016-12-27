@@ -1,0 +1,93 @@
+<ion-view view-title="Mesures">
+    <ion-nav-buttons side="secondary">
+        <div show-login-state></div>
+    </ion-nav-buttons>
+     <ion-content>
+        <ion-list>
+            <div class="row">
+                <div class="col col-20">
+                    <div class="button-bar">
+                        <a class="button button-positive" ng-click="toggleMode()">
+                            <i class="icon ion-plus-round"></i>
+                        </a>
+                        <a class="button button-calm" ng-click="refresh()">
+                            <i class="icon ion-refresh"></i>
+                        </a>
+                        <a class="button button-royal" ng-click="refreshNeighbour()" style="display:none;">
+                            <i class="icon ion-wifi"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col col-20">
+                    <div class="button-bar">
+                        <a class="button button-stable icon ion-funnel icon-left" ng-click="openModal()" title="Entrepôt">
+                            {{ orderFilterWarehouse.display_name }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col col">
+                    <div class="list list-inset" style="margin-top:0px;">
+                        <label class="item item-input">
+                            <i class="icon ion-search placeholder-icon"></i>
+                            <input type="text" placeholder="Search" ng-model="orderFilterTxt">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <ion-item ng-show="editMode">
+                <label>
+                    Nom
+                    <input type="text" ng-model="orderDraft.partner_name">
+                </label>
+                <label>
+                    Matricule
+                    <input type="text" ng-model="orderDraft.partner_matricule">
+                </label>
+
+                <label>
+                    Notes
+                    <textarea ng-model="orderDraft.notes"></textarea>
+                </label>
+                <button class="button button-positive" ng-click="saveOrder(orderDraft)">Enregistrer</button>
+                <button class="button" ng-click="toggleMode()">Annuler</button>
+            </ion-item>
+        </ion-list>
+        <ion-list show-delete="editMode">
+
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="order in orders | orderFilter: { warehouse: orderFilterWarehouse, text: orderFilterTxt, state: orderFilterState } track by order.id" type="item-text-wrap" href="#/tab/order/{{order.id}}">
+                <ion-delete-button ng-show="order.isLocalOnly" class="ion-minus" ng-click="removeOrder(order, $index)"></ion-delete-button>
+                <h2>
+                    <span class="label" ng-show="!!order.name">{{order.name}}</span>
+                    <span class="label label-calm" ng-show="order.state == 'done'">ready to sync</span>
+                     {{ order.partner_name }}
+                </h2>
+                <p>{{order.notes}} {{ order.partner_matricule }} {{ getWarehouse(order.warehouse_id).display_name }}</p>
+                <p><span ng-repeat="measure in order.measures track by $index">{{ measure.produit }} 
+                <span ng-hide="$last">, </span></span></p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+            <ion-item ng-show="(orders | orderFilter: { warehouse: orderFilterWarehouse, text: orderFilterTxt, state: orderFilterState }).length == 0">
+                <p>Aucun résultat</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Entrepôt</h1>
+    </ion-header-bar>
+    <ion-content>
+          <form id="fform">
+          <label class="item item-radio" ng-repeat="warehouse in warehouses" ng-click="closeModal(warehouse)">
+            <input type="radio" name="fournisseur">
+            <div class="item-content">
+                {{ warehouse.display_name }}
+            </div> 
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </form>
+    </ion-content>
+</ion-modal-view>
+</script>

@@ -1,0 +1,37 @@
+{
+  "name": "mesureuse",
+  "devDependencies": {
+    "jasmine": "~2.2.1",
+    "angular-mocks": "~1.4.3"
+  },
+  "version": "1.0.1",
+  "homepage": "https://github.com/hparfr/mesureuse",
+  "authors": [
+    "raph@hpar.fr"
+  ],
+  "directory": "www/lib/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.0",
+    "odoo": "hparfr/angular-odoo#develop"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
+  },
+  "overrides": {
+    "ionic": {
+      "main": [
+        "css/ionic.css",
+        "js/ionic.bundle.js",
+        "fonts/ionicons.ttf",
+        "fonts/ionicons.woff"
+      ]
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<ion-view view-title="Mesures">
+    <ion-nav-buttons side="secondary">
+        <div show-login-state></div>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <h1>{{ order.partner_name }} <span class="label small">{{order.partner_matricule}}</span></h1>
+                <p><strong>{{order.name }}</strong></p>
+                <p>
+                    {{order.notes}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <h2 style="display:inline-block;margin-right:10px;">Mesures</h2>
+                <button class="button" ng-class="{true:'button-positive',false:'button-calm'}[editMode]" ng-click="toggleMode()" ng-show="order.isLocalOnly" style="margin-bottom:10px;">
+                    <span ng-show="editMode">Enregistrer</span>
+                    <span ng-show="!editMode">Modifier</span>
+                </button>
+                <ion-list show-delete="editMode">
+                    <ion-item ng-show="editMode" class="enable-pointer-events">
+                        <p ng-show="produitsFormulaire.length == 0"><strong class="assertive">Pas de formulaire disponible.</strong></p>
+                        <div class="item-input-inset grid">
+                            <label class="create col">
+                                Produit<br>
+                                <select ng-model="produitFormulaire" ng-options="item.name for item in produitsFormulaire">
+                                </select>
+                            </label>
+                            <label class="create col">
+                                Quantité
+                                <input type="number" ng-model="measureDraft.qty" min="1">
+                            </label>
+                            <button class="button button-positive icon ion-checkmark" ng-click="saveMeasure(measureDraft, produitFormulaire);produitFormulaire=null"></button>
+                        </div>
+                        <ion-delete-button class="ion-minus" ng-click="toggleMode()"></ion-delete-button>
+
+                    </ion-item>
+                    <ion-item type="item-text-wrap"  class="item-remove-animate item-avatar item-icon-right" ng-repeat="(key, measure) in order.order_line track by key" ui-sref="tab.measure({orderId: order.id, measureId: key})">
+                        <p class="commande-name">{{ measure.product_name }}  <span class="label small label-gray">Quantité : {{ measure.qty }}</span></p>
+                        <div resume-measures measure="measure"></div>
+                        <ion-delete-button class="ion-minus" ng-click="removeMeasure(measure, $index)"></ion-delete-button>
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+                    </ion-item>
+
+                    <ion-item type="" ng-show="order.order_line.length == 0">Pas de mesure</ion-item>
+
+                    <div class="item item-button-right big-item bar" ng-hide="editMode">
+                        <small ng-hide="isOrderDone">Toutes les mesures doivent être prises pour clore la commande</small>
+                        <button class="button button-positive icon icon-checkmark pull-right" ng-click="terminateOrder()" ng-disabled="!isOrderDone">Terminer la prise de mesures</button>
+                    </div>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
