@@ -1,9 +1,0 @@
-node_modules
-www/lib
-.tmp
-.sass-cache
-plugins
-plateforms
-*.swp
-platforms
-www/app/config.js
