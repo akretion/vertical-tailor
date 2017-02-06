@@ -184,7 +184,6 @@ class SaleOrder(models.Model):
     @api.model
     def get_measure(self):
         domain = [
-            ('order_line.need_measure', '=', True),
-            ('state', '!=', 'cancel'),
-        ]
+            ['order_line.need_measure', '=', True],
+            ]
         return self.search(domain)._prepare_export_measure_from_order()
