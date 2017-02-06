@@ -24,10 +24,12 @@ class SaleLineOrder(models.Model):
         return super(SaleLineOrder, self).copy_data(
             cr, uid, id, default=default, context=context)
 
-    @api.depends('measure_id', 'product_id.measure_form_type')
+    @api.depends('measure_id', 'product_id.measure_form_type',
+                 'order_id.state')
     @api.one
     def _compute_need_measure(self):
-        if self.product_id.measure_form_type and not self.measure_id:
+        if (self.order_id.state != 'cancel' and
+                self.product_id.measure_form_type and not self.measure_id):
             self.need_measure = True
         else:
             self.need_measure = False
@@ -184,7 +186,6 @@ class SaleOrder(models.Model):
     @api.model
     def get_measure(self):
         domain = [
-            ('order_line.need_measure', '=', True),
-            ('state', '!=', 'cancel'),
-        ]
+            ['order_line.need_measure', '=', True],
+            ]
         return self.search(domain)._prepare_export_measure_from_order()
