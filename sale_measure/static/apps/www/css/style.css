@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.scroll-content {
+    overflow: auto
+}
+
 .item.list-mesure {
 	margin:0;
 	padding:0;
@@ -118,7 +122,7 @@
 .label.label-gray {
 	border-color: #B0B0B0;
 	background-color: #7A7A7A;
-	color: #FFF;	
+	color: #FFF;
 }
 .label.small {
 	font-size: 70%;
