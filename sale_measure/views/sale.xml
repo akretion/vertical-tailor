@@ -7,6 +7,15 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']/../.." position="before">
+                    <group name="partner_measure" colspan="4" col="4"
+                           attrs="{'invisible': [('measure_offline_id', '=', False)]}">
+                        <field name="measure_partner_name" colspan="2"/>
+                        <field name="measure_partner_ref" colspan="2"/>
+                        <field name="measure_offline_id" invisible="True"/>
+                    </group>
+                </xpath>
+
                 <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="before">  
                  <field name = "measure_id"
                   context="{'default_search_partner_id': parent.partner_id,'default_search_product_id': product_id}"/>
