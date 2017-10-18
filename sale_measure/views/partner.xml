@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <openerp>
     <data>
         <!--<record model="ir.ui.view" id="hide_partner_id_field_in_view">
@@ -17,7 +18,7 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//form/sheet/div[@name='buttons']" position="inside">
+                <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
                     <button class="oe_inline oe_stat_button"
                             name="%(act_partner_2_measure)d"
                             type="action"
