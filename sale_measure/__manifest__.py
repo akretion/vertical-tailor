@@ -5,12 +5,13 @@
 {
     'name': "Sale measure",
     'author': "Akretion",
-    'website': "http://www.Akretion.com",
+    'website': "http://www.akretion.com",
     'license': 'AGPL-3',
     'category': 'sale',
     'version': '10.0.1.0.0',
     'depends': [
-        'sale'
+        'sale',
+        'sale_exception',
         ],
     'data': [
         'views/measure.xml',
