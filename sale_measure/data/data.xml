@@ -2,7 +2,7 @@
 <openerp>
     <data noupdate="0">
 
-        <record id="no_measure_for_product" model="sale.exception">
+        <record id="no_measure_for_product" model="exception.rule">
             <field name="name">Not measure</field>
             <field name="sequence">30</field>
             <field name="description">This order have a product that need a measure please select it</field>
@@ -10,9 +10,10 @@
             <field name="code">if object._check_exception_no_measure_for_product():
           failed = True</field>
             <field name="active" eval="True"/>
+            <field name="rule_group">sale</field>
         </record>
 
-        <record id="no_customer" model="sale.exception">
+        <record id="no_customer" model="exception.rule">
             <field name="name">No Customer Selected</field>
             <field name="sequence">30</field>
             <field name="description">The customer was not found please select it manually</field>
@@ -20,6 +21,7 @@
             <field name="code">if object.partner_id == object.env.ref('sale_measure.res_partner_mesure_not_found'):
           failed = True</field>
             <field name="active" eval="True"/>
+            <field name="rule_group">sale</field>
         </record>
 
         <record model="res.partner" id="res_partner_mesure_not_found">
