@@ -7,10 +7,9 @@
     forms for example trousers,skirt,.... and for each form there are
     differnt fields, so we hide or show fields as a function of forms  """
 
-from openerp import fields, models, api, _
+from odoo import fields, models, api, _
 from collections import defaultdict
-from openerp.exceptions import Warning
-from openerp.osv import orm
+from odoo.exceptions import Warning as UserError
 from lxml import etree
 
 
@@ -54,7 +53,7 @@ class ProductMeasure(models.Model):
                 if 'value' in question.keys():
                     val = self[question['name']]
                     if val and val not in question['value']:
-                        raise Warning(
+                        raise UserError(
                             _("There are problems in %s the value"
                               " is not in %s")
                             % (self._fields[question['name']].string,
