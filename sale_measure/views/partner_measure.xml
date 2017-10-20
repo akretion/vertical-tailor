@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="view_partner_measure_tree">
             <field name="model">partner.measure</field>
@@ -41,4 +41,4 @@
             </field>
         </record>
 </data>
-</openerp>
+</odoo>

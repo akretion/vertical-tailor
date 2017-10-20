@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <record id="product_template_form_view" model="ir.ui.view">
             <field name="model">product.template</field>
@@ -25,4 +25,4 @@
             parent="base.menu_product"
             action="action_product_template_xml"/>-->
      </data>
-</openerp>
+</odoo>
