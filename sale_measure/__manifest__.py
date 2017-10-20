@@ -4,7 +4,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': "Sale measure",
-    'author': "Akretion",
     'website': "http://www.akretion.com",
     'license': 'AGPL-3',
     'author': "Akretion,Odoo Community Association (OCA)",
