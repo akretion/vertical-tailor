@@ -24,7 +24,7 @@
     ],
     # only loaded in demonstration mode
     'demo': [],
-        'external_dependencies': {
+    'external_dependencies': {
         'python': ['lxml'],
     }
 

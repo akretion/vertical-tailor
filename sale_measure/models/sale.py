@@ -95,14 +95,14 @@ class SaleOrder(models.Model):
 
     @api.model
     def _prepare_order_line_from_measure(self, line, partner_id):
-        #TODO be more explicite, use product_tmpl_id
+        # TODO be more explicite, use product_tmpl_id
         line['product_tmpl_id'] = line['product_id']
         line['product_id'] = self._get_product(line)
         measure = self.env['product.measure'].create(
             self._prepare_measure(line, partner_id))
         return {
             'product_id': line['product_id'],
-            #TODO fix the way to get the qty
+            # TODO fix the way to get the qty
             'product_uom_qty': line['data'].get('qty', 1),
             'measure_id': measure.id,
             }
@@ -184,7 +184,7 @@ class SaleOrder(models.Model):
                 'order_line': [
                     line._prepare_order_line_measure()
                     for line in record.order_line if line.need_measure],
-                #TODO add real data
+                # TODO add real data
                 'measure_user': {
                     'data': record._prepare_partner_measure(),
                 },

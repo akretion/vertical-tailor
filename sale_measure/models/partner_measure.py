@@ -3,13 +3,14 @@
 # @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models, api, _
+from odoo import fields, models, api
 
 
 class Partner(models.Model):
     _inherit = "res.partner"
 
-    measure_ids = fields.One2many('partner.measure', 'partner_id',
+    measure_ids = fields.One2many(
+        'partner.measure', 'partner_id',
         domain=['|', ('active', '=', False), ('active', '=', True)])
     product_measure_ids = fields.One2many('product.measure', 'partner_id')
 
@@ -47,7 +48,7 @@ class PartnerMeasure(models.Model):
     def _get_form(self):
         res = {
             'group_title': '',
-            'questions' : [],
+            'questions': [],
             }
         for field_name, field in self._fields.items():
             if hasattr(field, 'form') and field.form:
