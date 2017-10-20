@@ -10,6 +10,7 @@
 from odoo import fields, models, api, _
 from collections import defaultdict
 from odoo.exceptions import Warning as UserError
+from odoo.osv.orm import setup_modifiers
 from lxml import etree
 
 
@@ -108,10 +109,10 @@ class ProductMeasure(models.Model):
                 if get_list_invisible_form[field.attrib['name']]:
                     attrs = get_list_invisible_form[field.attrib['name']]
                     field.set('attrs', str(self._prepare_attrs_value(attrs)))
-                    orm.setup_modifiers(field, root)
+                    setup_modifiers(field, root)
                 if 'hide_partner' in self.env.context and field.attrib[
                         'name'] == 'partner_id':
                     field.set('invisible', '1')
-                    orm.setup_modifiers(field, root)
+                    setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
         return res

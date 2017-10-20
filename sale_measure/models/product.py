@@ -20,13 +20,14 @@ class ProductTemplate(models.Model):
             form_list.append((key, key))
         return form_list
 
-    @api.one
+    @api.multi
     def _prepare_measurable_product(self):
-        return {
-            'name': self.name,
-            'form': self.measure_form_type,
-            'id': self.id,
-            }
+        for record in self:
+            return {
+                'name': record.name,
+                'form': record.measure_form_type,
+                'id': record.id,
+                }
 
     @api.model
     def get_measurable_product(self):

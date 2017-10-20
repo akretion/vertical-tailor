@@ -30,13 +30,15 @@ class SaleLineOrder(models.Model):
 
     @api.depends('measure_id', 'product_id.measure_form_type',
                  'order_id.state')
-    @api.one
+    @api.multi
     def _compute_need_measure(self):
-        if (self.order_id.state != 'cancel' and
-                self.product_id.measure_form_type and not self.measure_id):
-            self.need_measure = True
-        else:
-            self.need_measure = False
+        for record in self:
+            if (record.order_id.state != 'cancel' and
+                    record.product_id.measure_form_type and not
+                    record.measure_id):
+                record.need_measure = True
+            else:
+                record.need_measure = False
 
     @api.multi
     def _prepare_order_line_measure(self):
@@ -119,17 +121,18 @@ class SaleOrder(models.Model):
                 ],
             }
 
-    @api.one
+    @api.multi
     def set_partner_measure(self, vals):
         partner_measure_obj = self.env['partner.measure']
-        domain = [('partner_id', '=', self.partner_id.id)]
-        for field_name, field in partner_measure_obj._columns.items():
-            if hasattr(field, 'form') and field.form:
-                domain.append((field_name, '=', vals.get(field_name)))
-        if not partner_measure_obj.search(domain):
-            vals['partner_id'] = self.partner_id.id
-            partner_measure_obj.create(vals)
-        return True
+        for record in self:
+            domain = [('partner_id', '=', record.partner_id.id)]
+            for field_name, field in partner_measure_obj._columns.items():
+                if hasattr(field, 'form') and field.form:
+                    domain.append((field_name, '=', vals.get(field_name)))
+            if not partner_measure_obj.search(domain):
+                vals['partner_id'] = record.partner_id.id
+                partner_measure_obj.create(vals)
+            return True
 
     @api.model
     def _set_measure_already_done(self, vals):
@@ -169,23 +172,24 @@ class SaleOrder(models.Model):
                     res[field_name] = measure[field_name]
         return res
 
-    @api.one
+    @api.multi
     def _prepare_export_measure_from_order(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'partner_name': self.partner_id.name,
-            'partner_matricule': self.partner_id.ref,
-            'partner_id': self.partner_id.id,
-            'order_line': [
-                line._prepare_order_line_measure()
-                for line in self.order_line if line.need_measure],
-            #TODO add real data
-            'measure_user': {
-                'data': self._prepare_partner_measure(),
-            },
-            'warehouse_id': self.warehouse_id.id,
-        }
+        for record in self:
+            return {
+                'id': record.id,
+                'name': record.name,
+                'partner_name': record.partner_id.name,
+                'partner_matricule': record.partner_id.ref,
+                'partner_id': record.partner_id.id,
+                'order_line': [
+                    line._prepare_order_line_measure()
+                    for line in record.order_line if line.need_measure],
+                #TODO add real data
+                'measure_user': {
+                    'data': record._prepare_partner_measure(),
+                },
+                'warehouse_id': record.warehouse_id.id,
+            }
 
     @api.model
     def get_measure(self):
