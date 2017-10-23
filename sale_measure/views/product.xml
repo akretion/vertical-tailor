@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
+
         <record id="product_template_form_view" model="ir.ui.view">
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
@@ -24,5 +25,5 @@
             id="choix_measure_product_form"
             parent="base.menu_product"
             action="action_product_template_xml"/>-->
-     </data>
+
 </odoo>

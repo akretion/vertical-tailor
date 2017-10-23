@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
+
         <record model="ir.ui.view" id="view_measure_tree">
             <field name="model">product.measure</field>
             <field name="type">tree</field>
@@ -64,5 +64,4 @@
             parent="base.menu_product"
             action="action_product_measure_xml"/>-->
 
-    </data> 
 </odoo>

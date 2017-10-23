@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
         <record model="ir.ui.view" id="view_partner_measure_tree">
             <field name="model">partner.measure</field>
             <field name="type">tree</field>
@@ -40,5 +40,4 @@
                 </form>
             </field>
         </record>
-</data>
 </odoo>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
+
         <!--<record model="ir.ui.view" id="hide_partner_id_field_in_view">
             <field name="name">Measure</field>
             <field name="mode">extension</field>
@@ -40,5 +40,5 @@
                 </notebook>
             </field>
         </record>
-    </data> 
+
 </odoo>
