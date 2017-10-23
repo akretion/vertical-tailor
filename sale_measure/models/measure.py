@@ -9,7 +9,7 @@
 
 from odoo import fields, models, api, _
 from collections import defaultdict
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 from odoo.osv.orm import setup_modifiers
 from lxml import etree
 
