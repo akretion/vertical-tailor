@@ -20,13 +20,14 @@ class SaleLineOrder(models.Model):
         domain="[(('product_id','=',product_id))]")
     need_measure = fields.Boolean(compute='_compute_need_measure', store=True)
 
-    # It seem that calling with new API fail
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if not default:
-            default = {}
-        default['measure_id'] = False
-        return super(SaleLineOrder, self).copy_data(
-            cr, uid, id, default=default, context=context)
+    @api.multi
+    def copy_data(self, default=None):
+        for record in self:
+            if not default:
+                default = {}
+            default['measure_id'] = False
+            return super(SaleLineOrder, record).copy_data(
+                default=default)
 
     @api.depends('measure_id', 'product_id.measure_form_type',
                  'order_id.state')
