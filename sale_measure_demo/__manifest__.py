@@ -30,10 +30,10 @@
             Sale measure Demo
     """,
     'author': "Akretion",
-    'website': "http://www.Akretion.com",
+    'website': "http://www.akretion.com",
     'license': 'AGPL-3',
     'category': 'Measure ',
-    'version': '0.1',
+    'version': '10.0.1.0.0',
     'depends': ['sale'],
     'data': [
         'measure_demo.xml'
