@@ -16,7 +16,7 @@
     'license': 'AGPL-3',
     'category': 'Measure ',
     'version': '10.0.1.0.0',
-    'depends': ['sale'],
+    'depends': ['sale_measure'],
     'data': [
         'measure_demo.xml'
     ],
