@@ -1,10 +1,16 @@
-from openerp import fields, models, api, _
+# -*- coding: utf-8 -*-
+# Copyright (C) 2015-Today Akretion
+# @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo import fields, models, api
 
 
 class Partner(models.Model):
     _inherit = "res.partner"
 
-    measure_ids = fields.One2many('partner.measure', 'partner_id',
+    measure_ids = fields.One2many(
+        'partner.measure', 'partner_id',
         domain=['|', ('active', '=', False), ('active', '=', True)])
     product_measure_ids = fields.One2many('product.measure', 'partner_id')
 
@@ -14,14 +20,15 @@ class PartnerMeasure(models.Model):
     _order = "date desc, id desc"
 
     @api.depends('partner_id.measure_ids.date')
-    @api.one
+    @api.multi
     def _is_active(self):
-        if self.partner_id.measure_ids[0] != self:
-            if self.active:
-                self.active = False
-        else:
-            if not self.active:
-                self.active = True
+        for record in self:
+            if record.partner_id.measure_ids[0] != record:
+                if record.active:
+                    record.active = False
+            else:
+                if not record.active:
+                    record.active = True
 
     partner_id = fields.Many2one(
         'res.partner',
@@ -41,7 +48,7 @@ class PartnerMeasure(models.Model):
     def _get_form(self):
         res = {
             'group_title': '',
-            'questions' : [],
+            'questions': [],
             }
         for field_name, field in self._fields.items():
             if hasattr(field, 'form') and field.form:

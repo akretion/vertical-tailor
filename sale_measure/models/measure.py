@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2015-Today Akretion
+# @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 """ The goal of this program is make a measure with different
     forms for example trousers,skirt,.... and for each form there are
     differnt fields, so we hide or show fields as a function of forms  """
 
-from openerp import fields, models, api, _
+from odoo import fields, models, api, _
 from collections import defaultdict
-from openerp.exceptions import Warning
-from openerp.osv import orm
+from odoo.exceptions import UserError
+from odoo.osv.orm import setup_modifiers
 from lxml import etree
 
 
@@ -50,7 +54,7 @@ class ProductMeasure(models.Model):
                 if 'value' in question.keys():
                     val = self[question['name']]
                     if val and val not in question['value']:
-                        raise Warning(
+                        raise UserError(
                             _("There are problems in %s the value"
                               " is not in %s")
                             % (self._fields[question['name']].string,
@@ -105,10 +109,10 @@ class ProductMeasure(models.Model):
                 if get_list_invisible_form[field.attrib['name']]:
                     attrs = get_list_invisible_form[field.attrib['name']]
                     field.set('attrs', str(self._prepare_attrs_value(attrs)))
-                    orm.setup_modifiers(field, root)
+                    setup_modifiers(field, root)
                 if 'hide_partner' in self.env.context and field.attrib[
                         'name'] == 'partner_id':
                     field.set('invisible', '1')
-                    orm.setup_modifiers(field, root)
+                    setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
         return res
