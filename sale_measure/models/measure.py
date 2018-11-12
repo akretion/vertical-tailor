@@ -35,6 +35,14 @@ class ProductMeasure(models.Model):
         'measure_id',
         string="Measure Ligne")
 
+    @api.multi
+    def name_get(self):
+        res = super(ProductMeasure, self).name_get()
+        names = []
+        for elm in res:
+            names.append((elm[0], 'mes%s' % elm[1].replace(self._name, '')))
+        return names
+
     @classmethod
     def _get_form(cls):
         return {}
