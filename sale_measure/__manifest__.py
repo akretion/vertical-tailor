@@ -8,7 +8,7 @@
     'license': 'AGPL-3',
     'author': "Akretion,Odoo Community Association (OCA)",
     'category': 'sale',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'depends': [
         'sale',
         'sale_exception',
