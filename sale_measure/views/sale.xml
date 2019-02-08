@@ -11,6 +11,11 @@
                   context="{'default_search_partner_id': parent.partner_id,'default_search_product_id': product_id}"/>
                     <field name="need_measure"/>
                 </xpath>
+
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="after">
+                 <field name="measure_id" context="{'default_search_partner_id': parent.partner_id,'default_search_product_id': product_id}"/>
+                    <field name="need_measure"/>
+                </xpath>
             </field>
         </record>
 
