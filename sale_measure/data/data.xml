@@ -6,10 +6,9 @@
             <field name="sequence">30</field>
             <field name="description">This order have a product that need a measure please select it</field>
             <field name="model">sale.order.line</field>
-            <field name="type">by_domain</field>
+            <field name="exception_type">by_domain</field>
             <field name="domain">[('need_measure', '=', True)]</field>
             <field name="active" eval="True"/>
-            <field name="rule_group">sale</field>
         </record>
 
         <record model="res.partner" id="res_partner_mesure_not_found">
@@ -21,10 +20,9 @@
             <field name="sequence">30</field>
             <field name="description">The customer was not found please select it manually</field>
             <field name="model">sale.order</field>
-            <field name="type">by_domain</field>
+            <field name="exception_type">by_domain</field>
             <field eval="'[(\'partner_id\', \'=\', %s )]' % ref('sale_measure.res_partner_mesure_not_found')" name="domain"/>
             <field name="active" eval="True"/>
-            <field name="rule_group">sale</field>
         </record>
 
 </odoo>
