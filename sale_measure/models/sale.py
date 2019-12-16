@@ -14,7 +14,10 @@ class SaleLineOrder(models.Model):
         'product.measure',
         string="Measure",
         domain="[(('product_id','=',product_id))]")
-    need_measure = fields.Boolean(compute='_compute_need_measure', store=True)
+    need_measure = fields.Boolean(
+        compute='_compute_need_measure',
+        store=True,
+        index=True)
 
     # It seem that calling with new API fail
     def copy_data(self, cr, uid, id, default=None, context=None):
@@ -186,6 +189,8 @@ class SaleOrder(models.Model):
     @api.model
     def get_measure(self):
         domain = [
+            ['company_id', '=', self.env.user.company_id.id],
             ['order_line.need_measure', '=', True],
+            ['state', '=', 'draft'],
             ]
         return self.search(domain)._prepare_export_measure_from_order()
