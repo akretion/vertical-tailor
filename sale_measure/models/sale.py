@@ -191,6 +191,7 @@ class SaleOrder(models.Model):
         domain = [
             ['company_id', '=', self.env.user.company_id.id],
             ['order_line.need_measure', '=', True],
-            ['state', '=', 'draft'],
+            # TODO FIXME
+            #['state', '=', 'draft'],
             ]
         return self.search(domain)._prepare_export_measure_from_order()
